@@ -1,24 +1,25 @@
 package Social.user;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class User {
 	private int user_id;
-	private String user_name;
+	private String first_name;
 	private String last_name;
 	private String email;
-	private LocalDateTime birth_date;
-	private int likes_post_id;
-	private int likes_user_id;
+	private Date birth_date;
 	private Gender gender;
+	private String password;
 
-	public User(String user_name, String last_name, String email, LocalDateTime birth_date, Gender gender) {
+	public User(String first_name, String last_name, String email, Date birth_date, Gender gender) {
 		super();
-		this.user_name = user_name;
+		this.first_name = first_name;
 		this.last_name = last_name;
 		this.email = email;
 		this.birth_date = birth_date;
 		this.gender = gender;
+		this.password = password;
 	}
 
 	public enum Gender {
@@ -51,6 +52,16 @@ public class User {
 		return true;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		if (validateString(password)) {
+			this.password = password;
+		}
+	}
+
 	// Getters and Setters
 	public int getUser_id() {
 		return user_id;
@@ -62,13 +73,13 @@ public class User {
 		}
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setUser_name(String user_name) {
-		if (validateString(user_name)) {
-			this.user_name = user_name;
+	public void setFirst_name(String first_name) {
+		if (validateString(first_name)) {
+			this.first_name = first_name;
 		}
 	}
 
@@ -92,36 +103,16 @@ public class User {
 		}
 	}
 
-	public LocalDateTime getBirth_date() {
+	public Date getBirth_date() {
 		return birth_date;
 	}
 
-	public void setBirth_date(LocalDateTime birth_date) {
+	public void setBirth_date(Date birth_date) {
 		this.birth_date = birth_date;
 	}
 
-	public int getLikes_post_id() {
-		return likes_post_id;
-	}
-
-	public void setLikes_post_id(int likes_post_id) {
-		if (likes_post_id > 0) {
-			this.likes_post_id = likes_post_id;
-		}
-	}
-
-	public int getLikes_user_id() {
-		return likes_user_id;
-	}
-
-	public void setLikes_user_id(int likes_user_id) {
-		if (likes_user_id > 0) {
-			this.likes_user_id = likes_user_id;
-		}
-	}
-
-	public Gender getGender() {
-		return gender;
+	public String getGender() {
+		return gender.toString();
 	}
 
 	public void setGender(Gender gender) {
