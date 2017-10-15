@@ -1,7 +1,7 @@
 package Social.user;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 public class User {
 	private int user_id;
@@ -12,7 +12,7 @@ public class User {
 	private Gender gender;
 	private String password;
 
-	public User(String first_name, String last_name, String email, Date birth_date, Gender gender) {
+	public User(String first_name, String last_name, String email, Date birth_date, Gender gender,String password) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -120,7 +120,7 @@ public class User {
 	}
 
 	private static boolean validateString(String text) {
-		return text != null && text.isEmpty();
+		return text != null && !text.isEmpty();
 	}
 
 }

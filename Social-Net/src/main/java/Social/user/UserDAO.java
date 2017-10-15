@@ -1,6 +1,7 @@
 package Social.user;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,7 @@ import java.sql.Statement;
 public class UserDAO {
 
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
-	private static final String SELECT_USER_SQL = "SELECT id FROM users WHERE email = ? AND password = md5(?)";
+	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
 
 	public int registerUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
@@ -20,8 +21,8 @@ public class UserDAO {
 			ps.setString(1, user.getFirst_name());
 			ps.setString(2, user.getLast_name());
 			ps.setString(3, user.getEmail());
-			ps.setDate(4, user.getBirth_date());
-			ps.setString(5, user.getGender());
+			ps.setDate(4, 	(Date) user.getBirth_date());
+			ps.setString(5, user.getGender().toString());
 			ps.setString(6, user.getPassword());
 
 			ps.executeUpdate();
@@ -44,7 +45,7 @@ public class UserDAO {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next() == false) {
-				throw new UserException("Wrong password or email! Ae chao, opravqi se.");
+				throw new UserException("Wrong password or email! Please, try again!.");
 			}
 			return rs.getInt(1);
 		} catch (SQLException e) {

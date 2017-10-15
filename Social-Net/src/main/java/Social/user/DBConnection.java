@@ -10,9 +10,9 @@ public class DBConnection {
 	
 	private static final String DB_HOSTNAME = "localhost";
 	private static final String DB_PORT = "3306";
-	private static final String DATABASE = "SocialNet-DB";
-	private static final String DB_USER = "kari";
-	private static final String DB_PASSWORD = "8";
+	private static final String DATABASE = "socialnet-db";
+	private static final String DB_USER = "root";
+	private static final String DB_PASSWORD = "root";
 	
 	private DBConnection() {
 		try {
