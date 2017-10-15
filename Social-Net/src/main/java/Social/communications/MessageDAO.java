@@ -12,7 +12,7 @@ import Social.user.UserException;
 
 public class MessageDAO {
 
-	private static final String INSERT_MESSAGE_SQL = "INSERT INTO messages VALUES (null, ?, ?)";
+	private static final String INSERT_MESSAGE_SQL = "INSERT INTO messages VALUES (null, ?, ?, ?)";
 
 	public int sendMessage(Message message) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
@@ -20,7 +20,8 @@ public class MessageDAO {
 		try {
 			PreparedStatement ps = connection.prepareStatement(INSERT_MESSAGE_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, message.getConversation_id());
-			ps.setString(1, message.getContent());
+			ps.setString(2, message.getContent());
+			ps.setDate(3, message.getDate());
 
 			ps.executeUpdate();
 

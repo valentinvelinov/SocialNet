@@ -11,9 +11,9 @@ import Social.user.DBConnection;
 import Social.user.User;
 import Social.user.UserException;
 
-public class ConversationsDAO {
+public class ConversationDAO {
 
-	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO conversations VALUES (null, ?)";
+	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO Conversations VALUES (null, ?, ?)";
 
 	public int startConversation(Conversation conversation) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
@@ -22,6 +22,7 @@ public class ConversationsDAO {
 			PreparedStatement ps = connection.prepareStatement(INSERT_CONVERSATION_SQL,
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, conversation.getText());
+			ps.setDate(2,  (Date) conversation.getDate());
 
 			ps.executeUpdate();
 
