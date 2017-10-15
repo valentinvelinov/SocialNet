@@ -27,7 +27,7 @@ public class TestConversation {
 		java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-		testConversation = new Conversation(0, "Some text", sqlDate);
+		testConversation = new Conversation( "Some text", sqlDate);
 
 		int id = conversationDao.startConversation(testConversation);
 

@@ -31,6 +31,8 @@ public class ConversationDAO {
 			conversation.setConversation_id(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
+			e.printStackTrace();
+
 			throw new UserException("You cannot start a conversation now, please try again later.", e);
 		}
 	}

@@ -8,10 +8,15 @@ public class Conversation {
 	private String text;
 	private Date date;
 
-	public Conversation(int conversation_id, String text, Date date) {
-		this.conversation_id = conversation_id;
+	public Conversation(String text, Date date) {
 		this.text = text;
 		this.date = date;
+	}
+
+	public Conversation(int conversation_id, String text, Date date) {
+		super();
+		this.conversation_id = conversation_id;
+
 	}
 
 	public Date getDate() {
