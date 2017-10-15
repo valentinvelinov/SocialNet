@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import Social.communications.Conversation;
 import Social.communications.ConversationDAO;
+import Social.communications.ConversationException;
+import Social.communications.FriendException;
 import Social.user.User;
 import Social.user.UserDAO;
 import Social.user.UserException;
@@ -22,14 +24,19 @@ public class TestConversation {
 	private Conversation testConversation;
 
 	@Test
-	public void startConversation() throws UserException, ParseException {
+	public void startConversation() throws UserException, ParseException, FriendException {
 		String date = "2014-01-28";
 		java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-		testConversation = new Conversation( "Some text", sqlDate);
+		testConversation = new Conversation("Some text", sqlDate);
 
-		int id = conversationDao.startConversation(testConversation);
+		int id = 0;
+		try {
+			id = conversationDao.startConversation(testConversation);
+		} catch (ConversationException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println("ID after start a conversation " + id);
 

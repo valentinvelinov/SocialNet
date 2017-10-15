@@ -13,7 +13,7 @@ public class FriendDAO {
 
 	private static final String INSERT_FRIEND_SQL = "INSERT INTO friends VALUES (null, ?)";
 
-	public int startConversation(Friend friend) throws UserException {
+	public int addFriend(Friend friend) throws FriendException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
@@ -27,7 +27,7 @@ public class FriendDAO {
 			friend.setFriend_id(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
-			throw new UserException("You cannot add this person as friend now, please try again later.", e);
+			throw new FriendException("You cannot add this person as friend now, please try again later.", e);
 		}
 	}
 

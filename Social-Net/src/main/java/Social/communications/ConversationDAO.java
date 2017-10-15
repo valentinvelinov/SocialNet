@@ -15,7 +15,7 @@ public class ConversationDAO {
 
 	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO Conversations VALUES (null, ?, ?)";
 
-	public int startConversation(Conversation conversation) throws UserException {
+	public int startConversation(Conversation conversation) throws ConversationException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
@@ -33,7 +33,7 @@ public class ConversationDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 
-			throw new UserException("You cannot start a conversation now, please try again later.", e);
+			throw new ConversationException("You cannot start a conversation now, please try again later.", e);
 		}
 	}
 

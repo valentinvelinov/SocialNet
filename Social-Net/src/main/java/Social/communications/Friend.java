@@ -1,10 +1,13 @@
 package Social.communications;
 
 public class Friend {
-	
+
 	private int user_id;
 	private int friend_id;
-	
+
+	public Friend() {
+	}
+
 	public Friend(int user_id, int friend_id) {
 		super();
 		this.user_id = user_id;
@@ -26,7 +29,5 @@ public class Friend {
 	public void setFriend_id(int friend_id) {
 		this.friend_id = friend_id;
 	}
-	
-	
 
 }

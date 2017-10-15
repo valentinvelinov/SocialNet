@@ -14,7 +14,7 @@ public class MessageDAO {
 
 	private static final String INSERT_MESSAGE_SQL = "INSERT INTO messages VALUES (null, ?, ?, ?)";
 
-	public int sendMessage(Message message) throws UserException {
+	public int sendMessage(Message message) throws MessageException {
 		Connection connection = DBConnection.getInstance().getConnection();
 
 		try {
@@ -30,7 +30,7 @@ public class MessageDAO {
 			message.setMessage_id(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
-			throw new UserException("You cannot send a message now, please try again later.", e);
+			throw new MessageException("You cannot send a message now, please try again later.", e);
 		}
 	}
 
