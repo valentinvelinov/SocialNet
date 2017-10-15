@@ -1,6 +1,5 @@
 package Social.user;
 
-
 import java.util.Date;
 
 public class User {
@@ -12,8 +11,10 @@ public class User {
 	private Gender gender;
 	private String password;
 
-	public User(String first_name, String last_name, String email, Date birth_date, Gender gender,String password) {
+	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
+			String password) {
 		super();
+		this.user_id = user_id;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.email = email;

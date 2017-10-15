@@ -21,7 +21,7 @@ public class UserDAO {
 			ps.setString(1, user.getFirst_name());
 			ps.setString(2, user.getLast_name());
 			ps.setString(3, user.getEmail());
-			ps.setDate(4, 	(Date) user.getBirth_date());
+			ps.setDate(4, (Date) user.getBirth_date());
 			ps.setString(5, user.getGender().toString());
 			ps.setString(6, user.getPassword());
 
@@ -29,6 +29,7 @@ public class UserDAO {
 
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
+			user.setUser_id(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new UserException("User cannot be registered now, please try again later.", e);
