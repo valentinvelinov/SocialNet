@@ -7,11 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Social.user.User.Gender;
+
 // data access object
 public class UserDAO {
 
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
+	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE id = ?";
 
 	public int registerUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();
@@ -52,6 +55,33 @@ public class UserDAO {
 		} catch (SQLException e) {
 			throw new UserException("User cannot be logged right now.", e);
 		}
+	}
+
+	public User getUserById(int id) throws UserException {
+		Connection connection = DBConnection.getInstance().getConnection();
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(SELECT_USER_BY_ID_SQL);
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+			if (rs.next() == false) {
+				throw new UserException("There no user with this id.");
+			}
+			Gender gender = null;
+			if (rs.getString(6).equals(Gender.FEMALE.toString())) {
+				gender = gender.FEMALE;
+			} else {
+				gender = gender.MALE;
+
+			}
+			return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), gender,
+					rs.getString(7));
+			// return rs.getInt(1);
+		} catch (SQLException e) {
+			throw new UserException("There no user with this id.", e);
+		}
+
 	}
 
 }

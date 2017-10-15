@@ -11,16 +11,20 @@ public class User {
 	private Gender gender;
 	private String password;
 
-	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
-			String password) {
-		super();
-		this.user_id = user_id;
+	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password) {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.email = email;
 		this.birth_date = birth_date;
 		this.gender = gender;
 		this.password = password;
+	}
+
+	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
+			String password) {
+		super();
+		this.user_id = user_id;
+
 	}
 
 	public enum Gender {
