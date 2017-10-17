@@ -8,39 +8,34 @@
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
 <link rel='stylesheet prefetch'
 	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch'
 	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
 	<!-- Mixins-->
 	<!-- Pen Title-->
 	<div class="pen-title">
-		<h1>Registration</h1>
+		<h1>Login</h1>
 	</div>
 	<div class="rerun">
 		<a href="">Return Pen</a>
 	</div>
+
+
 	<div class="container">
 		<div class="card"></div>
 		<div class="card">
 			<form>
 				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">First name</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Last name</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Mobile number of email</label>
+					<input type="text" id="label" required="required" /> <label
+						for="label">Username</label>
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
@@ -48,24 +43,15 @@
 						for="label">Password</label>
 					<div class="bar"></div>
 				</div>
-				<div class="input-container">
-					<label for="birthday">Birthday:</label> <input name="birthday"
-						size="1" type="date" required="required" id="birthday"
-						form="repsignup" />
-				</div>
-				<div class="input-container">
-					<label for="gender">Gender:</label> <select name="gender" size="1"
-						id="gender" form="repsignup">
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-				</div>
-
 				<div class="button-container">
 					<button>
-						<span>Next</span>
+						<span>Go</span>
 					</button>
 				</div>
+				<div class="footer">
+					<a href="Register.jsp">You don't have an account?</a>
+				</div>
+
 			</form>
 		</div>
 		<div class="card alt">
@@ -75,45 +61,34 @@
 				<div class="close"></div>
 			</h1>
 			<form>
+
 				<div class="input-container">
 					<input type="type" id="label" required="required" /> <label
-						for="label">First name</label>
+						for="label">Username</label>
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
 					<input type="type" id="label" required="required" /> <label
-						for="label">Last name</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Mobile number of email</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="password" id="label" required="required" /> <label
 						for="label">Password</label>
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
-					<input type="date" id="label" required="required" /> <label
-						for="label">Birth date</label>
+					<input type="type" id="label" required="required" /> <label
+						for="label">Repeat Password</label>
 					<div class="bar"></div>
 				</div>
-				<div class="input-container">
-					<input type="date" id="label" required="required" /> <label
-						for="label">Gender</label>
-					<div class="bar"></div>
-				</div>
+
 				<div class="button-container">
 					<button>
 						<span>Next</span>
 					</button>
+
 				</div>
-				
+
 			</form>
 		</div>
 	</div>
+
 
 	<script src="js/index.js"></script>
 
