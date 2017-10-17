@@ -30,22 +30,22 @@
 			<form>
 				<div class="input-container">
 					<input type="type" id="label" required="required" /> <label
-						for="label">First name</label>
+						for="label">First name</label><input name="firstName">
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
 					<input type="type" id="label" required="required" /> <label
-						for="label">Last name</label>
+						for="label">Last name</label><input name="lastName">
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
 					<input type="type" id="label" required="required" /> <label
-						for="label">Mobile number of email</label>
+						for="label">Mobile number of email</label><input name="email">
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
 					<input type="password" id="label" required="required" /> <label
-						for="label">Password</label>
+						for="label">Password</label><input name="password">
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
@@ -74,44 +74,7 @@
 				Register
 				<div class="close"></div>
 			</h1>
-			<form>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">First name</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Last name</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Mobile number of email</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="password" id="label" required="required" /> <label
-						for="label">Password</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="date" id="label" required="required" /> <label
-						for="label">Birth date</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="date" id="label" required="required" /> <label
-						for="label">Gender</label>
-					<div class="bar"></div>
-				</div>
-				<div class="button-container">
-					<button>
-						<span>Next</span>
-					</button>
-				</div>
-				
-			</form>
+			
 		</div>
 	</div>
 
