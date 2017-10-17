@@ -16,12 +16,12 @@ h1,h2,h3,h4,h5,h6 {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:4px;">
-    <a href="Index.jsp" class="w3-bar-item w3-button">Social-Net</a>
+    <a href="Homepage.jsp" class="w3-bar-item w3-button">Social-Net</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">About</a>
-      <a href="Login.jsp" class="w3-bar-item w3-button">Login</a>
-      <a href="Register.jsp" class="w3-bar-item w3-button">Registration</a>
+      <a href="Profile.jsp" class="w3-bar-item w3-button">Profile</a>
+      <a href="Friends.jsp" class="w3-bar-item w3-button">Friends</a>
+      <a href="Messages.jsp" class="w3-bar-item w3-button">Messages</a>
     </div>
   </div>
 </div>

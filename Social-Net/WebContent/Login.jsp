@@ -35,12 +35,12 @@
 			<form>
 				<div class="input-container">
 					<input type="text" id="label" required="required" /> <label
-						for="label">Username</label>
+						for="label">Username</label><input name="username">
 					<div class="bar"></div>
 				</div>
 				<div class="input-container">
 					<input type="password" id="label" required="required" /> <label
-						for="label">Password</label>
+						for="label">Password</label><input name="password">
 					<div class="bar"></div>
 				</div>
 				<div class="button-container">
@@ -60,35 +60,9 @@
 				Register
 				<div class="close"></div>
 			</h1>
-			<form>
 
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Username</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Password</label>
-					<div class="bar"></div>
-				</div>
-				<div class="input-container">
-					<input type="type" id="label" required="required" /> <label
-						for="label">Repeat Password</label>
-					<div class="bar"></div>
-				</div>
-
-				<div class="button-container">
-					<button>
-						<span>Next</span>
-					</button>
-
-				</div>
-
-			</form>
 		</div>
 	</div>
-
 
 	<script src="js/index.js"></script>
 
