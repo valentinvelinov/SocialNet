@@ -2,6 +2,8 @@ package com.socialNet.pojo;
 
 import java.util.Date;
 
+import com.socialNet.exceptions.UserException;
+
 public class User {
 	private int user_id;
 	private String first_name;
@@ -11,18 +13,26 @@ public class User {
 	private Gender gender;
 	private String password;
 
-	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password) {
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.email = email;
-		this.birth_date = birth_date;
-		this.gender = gender;
-		this.password = password;
+	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password)
+			throws UserException {
+		setFirst_name(first_name);
+		setLast_name(last_name);
+		setEmail(email);
+		setBirth_date(birth_date);
+		setGender(gender);
+		setPassword(password);
 	}
 
 	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
-			String password) {
+			String password) throws UserException {
 		super();
+		setUser_id(user_id);
+		setFirst_name(first_name);
+		setLast_name(last_name);
+		setEmail(email);
+		setBirth_date(birth_date);
+		setGender(gender);
+		setPassword(password);
 	}
 
 	public enum Gender {
@@ -71,7 +81,7 @@ public class User {
 	}
 
 	public void setUser_id(int user_id) {
-		if (user_id > 0) {
+		if (user_id != 0) {
 			this.user_id = user_id;
 		}
 	}
@@ -80,9 +90,11 @@ public class User {
 		return first_name;
 	}
 
-	public void setFirst_name(String first_name) {
+	public void setFirst_name(String first_name) throws UserException {
 		if (validateString(first_name)) {
 			this.first_name = first_name;
+		} else {
+			throw new UserException("Your first name is invalid, please try again!");
 		}
 	}
 
@@ -90,9 +102,11 @@ public class User {
 		return last_name;
 	}
 
-	public void setLast_name(String last_name) {
+	public void setLast_name(String last_name) throws UserException {
 		if (validateString(last_name)) {
 			this.last_name = last_name;
+		} else {
+			throw new UserException("Your last name is invalid, please try again!");
 		}
 	}
 
@@ -100,9 +114,11 @@ public class User {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		if (validateString(email)) {
+	public void setEmail(String email) throws UserException {
+		if (isValidEmailAddress(email)) {
 			this.email = email;
+		} else {
+			throw new UserException("Your email address is invalid, please try again!");
 		}
 	}
 
@@ -118,12 +134,23 @@ public class User {
 		return gender.toString();
 	}
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
+	public void setGender(Gender gender) throws UserException {
+		if (gender != null) {
+			this.gender = gender;
+		} else {
+			throw new UserException("Your gender is invalid, please try again!");
+		}
 	}
 
-	private static boolean validateString(String text) {
+	public boolean validateString(String text) {
 		return text != null && !text.isEmpty();
+	}
+
+	public boolean isValidEmailAddress(String email) {
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+		java.util.regex.Matcher m = p.matcher(email);
+		return m.matches();
 	}
 
 }
