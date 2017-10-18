@@ -81,7 +81,7 @@ public class User {
 	}
 
 	public void setUser_id(int user_id) {
-		if (user_id != 0) {
+		if (user_id > 0) {
 			this.user_id = user_id;
 		}
 	}

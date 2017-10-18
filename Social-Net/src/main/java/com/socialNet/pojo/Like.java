@@ -6,8 +6,8 @@ public class Like {
 
 	public Like(int post_id, int user_id) {
 		super();
-		this.post_id = post_id;
-		this.user_id = user_id;
+		setPost_id(post_id);
+		setUser_id(user_id);
 	}
 
 	public int getPost_id() {

@@ -7,8 +7,8 @@ public class Post {
 
 	public Post(String content, int user_id) {
 		super();
-		this.content = content;
-		this.user_id = user_id;
+		setContent(content);
+		setUser_id(user_id);
 	}
 
 	public int getPost_id() {
