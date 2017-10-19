@@ -17,7 +17,7 @@ public class UserDAO {
 
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
-	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE id = ?";
+	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id = ?";
 
 	public int registerUser(User user) throws UserException {
 		Connection connection = DBConnection.getInstance().getConnection();

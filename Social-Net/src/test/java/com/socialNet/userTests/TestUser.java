@@ -23,7 +23,7 @@ public class TestUser {
 		java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-		testUser = new User("Pesho1", "Testa", "pesho@email.bg", sqlDate, Gender.MALE, "12345678");
+		testUser = new User("Pesho1", "Testa", "text@email.bg", sqlDate, Gender.MALE, "12345678");
 
 		int id = userDao.registerUser(testUser);
 
