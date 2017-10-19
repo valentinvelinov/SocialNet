@@ -10,6 +10,15 @@ public class Post {
 		setContent(content);
 		setUser_id(user_id);
 	}
+	
+
+	public Post(int post_id, String content, int user_id) {
+		super();
+		setPost_id(post_id);
+		setContent(content);
+		setUser_id(user_id);
+	}
+
 
 	public int getPost_id() {
 		return post_id;

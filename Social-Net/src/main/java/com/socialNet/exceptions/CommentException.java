@@ -15,9 +15,9 @@ public class CommentException extends Exception{
 		super(arg0, arg1, arg2, arg3);
 	}
 
-	public CommentException(String arg0, Throwable cause) {
-		super(arg0, cause);
-
+	public CommentException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+	
 	}
 
 	public CommentException(String arg0) {
@@ -26,6 +26,7 @@ public class CommentException extends Exception{
 
 	public CommentException(Throwable arg0) {
 		super(arg0);
-
 	}
+
+	
 }
