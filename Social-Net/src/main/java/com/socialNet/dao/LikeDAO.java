@@ -23,7 +23,7 @@ public class LikeDAO {
 		try {
 			PreparedStatement ps = con.prepareStatement(INSERT_LIKE_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, like.getPost_id());
-			ps.setInt(2, like.getUser_id());
+			ps.setInt(2,like.getUser_id());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();

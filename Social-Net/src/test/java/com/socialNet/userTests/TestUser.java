@@ -23,7 +23,7 @@ public class TestUser {
 		java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-		testUser = new User("Pesho1", "Testa", "text@email.bg", sqlDate, Gender.MALE, "12345678");
+		testUser = new User("Pesho1", "Testa", "valkata@email.bg", sqlDate, Gender.MALE, "12345");
 
 		int id = userDao.registerUser(testUser);
 
@@ -33,5 +33,13 @@ public class TestUser {
 		assertEquals(id, id2);
 
 		testUser.setUser_id(id2);
+	}
+	@Test
+	public void testLoginUser() throws UserException {
+		testUser=new User("valkata@email.bg","12345");
+		int id=userDao.loginUser(testUser);
+		
+		
+		assertEquals(7,id);
 	}
 }

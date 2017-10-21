@@ -38,6 +38,6 @@ public class TestLike {
 		System.out.println(id);
 		
 		
-		assertEquals(1,id);
+		assertEquals(2,id);
 	}
 }

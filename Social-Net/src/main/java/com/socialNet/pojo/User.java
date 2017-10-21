@@ -23,6 +23,12 @@ public class User {
 		setPassword(password);
 	}
 
+	public User(String email, String password) throws UserException {
+		super();
+		setEmail(email);
+		setPassword(password);
+	}
+
 	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
 			String password) throws UserException {
 		super();
