@@ -26,21 +26,14 @@ public class User {
 	}
 
 	public User(String email, String password) throws UserException {
-		super();
 		setEmail(email);
 		setPassword(password);
 	}
 
 	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
 			String password) throws UserException {
-		super();
+		this(first_name, last_name, email, birth_date, gender, password);
 		setUser_id(user_id);
-		setFirst_name(first_name);
-		setLast_name(last_name);
-		setEmail(email);
-		setBirth_date(birth_date);
-		setGender(gender);
-		setPassword(password);
 	}
 
 	public enum Gender {

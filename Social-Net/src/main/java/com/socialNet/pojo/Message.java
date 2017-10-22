@@ -18,7 +18,7 @@ public class Message {
 	}
 
 	public Message(int message_id, int conversation_id, String content, Date date) {
-		super();
+		this(conversation_id, content, date);
 		this.message_id = message_id;
 	}
 

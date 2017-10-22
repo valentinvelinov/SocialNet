@@ -11,7 +11,7 @@ public class Friend {
 	}
 
 	public Friend(int user_id, int friend_id) {
-		super();
+		this();
 		this.user_id = user_id;
 		this.friend_id = friend_id;
 	}

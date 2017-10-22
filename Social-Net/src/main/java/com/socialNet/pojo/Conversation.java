@@ -16,7 +16,7 @@ public class Conversation {
 	}
 
 	public Conversation(int conversation_id, String text, Date date) {
-		super();
+		this(text, date);
 		this.conversation_id = conversation_id;
 
 	}
