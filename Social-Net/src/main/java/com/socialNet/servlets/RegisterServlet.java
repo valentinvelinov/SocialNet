@@ -36,18 +36,19 @@ public class RegisterServlet extends HttpServlet {
 		String lastName=request.getParameter("lastname");
 		String email=request.getParameter("email");
 		String birthdate=request.getParameter("date");
-		String gender=request.getParameter("gender");
+		String gender=request.getParameter("Gender");
 		String password=request.getParameter("password");
-		
-		//TO DO FIX GENDER AND DATE CASTING!
-		Gender myGender=Gender.MALE;
-		String date = "2014-01-28";
+		Gender myGender=null;
+		if(gender.equalsIgnoreCase("Male")) {
+			myGender=Gender.MALE;
+		} else {
+			myGender=Gender.FEMALE;
+		}
 		java.util.Date utilDate = null;
 		try {
-			utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("KUR");
 		}
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		try {
