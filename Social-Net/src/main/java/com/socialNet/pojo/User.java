@@ -12,6 +12,8 @@ public class User {
 	private Date birth_date;
 	private Gender gender;
 	private String password;
+	private String profile_pic_url;
+	private String cover_pic_url;
 
 	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password)
 			throws UserException {
@@ -82,6 +84,30 @@ public class User {
 	}
 
 	// Getters and Setters
+	public String getProfile_pic_url() {
+		return profile_pic_url;
+	}
+
+	public void setProfile_pic_url(String profile_pic_url) throws UserException {
+		if (validateString(profile_pic_url)) {
+			this.profile_pic_url = profile_pic_url;
+		} else {
+			throw new UserException("Invalid photo, please try again!");
+		}
+	}
+
+	public String getCover_pic_url() {
+		return cover_pic_url;
+	}
+
+	public void setCover_pic_url(String cover_pic_url) throws UserException {
+		if (validateString(cover_pic_url)) {
+			this.cover_pic_url = cover_pic_url;
+		} else {
+			throw new UserException("Invalid photo, please try again!");
+		}
+	}
+
 	public int getUser_id() {
 		return user_id;
 	}
