@@ -2,6 +2,8 @@ package com.socialNet.pojo;
 
 import java.util.Date;
 
+import com.socialNet.exceptions.ConversationException;
+
 public class Conversation {
 
 	private int conversation_id;
@@ -31,16 +33,28 @@ public class Conversation {
 		return conversation_id;
 	}
 
-	public void setConversation_id(int conversation_id) {
-		this.conversation_id = conversation_id;
+	public void setConversation_id(int conversation_id) throws ConversationException {
+		if (conversation_id > 0) {
+			this.conversation_id = conversation_id;
+		} else {
+			throw new ConversationException("Conversation cannot be commented right now, please try again later!");
+		}
 	}
 
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setText(String text) throws ConversationException {
+		if (isValidText(text)) {
+			this.text = text;
+		} else {
+			throw new ConversationException("Invalid comment text!");
+		}
+	}
+
+	private boolean isValidText(String text) {
+		return text != null && !text.isEmpty();
 	}
 
 }
