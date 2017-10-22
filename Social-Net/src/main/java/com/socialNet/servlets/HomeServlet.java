@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Home111")
+@WebServlet("/Home")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -16,7 +16,7 @@ public class HomeServlet extends HttpServlet {
 			response.sendRedirect("./Error.html");
 			return;
 		} else {
-			response.sendRedirect("./Home.jsp");
+			response.sendRedirect("./HomePage.jsp");
 		}
 		
 	}

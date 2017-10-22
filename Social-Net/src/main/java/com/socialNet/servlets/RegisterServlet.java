@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.socialNet.dao.UserDAO;
 import com.socialNet.exceptions.UserException;
@@ -56,7 +57,9 @@ public class RegisterServlet extends HttpServlet {
 			UserDAO daO= new UserDAO();
 			int id=daO.registerUser(user);
 			if(id!=0) {
-				response.sendRedirect("./Home.jsp");
+				HttpSession session = request.getSession();
+				session.setAttribute("user", id);
+				response.sendRedirect("./Home");
 			} else {
 				response.sendRedirect("./Error.html");
 			}
