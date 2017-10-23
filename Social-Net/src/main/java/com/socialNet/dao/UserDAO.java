@@ -31,11 +31,11 @@ public class UserDAO {
 			ps.setDate(4, (Date) user.getBirth_date());
 			ps.setString(5, user.getGender().toString());
 			ps.setString(6, user.getPassword());
-			ps.setString(8, user.getProfile_pic_url());
-			ps.setString(9, user.getCover_pic_url());
-			ps.setString(10, user.getJob());
-			ps.setString(11, user.getPlace());
-			ps.setString(12, user.getEducation());
+//			ps.setString(8, user.getProfile_pic_url());
+//			ps.setString(9, user.getCover_pic_url());
+//			ps.setString(10, user.getJob());
+//			ps.setString(11, user.getPlace());
+//			ps.setString(12, user.getEducation());
 
 			ps.executeUpdate();
 

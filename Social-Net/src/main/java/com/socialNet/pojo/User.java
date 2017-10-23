@@ -39,6 +39,16 @@ public class User {
 		setEmail(email);
 		setPassword(password);
 	}
+	
+	public User(String first_name, String last_name, String email, Date birth_date, Gender gender,
+			String password) throws UserException {
+		setFirst_name(first_name);
+		setLast_name(last_name);
+		setEmail(email);
+		setBirth_date(birth_date);
+		setGender(gender);
+		setPassword(password);
+	}
 
 	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
 			String password, String profile_pic_url, String cover_pic_url, String job, String place, String education)

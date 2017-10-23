@@ -12,12 +12,12 @@ public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession(false)==null) {
-			response.sendRedirect("./Error.html");
-			return;
-		} else {
+//		if(request.getSession(false)==null) {
+//			response.sendRedirect("./Error.html");
+//			return;
+//		} else {
 			response.sendRedirect("./HomePage.jsp");
-		}
+//		}
 		
 	}
 
