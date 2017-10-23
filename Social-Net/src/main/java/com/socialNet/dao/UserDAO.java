@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exceptions.UserException;
@@ -30,6 +31,11 @@ public class UserDAO {
 			ps.setDate(4, (Date) user.getBirth_date());
 			ps.setString(5, user.getGender().toString());
 			ps.setString(6, user.getPassword());
+			ps.setString(8, user.getProfile_pic_url());
+			ps.setString(9, user.getCover_pic_url());
+			ps.setString(10, user.getJob());
+			ps.setString(11, user.getPlace());
+			ps.setString(12, user.getEducation());
 
 			ps.executeUpdate();
 
@@ -79,12 +85,33 @@ public class UserDAO {
 
 			}
 			return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), gender,
-					rs.getString(7));
+					rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),
+					rs.getString(12));
 			// return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new UserException("There no user with this id.", e);
 		}
 
+	}
+
+	public List<User> friendsSortedByPlace(String first_name, boolean order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<User> friendsSortedByDateOfBirth(java.util.Date birth_date, boolean order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<User> friendsSortedByName(String first_name, boolean order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<User> nonFriendsFor(Integer personId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

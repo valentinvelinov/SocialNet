@@ -14,8 +14,12 @@ public class User {
 	private String password;
 	private String profile_pic_url;
 	private String cover_pic_url;
+	private String job;
+	private String place;
+	private String education;
 
-	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password)
+	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password,
+			String profile_pic_url, String cover_pic_url, String job, String place, String education)
 			throws UserException {
 		setFirst_name(first_name);
 		setLast_name(last_name);
@@ -23,6 +27,12 @@ public class User {
 		setBirth_date(birth_date);
 		setGender(gender);
 		setPassword(password);
+		setProfile_pic_url(profile_pic_url);
+		setCover_pic_url(cover_pic_url);
+		setJob(job);
+		setPlace(place);
+		setEducation(education);
+
 	}
 
 	public User(String email, String password) throws UserException {
@@ -31,8 +41,10 @@ public class User {
 	}
 
 	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
-			String password) throws UserException {
-		this(first_name, last_name, email, birth_date, gender, password);
+			String password, String profile_pic_url, String cover_pic_url, String job, String place, String education)
+			throws UserException {
+		this(first_name, last_name, email, birth_date, gender, password, profile_pic_url, cover_pic_url, job, place,
+				education);
 		setUser_id(user_id);
 	}
 
@@ -164,6 +176,42 @@ public class User {
 			this.gender = gender;
 		} else {
 			throw new UserException("Your gender is invalid, please try again!");
+		}
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) throws UserException {
+		if (isValidEmailAddress(job)) {
+			this.job = job;
+		} else {
+			throw new UserException("Your text is invalid, please try again!");
+		}
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) throws UserException {
+		if (isValidEmailAddress(place)) {
+			this.place = place;
+		} else {
+			throw new UserException("Your text is invalid, please try again!");
+		}
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) throws UserException {
+		if (isValidEmailAddress(education)) {
+			this.place = education;
+		} else {
+			throw new UserException("Your text is invalid, please try again!");
 		}
 	}
 
