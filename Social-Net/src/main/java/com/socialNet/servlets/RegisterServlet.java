@@ -39,6 +39,13 @@ public class RegisterServlet extends HttpServlet {
 		String birthdate=request.getParameter("date");
 		String gender=request.getParameter("Gender");
 		String password=request.getParameter("password");
+		String profilePic=request.getParameter("profilePic");
+		String coverPic=request.getParameter("coverPiic");
+		String job=request.getParameter("job");
+		String place=request.getParameter("place");
+		String education=request.getParameter("education");
+
+
 		Gender myGender=null;
 		if(gender.equalsIgnoreCase("Male")) {
 			myGender=Gender.MALE;
@@ -53,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
 		}
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		try {
-			User user= new User(firstname,lastName,email,sqlDate,myGender,password);
+			User user= new User(0, firstname,lastName,email,sqlDate,myGender,password, profilePic, coverPic, job, place, education);
 			UserDAO daO= new UserDAO();
 			int id=daO.registerUser(user);
 			if(id!=0) {

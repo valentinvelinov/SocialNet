@@ -97,7 +97,8 @@ public class User {
 		if (validateString(profile_pic_url)) {
 			this.profile_pic_url = profile_pic_url;
 		} else {
-			throw new UserException("Invalid photo, please try again!");
+			profile_pic_url = "person.gif";
+
 		}
 	}
 
@@ -106,11 +107,7 @@ public class User {
 	}
 
 	public void setCover_pic_url(String cover_pic_url) throws UserException {
-		if (validateString(cover_pic_url)) {
-			this.cover_pic_url = cover_pic_url;
-		} else {
-			throw new UserException("Invalid photo, please try again!");
-		}
+		this.cover_pic_url = cover_pic_url;
 	}
 
 	public int getUser_id() {
@@ -184,11 +181,7 @@ public class User {
 	}
 
 	public void setJob(String job) throws UserException {
-		if (isValidEmailAddress(job)) {
-			this.job = job;
-		} else {
-			throw new UserException("Your text is invalid, please try again!");
-		}
+		this.job = job;
 	}
 
 	public String getPlace() {
@@ -196,11 +189,7 @@ public class User {
 	}
 
 	public void setPlace(String place) throws UserException {
-		if (isValidEmailAddress(place)) {
-			this.place = place;
-		} else {
-			throw new UserException("Your text is invalid, please try again!");
-		}
+		this.place = place;
 	}
 
 	public String getEducation() {
@@ -208,11 +197,7 @@ public class User {
 	}
 
 	public void setEducation(String education) throws UserException {
-		if (isValidEmailAddress(education)) {
-			this.place = education;
-		} else {
-			throw new UserException("Your text is invalid, please try again!");
-		}
+		this.place = education;
 	}
 
 	public boolean validateString(String text) {
