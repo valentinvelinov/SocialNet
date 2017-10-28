@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.UserException;
 import com.socialnet.model.User;
 import com.socialnet.model.User.Gender;
-
-// data access object
+@Component
 public class UserDAO {
 
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";

@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.ConversationException;
 import com.socialnet.model.Conversation;
-
+@Component
 public class ConversationDAO {
 
 	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO Conversations VALUES (null, ?, ?)";

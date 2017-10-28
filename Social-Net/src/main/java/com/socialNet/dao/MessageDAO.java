@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.MessageException;
 import com.socialnet.model.Message;
-
+@Component
 public class MessageDAO {
 
 	private static final String INSERT_MESSAGE_SQL = "INSERT INTO messages VALUES (null, ?, ?, ?)";

@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.LikeException;
 import com.socialnet.model.Like;
-
+@Component
 public class LikeDAO {
 	private static final String INSERT_LIKE_SQL = "INSERT INTO likes VALUES (null,?,?)";
 	private static final String SELECT_LIKE_BY_ID = "SELECT * FROM likes WHERE like_id=?";

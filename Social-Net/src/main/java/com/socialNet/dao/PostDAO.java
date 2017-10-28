@@ -6,12 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.PostException;
 import com.socialnet.exception.UserException;
 import com.socialnet.model.Post;
 import com.socialnet.model.User;
-
+@Component
 public class PostDAO {
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";

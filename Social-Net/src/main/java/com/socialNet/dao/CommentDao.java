@@ -8,11 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.CommentException;
 import com.socialnet.model.Comment;
 
-
+@Component
 public class CommentDao {
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO comments VALUES (null,?,?,?)";
 	

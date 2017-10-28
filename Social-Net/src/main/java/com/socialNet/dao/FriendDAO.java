@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Component;
+
 import com.socialnet.dbmanager.DBConnection;
 import com.socialnet.exception.FriendException;
 import com.socialnet.model.Friend;
-
+@Component
 public class FriendDAO {
 
 	private static final String INSERT_FRIEND_SQL = "INSERT INTO friends VALUES (null, ?)";
