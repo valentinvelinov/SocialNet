@@ -1,4 +1,4 @@
-package com.socialNet.dao;
+package com.socialnet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,13 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.socialNet.dbmanager.DBConnection;
-import com.socialNet.exceptions.LikeException;
-import com.socialNet.exceptions.PostException;
-import com.socialNet.exceptions.UserException;
-import com.socialNet.pojo.Like;
-import com.socialNet.pojo.Post;
-import com.socialNet.pojo.User;
+import com.socialnet.dbmanager.DBConnection;
+import com.socialnet.exception.LikeException;
+import com.socialnet.model.Like;
 
 public class LikeDAO {
 	private static final String INSERT_LIKE_SQL = "INSERT INTO likes VALUES (null,?,?)";

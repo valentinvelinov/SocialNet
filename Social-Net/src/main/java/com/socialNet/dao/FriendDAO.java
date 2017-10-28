@@ -1,4 +1,4 @@
-package com.socialNet.dao;
+package com.socialnet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.socialNet.dbmanager.DBConnection;
-import com.socialNet.exceptions.FriendException;
-import com.socialNet.exceptions.UserException;
-import com.socialNet.pojo.Friend;
+import com.socialnet.dbmanager.DBConnection;
+import com.socialnet.exception.FriendException;
+import com.socialnet.model.Friend;
 
 public class FriendDAO {
 

@@ -1,4 +1,4 @@
-package com.socialNet.dao;
+package com.socialnet.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import com.socialNet.dbmanager.DBConnection;
-import com.socialNet.exceptions.UserException;
-import com.socialNet.pojo.User;
-import com.socialNet.pojo.User.Gender;
+import com.socialnet.dbmanager.DBConnection;
+import com.socialnet.exception.UserException;
+import com.socialnet.model.User;
+import com.socialnet.model.User.Gender;
 
 // data access object
 public class UserDAO {
@@ -31,11 +31,11 @@ public class UserDAO {
 			ps.setDate(4, (Date) user.getBirth_date());
 			ps.setString(5, user.getGender().toString());
 			ps.setString(6, user.getPassword());
-//			ps.setString(8, user.getProfile_pic_url());
-//			ps.setString(9, user.getCover_pic_url());
-//			ps.setString(10, user.getJob());
-//			ps.setString(11, user.getPlace());
-//			ps.setString(12, user.getEducation());
+			// ps.setString(8, user.getProfile_pic_url());
+			// ps.setString(9, user.getCover_pic_url());
+			// ps.setString(10, user.getJob());
+			// ps.setString(11, user.getPlace());
+			// ps.setString(12, user.getEducation());
 
 			ps.executeUpdate();
 

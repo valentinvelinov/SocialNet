@@ -1,4 +1,4 @@
-package com.socialNet.dao;
+package com.socialnet.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,11 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.socialNet.dbmanager.DBConnection;
-import com.socialNet.exceptions.ConversationException;
-import com.socialNet.exceptions.UserException;
-import com.socialNet.pojo.Conversation;
-import com.socialNet.pojo.User;
+import com.socialnet.dbmanager.DBConnection;
+import com.socialnet.exception.ConversationException;
+import com.socialnet.model.Conversation;
 
 public class ConversationDAO {
 

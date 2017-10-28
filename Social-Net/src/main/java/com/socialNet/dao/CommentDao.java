@@ -1,4 +1,6 @@
-package com.socialNet.dao;
+package com.socialnet.dao;
+
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.socialNet.dbmanager.DBConnection;
-import com.socialNet.exceptions.CommentException;
-import com.socialNet.pojo.Comment;
+import com.socialnet.dbmanager.DBConnection;
+import com.socialnet.exception.CommentException;
+import com.socialnet.model.Comment;
 
 
 public class CommentDao {

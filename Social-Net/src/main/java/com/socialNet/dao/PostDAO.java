@@ -1,4 +1,4 @@
-package com.socialNet.dao;
+package com.socialnet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,12 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.socialNet.dbmanager.DBConnection;
-import com.socialNet.exceptions.PostException;
-import com.socialNet.exceptions.UserException;
-import com.socialNet.pojo.Post;
-import com.socialNet.pojo.User;
-import com.socialNet.pojo.User.Gender;
+import com.socialnet.dbmanager.DBConnection;
+import com.socialnet.exception.PostException;
+import com.socialnet.exception.UserException;
+import com.socialnet.model.Post;
+import com.socialnet.model.User;
 
 public class PostDAO {
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?)";
