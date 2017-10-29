@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialnet.dbmanager.DBConnection;
@@ -14,13 +15,15 @@ import com.socialnet.model.Message;
 @Component
 public class MessageDAO {
 
+	@Autowired
+    DBConnection connection;
+    private static Connection conn;
 	private static final String INSERT_MESSAGE_SQL = "INSERT INTO messages VALUES (null, ?, ?, ?)";
 
 	public int sendMessage(Message message) throws MessageException {
-		Connection connection = DBConnection.getInstance().getConnection();
-
+		conn=connection.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement(INSERT_MESSAGE_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement(INSERT_MESSAGE_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, message.getConversation_id());
 			ps.setString(2, message.getContent());
 			ps.setDate(3, message.getDate());

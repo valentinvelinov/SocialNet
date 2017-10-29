@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialnet.dbmanager.DBConnection;
@@ -14,14 +15,17 @@ import com.socialnet.exception.ConversationException;
 import com.socialnet.model.Conversation;
 @Component
 public class ConversationDAO {
+	@Autowired
+    DBConnection connection;
 
+    private static Connection conn;
 	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO Conversations VALUES (null, ?, ?)";
 
 	public int startConversation(Conversation conversation) throws ConversationException {
-		Connection connection = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(INSERT_CONVERSATION_SQL,
+			PreparedStatement ps = conn.prepareStatement(INSERT_CONVERSATION_SQL,
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, conversation.getText());
 			ps.setDate(2,  (Date) conversation.getDate());

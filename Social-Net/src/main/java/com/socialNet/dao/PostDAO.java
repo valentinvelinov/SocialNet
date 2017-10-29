@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialnet.dbmanager.DBConnection;
@@ -15,14 +16,18 @@ import com.socialnet.model.Post;
 import com.socialnet.model.User;
 @Component
 public class PostDAO {
+	@Autowired
+    DBConnection connection;
+
+    private static Connection conn;
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";
 
 	public int makePost(Post post, User user) throws PostException {
-		Connection con = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 
 		try {
-			PreparedStatement ps = con.prepareStatement(INSERT_POST_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement(INSERT_POST_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, post.getContent());
 			ps.setInt(2, user.getUser_id());
 			ps.executeUpdate();
@@ -35,10 +40,10 @@ public class PostDAO {
 	}
 
 	public Post getPostById(int id) throws UserException, PostException {
-		Connection connection = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_POST_BY_ID);
+			PreparedStatement ps = conn.prepareStatement(SELECT_POST_BY_ID);
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();

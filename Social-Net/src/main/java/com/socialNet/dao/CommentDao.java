@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialnet.dbmanager.DBConnection;
@@ -16,12 +17,16 @@ import com.socialnet.model.Comment;
 
 @Component
 public class CommentDao {
+	@Autowired
+    DBConnection connection;
+
+    private static Connection conn;
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO comments VALUES (null,?,?,?)";
 	
 	public int postComment (Comment comment) throws CommentException {
-		Connection con = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement(INSERT_COMMENT_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement(INSERT_COMMENT_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, comment.getPost_id());
 			ps.setString(2, comment.getText());
 			ps.setInt(3, comment.getUser_id());

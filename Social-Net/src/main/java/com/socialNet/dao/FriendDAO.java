@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialnet.dbmanager.DBConnection;
@@ -13,14 +14,16 @@ import com.socialnet.exception.FriendException;
 import com.socialnet.model.Friend;
 @Component
 public class FriendDAO {
+	@Autowired
+    DBConnection connection;
 
+    private static Connection conn;
 	private static final String INSERT_FRIEND_SQL = "INSERT INTO friends VALUES (null, ?)";
 
 	public int addFriend(Friend friend) throws FriendException {
-		Connection connection = DBConnection.getInstance().getConnection();
-
+		conn=connection.getConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement(INSERT_FRIEND_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement(INSERT_FRIEND_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, friend.getFriend_id());
 
 			ps.executeUpdate();

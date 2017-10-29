@@ -3,10 +3,10 @@ package com.socialnet.dbmanager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.springframework.stereotype.Component;
+@Component
 public class DBConnection {
 	private Connection connection;
-	private static DBConnection theChosenOneDBConnection;
-
 	private static final String DB_HOSTNAME = "localhost";
 	private static final String DB_PORT = "3306";
 	private static final String DATABASE = "socialnet-db";
@@ -23,12 +23,6 @@ public class DBConnection {
 		}
 	}
 
-	public synchronized static DBConnection getInstance() {
-		if (theChosenOneDBConnection == null) {
-			theChosenOneDBConnection = new DBConnection();
-		}
-		return theChosenOneDBConnection;
-	}
 
 	public Connection getConnection() {
 		return connection;

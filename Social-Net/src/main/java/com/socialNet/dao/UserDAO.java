@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialnet.dbmanager.DBConnection;
@@ -16,27 +17,25 @@ import com.socialnet.model.User;
 import com.socialnet.model.User.Gender;
 @Component
 public class UserDAO {
-
+	@Autowired
+	DBConnection connection;
+	
+	private static Connection conn;
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
 	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id = ?";
 
 	public int registerUser(User user) throws UserException {
-		Connection connection = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, user.getFirst_name());
 			ps.setString(2, user.getLast_name());
 			ps.setString(3, user.getEmail());
 			ps.setDate(4, (Date) user.getBirth_date());
 			ps.setString(5, user.getGender().toString());
 			ps.setString(6, user.getPassword());
-			// ps.setString(8, user.getProfile_pic_url());
-			// ps.setString(9, user.getCover_pic_url());
-			// ps.setString(10, user.getJob());
-			// ps.setString(11, user.getPlace());
-			// ps.setString(12, user.getEducation());
 
 			ps.executeUpdate();
 
@@ -50,10 +49,10 @@ public class UserDAO {
 	}
 
 	public int loginUser(User user) throws UserException {
-		Connection connection = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_USER_SQL);
+			PreparedStatement ps = conn.prepareStatement(SELECT_USER_SQL);
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
 
@@ -68,10 +67,10 @@ public class UserDAO {
 	}
 
 	public User getUserById(int id) throws UserException {
-		Connection connection = DBConnection.getInstance().getConnection();
+		conn=connection.getConnection();
 
 		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_USER_BY_ID_SQL);
+			PreparedStatement ps = conn.prepareStatement(SELECT_USER_BY_ID_SQL);
 			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
