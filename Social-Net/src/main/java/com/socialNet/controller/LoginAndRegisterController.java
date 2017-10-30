@@ -33,7 +33,20 @@ public class LoginAndRegisterController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String loginTest(@ModelAttribute User user, Model model) {
+	public String getRegister(@ModelAttribute User user, Model model) {
 		return "register";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String postRegister(@ModelAttribute User user, Model model) {
+		if (user.getEmail() != null) {
+			try {
+				userDAO.registerUser(user);
+				return "home";
+			} catch (UserException e) {
+				return "error";
+			}
+		}
+		return "error";
 	}
 }

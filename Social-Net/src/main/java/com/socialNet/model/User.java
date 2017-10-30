@@ -10,7 +10,7 @@ public class User {
 	private String last_name;
 	private String email;
 	private Date birth_date;
-	private Gender gender;
+	private String gender;
 	private String password;
 	private String profile_pic_url;
 	private String cover_pic_url;
@@ -18,7 +18,7 @@ public class User {
 	private String place;
 	private String education;
 
-	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password,
+	public User(String first_name, String last_name, String email, Date birth_date, String gender, String password,
 			String profile_pic_url, String cover_pic_url, String job, String place, String education)
 			throws UserException {
 		setFirst_name(first_name);
@@ -40,7 +40,7 @@ public class User {
 		setPassword(password);
 	}
 
-	public User(String first_name, String last_name, String email, Date birth_date, Gender gender, String password)
+	public User(String first_name, String last_name, String email, Date birth_date, String gender, String password)
 			throws UserException {
 		setFirst_name(first_name);
 		setLast_name(last_name);
@@ -50,7 +50,7 @@ public class User {
 		setPassword(password);
 	}
 
-	public User(int user_id, String first_name, String last_name, String email, Date birth_date, Gender gender,
+	public User(int user_id, String first_name, String last_name, String email, Date birth_date, String gender,
 			String password, String profile_pic_url, String cover_pic_url, String job, String place, String education)
 			throws UserException {
 		this(first_name, last_name, email, birth_date, gender, password, profile_pic_url, cover_pic_url, job, place,
@@ -59,10 +59,6 @@ public class User {
 	}
 
 	public User() {
-	}
-
-	public enum Gender {
-		MALE, FEMALE;
 	}
 
 	// Hashcode and equals
@@ -178,14 +174,14 @@ public class User {
 	}
 
 	public String getGender() {
-		return gender.toString();
+		return gender;
 	}
 
-	public void setGender(Gender gender) throws UserException {
-		if (gender != null) {
-			this.gender = gender;
+	public void setGender(String text) throws UserException {
+		if (validateString(text)) {
+			this.gender = text;
 		} else {
-			throw new UserException("Your gender is invalid, please try again!");
+			throw new UserException("Invalid gender!");
 		}
 	}
 

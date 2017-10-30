@@ -14,19 +14,19 @@ import org.springframework.stereotype.Component;
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.UserException;
 import com.socialNet.model.User;
-import com.socialNet.model.User.Gender;
+
 @Component
 public class UserDAO {
 	@Autowired
 	DBConnection connection;
-	
+
 	private static Connection conn;
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
 	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id = ?";
 
 	public int registerUser(User user) throws UserException {
-		conn=connection.getConnection();
+		conn = connection.getConnection();
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
@@ -34,7 +34,7 @@ public class UserDAO {
 			ps.setString(2, user.getLast_name());
 			ps.setString(3, user.getEmail());
 			ps.setDate(4, (Date) user.getBirth_date());
-			ps.setString(5, user.getGender().toString());
+			ps.setString(5, user.getGender());
 			ps.setString(6, user.getPassword());
 
 			ps.executeUpdate();
@@ -49,7 +49,7 @@ public class UserDAO {
 	}
 
 	public int loginUser(User user) throws UserException {
-		conn=connection.getConnection();
+		conn = connection.getConnection();
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(SELECT_USER_SQL);
@@ -67,7 +67,7 @@ public class UserDAO {
 	}
 
 	public User getUserById(int id) throws UserException {
-		conn=connection.getConnection();
+		conn = connection.getConnection();
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(SELECT_USER_BY_ID_SQL);
@@ -77,16 +77,9 @@ public class UserDAO {
 			if (rs.next() == false) {
 				throw new UserException("There no user with this id.");
 			}
-			Gender gender = null;
-			if (rs.getString(6).equals(Gender.FEMALE.toString())) {
-				gender = gender.FEMALE;
-			} else {
-				gender = gender.MALE;
-
-			}
-			return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), gender,
-					rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11),
-					rs.getString(12));
+			return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),
+					rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),
+					rs.getString(11), rs.getString(12));
 			// return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new UserException("There no user with this id.", e);
