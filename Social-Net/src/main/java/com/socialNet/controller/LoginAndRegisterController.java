@@ -19,32 +19,21 @@ public class LoginAndRegisterController {
 	UserDAO userDAO;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute User user,HttpSession session) {
-		if(user.getEmail()!=null) {
+	public String userLogin(@ModelAttribute User user, HttpSession session) {
+		if (user.getEmail() != null) {
 			try {
 				userDAO.loginUser(user);
-				
+				return "home";
 			} catch (UserException e) {
 				return "error";
 			}
 		} else {
 			return "error";
 		}
-		
-		return "test";
 	}
-//	@RequestMapping( value = "/index", method = RequestMethod.GET)
-//    public String welcome(@ModelAttribute User user,Model model) {
-//        model.addAttribute("user",new User());
-//        return "index";
-//    }
-	
-	@RequestMapping(value = "/login", method = RequestMethod.GET) 
-	 public String loginTest(@ModelAttribute User user,Model model) {
-		
-		return "login";
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String loginTest(@ModelAttribute User user, Model model) {
+		return "register";
 	}
 }
-		
-		
-	

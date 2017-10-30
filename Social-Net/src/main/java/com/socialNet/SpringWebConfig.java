@@ -26,7 +26,9 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
         registry.addResourceHandler("/pdfs/**").addResourceLocations("/static/pdf/");
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
+        
     }
 	
 	@Bean
@@ -38,6 +40,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		
 		return resolver;
 	}
+
 	
 	// localization configuration
 	@Bean

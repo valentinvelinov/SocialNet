@@ -9,6 +9,6 @@
 <body>
 	<h1>Error PAGE!</h1>
 	<p>Please log your self!</p>
-	<img src="resources/static/ErrorPhoto.jpg">
+	<img src="img/ErrorPhoto.jpg">
 </body>
 </html>
