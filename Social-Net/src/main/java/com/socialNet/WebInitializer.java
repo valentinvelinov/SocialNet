@@ -1,4 +1,4 @@
-package com.socialnet;
+package com.socialNet;
 
 import org.springframework.web.servlet.support.
 AbstractAnnotationConfigDispatcherServletInitializer;

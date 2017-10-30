@@ -1,6 +1,6 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
-import com.socialnet.exception.FriendException;
+import com.socialNet.exception.FriendException;
 
 public class Friend {
 

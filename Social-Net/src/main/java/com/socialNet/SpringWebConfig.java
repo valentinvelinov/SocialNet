@@ -1,4 +1,4 @@
-package com.socialnet;
+package com.socialNet;
 
 import java.util.Locale;
 
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.socialnet")
+@ComponentScan("com.socialNet")
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	
     @Override

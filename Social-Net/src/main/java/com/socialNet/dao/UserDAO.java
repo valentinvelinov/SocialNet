@@ -1,4 +1,4 @@
-package com.socialnet.dao;
+package com.socialNet.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,10 +11,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.socialnet.dbmanager.DBConnection;
-import com.socialnet.exception.UserException;
-import com.socialnet.model.User;
-import com.socialnet.model.User.Gender;
+import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.UserException;
+import com.socialNet.model.User;
+import com.socialNet.model.User.Gender;
 @Component
 public class UserDAO {
 	@Autowired

@@ -1,8 +1,8 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
 import java.util.Date;
 
-import com.socialnet.exception.UserException;
+import com.socialNet.exception.UserException;
 
 public class User {
 	private int user_id;

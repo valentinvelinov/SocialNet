@@ -1,6 +1,6 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
-import com.socialnet.exception.LikeException;
+import com.socialNet.exception.LikeException;
 
 public class Like {
 	private int like_id;

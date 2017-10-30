@@ -1,4 +1,4 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
 public class Post {
 	private int post_id;

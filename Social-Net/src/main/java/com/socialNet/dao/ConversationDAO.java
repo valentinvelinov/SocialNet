@@ -1,4 +1,4 @@
-package com.socialnet.dao;
+package com.socialNet.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,9 +10,9 @@ import java.sql.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.socialnet.dbmanager.DBConnection;
-import com.socialnet.exception.ConversationException;
-import com.socialnet.model.Conversation;
+import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.ConversationException;
+import com.socialNet.model.Conversation;
 @Component
 public class ConversationDAO {
 	@Autowired

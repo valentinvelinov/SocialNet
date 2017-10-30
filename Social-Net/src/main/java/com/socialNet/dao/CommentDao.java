@@ -1,4 +1,4 @@
-package com.socialnet.dao;
+package com.socialNet.dao;
 
 
 
@@ -11,9 +11,9 @@ import java.sql.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.socialnet.dbmanager.DBConnection;
-import com.socialnet.exception.CommentException;
-import com.socialnet.model.Comment;
+import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.CommentException;
+import com.socialNet.model.Comment;
 
 @Component
 public class CommentDao {

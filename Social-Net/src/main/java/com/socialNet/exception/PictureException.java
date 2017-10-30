@@ -1,4 +1,4 @@
-package com.socialnet.exception;
+package com.socialNet.exception;
 public class PictureException extends Exception {
 
 	private static final long serialVersionUID = 1L;

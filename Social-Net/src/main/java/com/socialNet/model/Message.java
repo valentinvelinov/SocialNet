@@ -1,8 +1,8 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
 import java.sql.Date;
 
-import com.socialnet.exception.MessageException;
+import com.socialNet.exception.MessageException;
 
 public class Message {
 	private int message_id;

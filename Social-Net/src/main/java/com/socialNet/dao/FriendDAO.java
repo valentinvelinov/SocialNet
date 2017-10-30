@@ -1,4 +1,4 @@
-package com.socialnet.dao;
+package com.socialNet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.sql.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.socialnet.dbmanager.DBConnection;
-import com.socialnet.exception.FriendException;
-import com.socialnet.model.Friend;
+import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.FriendException;
+import com.socialNet.model.Friend;
 @Component
 public class FriendDAO {
 	@Autowired

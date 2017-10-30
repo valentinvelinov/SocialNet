@@ -1,6 +1,6 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
-import com.socialnet.exception.CommentException;
+import com.socialNet.exception.CommentException;
 
 public class Comment {
 	private int comment_id;

@@ -1,4 +1,4 @@
-package com.socialnet.dbmanager;
+package com.socialNet.dbmanager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

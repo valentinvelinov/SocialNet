@@ -1,4 +1,4 @@
-package com.socialnet.dao;
+package com.socialNet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.sql.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.socialnet.dbmanager.DBConnection;
-import com.socialnet.exception.MessageException;
-import com.socialnet.model.Message;
+import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.MessageException;
+import com.socialNet.model.Message;
 @Component
 public class MessageDAO {
 

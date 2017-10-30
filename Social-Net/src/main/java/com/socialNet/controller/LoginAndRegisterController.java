@@ -1,4 +1,4 @@
-package com.socialnet.controller;
+package com.socialNet.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.socialnet.dao.UserDAO;
-import com.socialnet.exception.UserException;
-import com.socialnet.model.User;
+import com.socialNet.dao.UserDAO;
+import com.socialNet.exception.UserException;
+import com.socialNet.model.User;
 
 @Controller
 public class LoginAndRegisterController {
@@ -33,11 +33,11 @@ public class LoginAndRegisterController {
 		
 		return "test";
 	}
-	@RequestMapping( value = "/index", method = RequestMethod.GET)
-    public String welcome(@ModelAttribute User user,Model model) {
-        model.addAttribute("user",new User());
-        return "index";
-    }
+//	@RequestMapping( value = "/index", method = RequestMethod.GET)
+//    public String welcome(@ModelAttribute User user,Model model) {
+//        model.addAttribute("user",new User());
+//        return "index";
+//    }
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET) 
 	 public String loginTest(@ModelAttribute User user,Model model) {

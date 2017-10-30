@@ -1,8 +1,8 @@
-package com.socialnet.model;
+package com.socialNet.model;
 
 import java.util.Date;
 
-import com.socialnet.exception.ConversationException;
+import com.socialNet.exception.ConversationException;
 
 public class Conversation {
 

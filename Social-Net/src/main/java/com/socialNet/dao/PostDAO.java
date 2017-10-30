@@ -1,4 +1,4 @@
-package com.socialnet.dao;
+package com.socialNet.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +9,11 @@ import java.sql.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.socialnet.dbmanager.DBConnection;
-import com.socialnet.exception.PostException;
-import com.socialnet.exception.UserException;
-import com.socialnet.model.Post;
-import com.socialnet.model.User;
+import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.PostException;
+import com.socialNet.exception.UserException;
+import com.socialNet.model.Post;
+import com.socialNet.model.User;
 @Component
 public class PostDAO {
 	@Autowired

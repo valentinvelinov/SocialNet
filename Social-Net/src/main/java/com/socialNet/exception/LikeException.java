@@ -1,4 +1,4 @@
-package com.socialnet.exception;
+package com.socialNet.exception;
 
 public class LikeException extends Exception {
 
