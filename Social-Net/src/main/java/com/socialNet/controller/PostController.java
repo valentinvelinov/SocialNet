@@ -2,12 +2,16 @@ package com.socialNet.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.socialNet.dao.PostDAO;
 import com.socialNet.exception.PostException;
@@ -25,28 +29,18 @@ public class PostController {
 		int id = 7;
 		Post post = postDAO.getPostById(id);
 		viewModel.addAttribute(post);
-		// model.addAttribute("post", postDao.showPosts());
-		// System.out.println("Returning posts:");
 		return "posts";
 	}
 
-	@RequestMapping(value = "/allPosts", method = RequestMethod.GET)
-	public String viewAllPosts(Model viewModel) throws UserException, PostException, SQLException {
+	@RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
+	public String viewAllPosts(Model viewModel, HttpServletRequest request)
+			throws UserException, PostException, SQLException, ClassNotFoundException {
 		ArrayList<Post> listOfPosts = postDAO.viewAllPosts();
-		for(Post p : listOfPosts) {
-			System.out.println(p.getContent());
-		}
-		viewModel.addAttribute(listOfPosts);
-		return "allPosts";
+		viewModel.addAllAttributes(listOfPosts);
+
+		return "showAllPosts";
 	}
 
-	/**
-	 * View a specific post by its id.
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 */
 	// @RequestMapping("post/{id}")
 	// public String showProduct(@PathVariable Integer id, Model model) {
 	// model.addAttribute("post", postService.getPostById(id));
@@ -58,18 +52,12 @@ public class PostController {
 	// model.addAttribute("post", postService.getPostById(id));
 	// return "postform";
 	// }
-	//
-	// /**
-	// * New product.
-	// *
-	// * @param model
-	// * @return
-	// */
-	// @RequestMapping("post/new")
-	// public String newProduct(Model model) {
-	// model.addAttribute("post", new Post());
-	// return "postform";
-	// }
+
+	@RequestMapping("/newPost")
+	public String newProduct(Model model) {
+		model.addAttribute("post", new Post());
+		return "newPost";
+	}
 	//
 	// /**
 	// * Save post to database.

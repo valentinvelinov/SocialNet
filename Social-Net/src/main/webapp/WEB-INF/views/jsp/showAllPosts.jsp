@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,28 +12,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Posts</title>
 <link rel="stylesheet" href="css/style.css">
-
 </head>
-<body>
-	<!--  
-		<c:forEach items="${listOfPosts}" var="post">
-			<tr>
-				<p>Post Content: <c:out value="${post.content}" /></p>
-			</tr>
-		</c:forEach>
-		-->
 
-	<%
-		List<Post> list = (List<Post>) request.getAttribute("listOfPosts");
-	%>
-	<%
-		for (Post p : list) {
-	%>
-	<h1>
-		Content:
-		<%=p.getContent()%></h1>
-	<%
-		}
-	%>
+<body>
+	<div id="showAllPosts">
+		<table class="table table-striped">
+			<tbody>
+				<c:forEach var="post" items="${listOfPosts}">
+					<tr>
+						<td>${post.content}</td>
+						<td>${post.post_id}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
+
 </html>
