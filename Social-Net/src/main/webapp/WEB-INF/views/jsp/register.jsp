@@ -23,13 +23,12 @@
 		<div class="cloud x4"></div>
 		<div class="cloud x5"></div>
 	</div>
-
 	<div class="container">
 
-
+						
 		<div id="login">
 
-			<form:form commandName="user" action="register" method="post">
+		<form:form commandName="user" action="register" method="post">
 				<fieldset class="clearfix">
 					<p>
 						<span class="fontawesome-user"></span>
@@ -51,14 +50,10 @@
 					
 					<p>
 						<span class="fontawesome-user"></span> 
-							Birthday (mm/dd/yyyy):<form:input path="birth_date" />
+						<form:input path="birth_date" placeholder="Birthday (mm/dd/yyyy)" />
 					</p>
-					
-					<p>
-						<span class="fontawesome-user"></span>
-						<form:input type="text" path="gender" placeholder="gender"
-							required="required" />
-					</p>
+						<form:radiobutton path="gender" value="Male" checked="checked"/>Male
+						<form:radiobutton path="gender" value="Female"/>Female
 					<p>
 						<span class="fontawesome-user"></span>
 						<form:input type="password" path="password" placeholder="Password" required="required" />
