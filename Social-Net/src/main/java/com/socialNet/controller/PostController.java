@@ -35,10 +35,18 @@ public class PostController {
 	public String viewAllPosts(Model viewModel, HttpServletRequest request)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
 		ArrayList<Post> listOfPosts = postDAO.viewAllPosts();
-		viewModel.addAllAttributes(listOfPosts);
+		viewModel.addAttribute(listOfPosts);
+		
+		System.out.println(listOfPosts);
 
 		return "showAllPosts";
 	}
+
+//	@RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
+//	public @ResponseBody List<Post> showPosts() throws PostException, UserException, SQLException {
+//		List<Post> posts = postDAO.viewAllPosts();
+//		return posts;
+//	}
 
 	// @RequestMapping("post/{id}")
 	// public String showProduct(@PathVariable Integer id, Model model) {
