@@ -29,11 +29,13 @@ public class UserDAO {
 		conn = connection.getConnection();
 
 		try {
+
+			java.sql.Date sqlStartDate = new java.sql.Date(user.getBirth_date().getTime());
 			PreparedStatement ps = conn.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, user.getFirst_name());
 			ps.setString(2, user.getLast_name());
 			ps.setString(3, user.getEmail());
-			ps.setDate(4, (Date) user.getBirth_date());
+			ps.setDate(4, sqlStartDate);
 			ps.setString(5, user.getGender());
 			ps.setString(6, user.getPassword());
 
@@ -78,8 +80,7 @@ public class UserDAO {
 				throw new UserException("There no user with this id.");
 			}
 			return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),
-					rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),
-					rs.getString(11), rs.getString(12));
+					rs.getString(6), rs.getString(7));
 			// return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new UserException("There no user with this id.", e);

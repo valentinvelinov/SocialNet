@@ -18,23 +18,6 @@ public class User {
 	private String place;
 	private String education;
 
-	public User(String first_name, String last_name, String email, Date birth_date, String gender, String password,
-			String profile_pic_url, String cover_pic_url, String job, String place, String education)
-			throws UserException {
-		setFirst_name(first_name);
-		setLast_name(last_name);
-		setEmail(email);
-		setBirth_date(birth_date);
-		setGender(gender);
-		setPassword(password);
-		setProfile_pic_url(profile_pic_url);
-		setCover_pic_url(cover_pic_url);
-		setJob(job);
-		setPlace(place);
-		setEducation(education);
-
-	}
-
 	public User(String email, String password) throws UserException {
 		setEmail(email);
 		setPassword(password);
@@ -51,11 +34,14 @@ public class User {
 	}
 
 	public User(int user_id, String first_name, String last_name, String email, Date birth_date, String gender,
-			String password, String profile_pic_url, String cover_pic_url, String job, String place, String education)
-			throws UserException {
-		this(first_name, last_name, email, birth_date, gender, password, profile_pic_url, cover_pic_url, job, place,
-				education);
+			String password) throws UserException {
 		setUser_id(user_id);
+		setFirst_name(first_name);
+		setLast_name(last_name);
+		setEmail(email);
+		setBirth_date(birth_date);
+		setGender(gender);
+		setPassword(password);
 	}
 
 	public User() {

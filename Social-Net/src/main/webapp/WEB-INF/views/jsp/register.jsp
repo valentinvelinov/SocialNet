@@ -50,9 +50,8 @@
 					</p>
 					
 					<p>
-						<span class="fontawesome-user"></span>
-						<form:input type="date" path="birth_date" placeholder="birthdate"
-							required="required" />
+						<span class="fontawesome-user"></span> 
+							Birthday (mm/dd/yyyy):<form:input path="birth_date" />
 					</p>
 					
 					<p>
