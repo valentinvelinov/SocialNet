@@ -21,7 +21,7 @@ import com.socialNet.model.Post;
 import com.socialNet.model.User;
 
 @Component
-public class PostDAO {
+public class PostDAO implements IPost {
 	@Autowired
 	DBConnection connection;
 
@@ -31,17 +31,14 @@ public class PostDAO {
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";
 	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts";
+	private static final String DELETE_POST_BY_ID = "DELETE FROM `table` WHERE id IN (SELECT * FROM table WHERE id = )\n"
+			+ "";
 
 	public ArrayList<Post> viewAllPosts() throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
-		// // List<Post> posts = new ArrayList<Post>();
-		// // posts.add(getPostById(7));
-		// // posts.add(getPostById(8));
-		// // return Collections.unmodifiableList(posts);
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
 		ResultSet rs = ps.executeQuery();
 
-		// Fetch each row from the result set
 		while (rs.next()) {
 			int id = rs.getInt("post_id");
 			String cont = rs.getString("content");
@@ -92,5 +89,23 @@ public class PostDAO {
 		} catch (SQLException e) {
 			throw new PostException("There no post with this id.", e);
 		}
+	}
+
+	@Override
+	public void deletePost(int postId) throws UserException, PostException {
+		conn = connection.getConnection();
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(DELETE_POST_BY_ID);
+			 ps.setInt(1, postId);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next() == false) {
+				throw new UserException("There no post with this id.");
+			}
+		} catch (SQLException e) {
+			throw new PostException("There is no post with this id.", e);
+		}
+
 	}
 }

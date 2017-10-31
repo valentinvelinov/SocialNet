@@ -2,16 +2,15 @@ package com.socialNet.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.socialNet.dao.PostDAO;
 import com.socialNet.exception.PostException;
@@ -24,7 +23,7 @@ public class PostController {
 	@Autowired
 	PostDAO postDAO;
 
-	@RequestMapping(value = "/posts", method = RequestMethod.GET)
+	@RequestMapping(value = "post/posts/{id}", method = RequestMethod.GET)
 	public String showPostByID(Model viewModel) throws UserException, PostException {
 		int id = 7;
 		Post post = postDAO.getPostById(id);
@@ -58,11 +57,10 @@ public class PostController {
 		model.addAttribute("post", new Post());
 		return "newPost";
 	}
-	
-	
-	// @RequestMapping("post/delete/{id}")
-	// public String delete(@PathVariable Integer id) {
-	// postService.deletePost(id);
-	// return "redirect:/post";
-	// }
+
+	@RequestMapping("post/delete/{id}")
+	public String delete(@PathVariable Integer id) throws UserException, PostException {
+		postDAO.deletePost(id);
+		return "redirect:/deletePost";
+	}
 }

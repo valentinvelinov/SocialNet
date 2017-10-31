@@ -22,12 +22,35 @@
 	<div class="container">
 
 		<body>
+			<table style="border: 1px solid;">
 
-			<h1>${post.content}</h1>
-			</br>
-			<h1>${post.post_id}</h1>
-			</br>
-			<h1>${post.user_id}</h1>
+				<tr>
+					<td>
+						<h1>Post content: ${post.content}</h1>
+					</td>
+				</tr>
+				</br>
+				<tr>
+					<td>
+						<h1>Post id: ${post.post_id}</h1>
+					</td>
+				</tr>
+				</br>
+				<tr>
+					<td>
+						<h1>Post user id: ${post.user_id}</h1>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h1>
+							<img src="img/post1.jpg">
+						</h1>
+					</td>
+				</tr>
+				<p>
+			</table>
 
 		</body>
+	</div>
 </html>
