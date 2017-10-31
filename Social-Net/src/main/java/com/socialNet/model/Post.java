@@ -14,7 +14,7 @@ public class Post {
 		setContent(content);
 		setUser_id(user_id);
 		setPicture_name(picture_name);
-		setDate(date_post);
+		setDate_post(date_post);
 
 	}
 
@@ -36,11 +36,11 @@ public class Post {
 		this.picture_name = picture_name;
 	}
 
-	public Date getDate() {
+	public Date getDate_post() {
 		return date_post;
 	}
 
-	public void setDate(Date date) {
+	public void setDate_post(Date date_post) {
 		this.date_post = date_post;
 	}
 

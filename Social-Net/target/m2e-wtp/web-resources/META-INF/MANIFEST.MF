@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: SocialNet
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: DriftSldie
+Built-By: Geri
 Implementation-Vendor-Id: com.socialnet
 Build-Jdk: 1.8.0_144
 Created-By: Maven Integration for Eclipse

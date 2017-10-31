@@ -58,25 +58,8 @@ public class PostController {
 		model.addAttribute("post", new Post());
 		return "newPost";
 	}
-	//
-	// /**
-	// * Save post to database.
-	// *
-	// * @param post
-	// * @return
-	// */
-	// @RequestMapping(value = "post", method = RequestMethod.POST)
-	// public String saveProduct(Post post) {
-	// postService.savePost(post);
-	// return "redirect:/post/" + post.getId();
-	// }
-	//
-	// /**
-	// * Delete post by its id.
-	// *
-	// * @param id
-	// * @return
-	// */
+	
+	
 	// @RequestMapping("post/delete/{id}")
 	// public String delete(@PathVariable Integer id) {
 	// postService.deletePost(id);

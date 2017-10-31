@@ -29,7 +29,7 @@
 
 		<div id="newPost">
 
-			<form:form commandName="post" action="addPost" method="post">
+			<form:form commandName="post" action="makePost" method="post">
 				<fieldset class="clearfix">
 					<p>
 						<span class="fontawesome-user"></span>
@@ -38,9 +38,10 @@
 					</p>
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="picture_name" placeholder="Picture_name"
-							required="required" />
+						<form:input type="text" path="picture_name"
+							placeholder="Picture_name" required="required" />
 					</p>
+				
 					<p>
 						<input type="submit" value="Save post">
 					</p>

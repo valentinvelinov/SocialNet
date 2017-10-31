@@ -66,7 +66,7 @@ public class PostDAO {
 			ps.setString(1, post.getContent());
 			ps.setInt(2, user.getUser_id());
 			ps.setString(3, post.getPicture_name());
-			ps.setDate(4, (Date) post.getDate());
+			ps.setDate(4, (Date) post.getDate_post());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
