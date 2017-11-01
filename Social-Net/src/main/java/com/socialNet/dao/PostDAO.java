@@ -38,7 +38,7 @@ public class PostDAO implements IPost {
 		conn = connection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
 		ResultSet rs = ps.executeQuery();
-
+		listOfPosts.clear();
 		while (rs.next()) {
 			int id = rs.getInt("post_id");
 			String cont = rs.getString("content");
@@ -97,7 +97,7 @@ public class PostDAO implements IPost {
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(DELETE_POST_BY_ID);
-			 ps.setInt(1, postId);
+			ps.setInt(1, postId);
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next() == false) {

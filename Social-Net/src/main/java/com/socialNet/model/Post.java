@@ -1,6 +1,8 @@
 package com.socialNet.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Post {
 	private int post_id;
@@ -9,6 +11,7 @@ public class Post {
 	private User user;
 	private String picture_name;
 	private Date date_post;
+	List<Comment> commentsForPost = new ArrayList<Comment>();
 
 	public Post(String content, int user_id, String picture_name, Date date_post) {
 		setContent(content);
@@ -26,6 +29,14 @@ public class Post {
 
 	public Post() {
 		super();
+	}
+
+	public List<Comment> getCommentsForPost() {
+		return commentsForPost;
+	}
+
+	public void setCommentsForPost(List<Comment> commentsForPost) {
+		this.commentsForPost = commentsForPost;
 	}
 
 	public String getPicture_name() {
