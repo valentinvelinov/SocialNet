@@ -50,7 +50,7 @@ public class UserDAO {
 		}
 	}
 
-	public int loginUser(User user) throws UserException {
+	public void loginUser(User user) throws UserException {
 		conn = connection.getConnection();
 
 		try {
@@ -62,7 +62,7 @@ public class UserDAO {
 			if (rs.next() == false) {
 				throw new UserException("Wrong password or email! Please, try again!.");
 			}
-			return rs.getInt(1);
+			user.setUser_id(rs.getInt(1));
 		} catch (SQLException e) {
 			throw new UserException("User cannot be logged right now.", e);
 		}
