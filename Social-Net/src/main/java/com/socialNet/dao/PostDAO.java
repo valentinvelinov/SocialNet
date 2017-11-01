@@ -28,7 +28,7 @@ public class PostDAO implements IPost {
 	ArrayList<Post> listOfPosts = new ArrayList<Post>();
 
 	private static Connection conn;
-	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?)";
+	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?,?,?,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";
 	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts";
 	private static final String DELETE_POST_BY_ID = "DELETE FROM `table` WHERE id IN (SELECT * FROM table WHERE id = )\n"
@@ -59,11 +59,14 @@ public class PostDAO implements IPost {
 		conn = connection.getConnection();
 
 		try {
+			java.sql.Date sqlStartDate = new java.sql.Date(post.getDate_post().getTime());
 			PreparedStatement ps = conn.prepareStatement(INSERT_POST_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, post.getContent());
 			ps.setInt(2, user.getUser_id());
 			ps.setString(3, post.getPicture_name());
-			ps.setDate(4, (Date) post.getDate_post());
+			ps.setDate(4, sqlStartDate);
+			ps.setInt(5, post.getLike_count());
+			ps.setInt(6, post.getComment_count());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();

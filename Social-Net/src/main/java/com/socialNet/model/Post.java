@@ -12,6 +12,8 @@ public class Post {
 	private String picture_name;
 	private Date date_post;
 	List<Comment> commentsForPost = new ArrayList<Comment>();
+	private int like_count;
+	private int comment_count;
 
 	public Post(String content, int user_id, String picture_name, Date date_post) {
 		setContent(content);
@@ -33,6 +35,22 @@ public class Post {
 
 	public List<Comment> getCommentsForPost() {
 		return commentsForPost;
+	}
+
+	public int getLike_count() {
+		return like_count;
+	}
+
+	public void setLike_count(int like_count) {
+		this.like_count = like_count;
+	}
+
+	public int getComment_count() {
+		return comment_count;
+	}
+
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
 	}
 
 	public void setCommentsForPost(List<Comment> commentsForPost) {
@@ -95,7 +113,9 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [post_id=" + post_id + ", content=" + content + ", user_id=" + user_id + ", user=" + user + "]";
+		return "Post [post_id=" + post_id + ", content=" + content + ", user_id=" + user_id + ", user=" + user
+				+ ", picture_name=" + picture_name + ", date_post=" + date_post + ", commentsForPost=" + commentsForPost
+				+ "]";
 	}
 
 }

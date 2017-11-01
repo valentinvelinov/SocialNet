@@ -8,10 +8,8 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Social-Net Registration</title>
+<title>New post</title>
 <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 
 <body>
@@ -26,31 +24,32 @@
 
 	<div class="container">
 
-
-		<div id="newPost">
-
-			<form:form commandName="post" action="makePost" method="post">
+		<div id="login">
+			<form:form commandName="post">
 				<fieldset class="clearfix">
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="content" placeholder="Content"
-							required="required" />
+						<form:input type="text" name="content" path="content"
+							placeholder="Content" required="required" />
 					</p>
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="picture_name"
-							placeholder="Picture_name" required="required" />
+						<form:input path="date_post" name="date_post"
+							placeholder="Date (mm/dd/yyyy)" />
 					</p>
-				
 					<p>
-						<input type="submit" value="Save post">
-					</p>
+						Select a file to upload: <br />
+					<form action="upload" method="post" enctype="multipart/form-data">
 
+						<input type="file" path="picture_name" />
+
+						</p>
+						<p>
+							<input type="submit" value="Add post">
+						</p>
 				</fieldset>
 
 			</form:form>
-
-
 
 		</div>
 

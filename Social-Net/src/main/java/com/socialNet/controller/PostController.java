@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import com.socialNet.dao.PostDAO;
 import com.socialNet.exception.PostException;
 import com.socialNet.exception.UserException;
 import com.socialNet.model.Post;
+import com.socialNet.model.User;
 
 @Controller
 public class PostController {
@@ -36,17 +38,18 @@ public class PostController {
 			throws UserException, PostException, SQLException, ClassNotFoundException {
 		ArrayList<Post> listOfPosts = postDAO.viewAllPosts();
 		viewModel.addAttribute(listOfPosts);
-		
+
 		System.out.println(listOfPosts);
 
 		return "showAllPosts";
 	}
 
-//	@RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
-//	public @ResponseBody List<Post> showPosts() throws PostException, UserException, SQLException {
-//		List<Post> posts = postDAO.viewAllPosts();
-//		return posts;
-//	}
+	// @RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
+	// public @ResponseBody List<Post> showPosts() throws PostException,
+	// UserException, SQLException {
+	// List<Post> posts = postDAO.viewAllPosts();
+	// return posts;
+	// }
 
 	// @RequestMapping("post/{id}")
 	// public String showProduct(@PathVariable Integer id, Model model) {
@@ -59,10 +62,26 @@ public class PostController {
 	// model.addAttribute("post", postService.getPostById(id));
 	// return "postform";
 	// }
+	//
+	// @RequestMapping("/newPost")
+	// public String newProduct(Model model) {
+	//
+	// model.addAttribute("post", new Post());
+	// return "newPost";
+	// }
 
-	@RequestMapping("/newPost")
-	public String newProduct(Model model) {
-		model.addAttribute("post", new Post());
+	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
+	public String newPost(Model model) throws PostException {
+		Post post = new Post();
+		
+		model.addAttribute("post", post);
+		return "newPost";
+	}
+
+	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
+	public String newPost2(@ModelAttribute Post post) throws PostException {
+		System.out.println(post);
+		postDAO.makePost(post, new User());
 		return "newPost";
 	}
 
