@@ -20,16 +20,15 @@ public class LoginAndRegisterController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute User user, HttpSession session) {
-		if (user.getEmail() != null) {
+		if (user.isValidEmailAddress(user.getEmail())) {
 			try {
 				userDAO.loginUser(user);
 				return "home";
 			} catch (UserException e) {
 				return "error";
 			}
-		} else {
-			return "error";
 		}
+		return "error";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
