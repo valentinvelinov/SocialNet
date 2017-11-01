@@ -33,12 +33,11 @@ public class PostController {
 		return "posts";
 	}
 
-	@RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
-	public String viewAllPosts(Model viewModel, HttpServletRequest request)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String viewAllPosts(@ModelAttribute User user, Model viewModel)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
-		ArrayList<Post> listOfPosts = postDAO.viewAllPosts();
+		ArrayList<Post> listOfPosts = postDAO.viewAllPosts(user);
 		viewModel.addAttribute(listOfPosts);
-
 		System.out.println(listOfPosts);
 
 		return "showAllPosts";
@@ -73,7 +72,7 @@ public class PostController {
 	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
 	public String newPost(Model model) throws PostException {
 		Post post = new Post();
-		
+
 		model.addAttribute("post", post);
 		return "newPost";
 	}

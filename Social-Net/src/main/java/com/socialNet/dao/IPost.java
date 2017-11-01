@@ -9,7 +9,7 @@ import com.socialNet.model.Post;
 import com.socialNet.model.User;
 
 public interface IPost {
-	public ArrayList<Post> viewAllPosts() throws PostException, UserException, SQLException;
+	public ArrayList<Post> viewAllPosts(User user) throws PostException, UserException, SQLException;
 
 	public int makePost(Post post, User user) throws PostException;
 

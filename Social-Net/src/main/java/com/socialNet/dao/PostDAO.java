@@ -30,20 +30,21 @@ public class PostDAO implements IPost {
 	private static Connection conn;
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?,?,?,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";
-	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts";
+	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts WHERE user_id=?";
 	private static final String DELETE_POST_BY_ID = "DELETE FROM `table` WHERE id IN (SELECT * FROM table WHERE id = )\n"
 			+ "";
 
-	public ArrayList<Post> viewAllPosts() throws PostException, UserException, SQLException {
+	public ArrayList<Post> viewAllPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
+		int uid = user.getUser_id();
+		ps.setInt(1, uid);
 		ResultSet rs = ps.executeQuery();
 		listOfPosts.clear();
 		while (rs.next()) {
 			int id = rs.getInt("post_id");
 			String cont = rs.getString("content");
 			String pic = rs.getString("picture_name");
-			int uid = rs.getInt("user_id");
 			Date d = rs.getDate("date_post");
 
 			Post post = new Post(id, cont, uid, pic, d);
@@ -111,4 +112,6 @@ public class PostDAO implements IPost {
 		}
 
 	}
+
+	
 }
