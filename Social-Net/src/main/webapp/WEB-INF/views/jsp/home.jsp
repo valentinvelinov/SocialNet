@@ -21,5 +21,9 @@
 	<form:form action="logout" method="post">
 	<button type="submit">Click Me!</button>
 	</form:form>
+	
+	<form:form action="testing" method="get">
+	<<button type="submit2">Click Me!</button>
+	</form:form>
 </body>
 </html>

@@ -14,66 +14,69 @@
 	<title>Posts</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-	<div id="viewAllPosts">
 
-		<c:forEach items="${postList}" var="post">
-			<table style="border: 1px solid; text-align: center">
+<c:if test="${empty sessionScope.user.email}">
+    <c:redirect url="index"/>
+</c:if>
+	<body>
+		<div id="viewAllPosts">
 
-				<tr>
-					<td>
-						<h1>Post content: ${post.content}</h1>
-					</td>
-				</tr>
-				</br>
-				<tr>
-					<td>
-						<h1>Post id: ${post.post_id}</h1>
-					</td>
-				</tr>
-				</br>
-				<tr>
-					<td>
-						<h1>User id: ${post.user_id}</h1>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h1>
-							<img src="img/${post.picture_name}" width='232px' />
-						</h1>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h1>
-							<h1>Date: ${post.date_post}</h1>
-						</h1>
-					</td>
+			<c:forEach items="${postList}" var="post">
+				<table style="border: 1px solid; text-align: center">
 
-				</tr>
+					<tr>
+						<td>
+							<h1>Post content: ${post.content}</h1>
+						</td>
+					</tr>
+					</br>
+					<tr>
+						<td>
+							<h1>Post id: ${post.post_id}</h1>
+						</td>
+					</tr>
+					</br>
+					<tr>
+						<td>
+							<h1>User id: ${post.user_id}</h1>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h1>
+								<img src="img/${post.picture_name}" width='232px' />
+							</h1>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h1>
+								<h1>Date: ${post.date_post}</h1>
+							</h1>
+						</td>
 
-				<p>
-					Comment this post ---> <a href="comment" class="blue"> Comment
-					</a><span class="fontawesome-arrow-right"></span>
-				</p>
-				<p>
-					Like this post ---> <a href="comment" class="blue"> Like </a><span
-						class="fontawesome-arrow-right"></span>
+					</tr>
 
-				</p>
+					<p>
+						Comment this post ---> <a href="comment" class="blue"> Comment
+						</a><span class="fontawesome-arrow-right"></span>
+					</p>
+					<p>
+						Like this post ---> <a href="comment" class="blue"> Like </a><span
+							class="fontawesome-arrow-right"></span>
+
+					</p>
 
 
-				<p>
-					<a href="viewLikes" class="blue"> View likes </a><span
-						class="fontawesome-arrow-right"></span> <a href="viewComments"
-						class="blue"> View comments </a><span
-						class="fontawesome-arrow-right"></span>
-				</p>
-			</table>
-		</c:forEach>
-	</div>
+					<p>
+						<a href="viewLikes" class="blue"> View likes </a><span
+							class="fontawesome-arrow-right"></span> <a href="viewComments"
+							class="blue"> View comments </a><span
+							class="fontawesome-arrow-right"></span>
+					</p>
+				</table>
+			</c:forEach>
+		</div>
 
-</body>
-
+	</body>
 </html>

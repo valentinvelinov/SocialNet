@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +34,13 @@ public class PostController {
 		return "posts";
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String viewAllPosts(@ModelAttribute User user, Model viewModel)
+	@RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
+	public String viewAllPosts(HttpSession session, Model viewModel)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
-		ArrayList<Post> listOfPosts = postDAO.viewAllPosts(user);
+		if((User)session.getAttribute("user")==null) {
+			return "error";
+		}
+		ArrayList<Post> listOfPosts = postDAO.viewAllPosts((User) session.getAttribute("user"));
 		viewModel.addAttribute(listOfPosts);
 		System.out.println(listOfPosts);
 

@@ -39,6 +39,7 @@ public class PostDAO implements IPost {
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
 		int uid = user.getUser_id();
 		ps.setInt(1, uid);
+		System.err.println(uid);
 		ResultSet rs = ps.executeQuery();
 		listOfPosts.clear();
 		while (rs.next()) {
