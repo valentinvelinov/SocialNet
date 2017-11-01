@@ -44,7 +44,7 @@
 					
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="email" placeholder="Email"
+						<form:input type="email" path="email" placeholder="Email"
 							required="required" />
 					</p>
 					

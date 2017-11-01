@@ -32,9 +32,9 @@
 			<form:form commandName="user" action="login" method="post">
 				<img src="img/VERSION_LOGO.png" />
 				<fieldset class="clearfix">
-					<p>
+					<p>	
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="email" placeholder="Email" required="required" />
+						<form:input type="email" path="email" placeholder="Email" required="required" />
 					</p>
 					<!-- JS because of IE support; better: placeholder="Username" -->
 					<p>
