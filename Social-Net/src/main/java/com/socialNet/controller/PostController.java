@@ -46,6 +46,8 @@ public class PostController {
 
 		return "showAllPosts";
 	}
+	
+	
 
 	// @RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
 	// public @ResponseBody List<Post> showPosts() throws PostException,
