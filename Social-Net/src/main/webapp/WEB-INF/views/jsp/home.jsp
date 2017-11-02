@@ -16,8 +16,8 @@
 
 	</c:if>
 	<c:out value="${sessionScope.user.email}" />
-	<c:out value="${sessionScope.user.user_id}" />
-	<c:out value="${sessionScope.user.first_name}" />
+	<c:out value="${sessionScope.user.userId}" />
+	<c:out value="${sessionScope.user.firstName}" />
 	<h1>Welcome here!</h1>
 	<form:form action="logout" method="post">
 		<button type="submit">Click Me!</button>

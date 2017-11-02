@@ -34,14 +34,14 @@
 					</p>
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input path="date_post" name="date_post"
+						<form:input path="datePost" name="datePost"
 							placeholder="Date (mm/dd/yyyy)" />
 					</p>
 					<p>
 						Select a file to upload: <br />
 					<form action="upload" method="post" enctype="multipart/form-data">
 
-						<input type="file" path="picture_name" />
+						<input type="file" path="pictureName" />
 
 						</p>
 						<p>

@@ -15,7 +15,7 @@ import com.socialNet.interfaces.IComment;
 import com.socialNet.model.Comment;
 
 @Component
-public class CommentDao implements IComment {
+public class CommentDAO implements IComment {
 	@Autowired
 	DBConnection connection;
 

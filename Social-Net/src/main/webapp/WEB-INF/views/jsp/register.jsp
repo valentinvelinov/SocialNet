@@ -32,13 +32,13 @@
 				<fieldset class="clearfix">
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="first_name" placeholder="First_Name"
+						<form:input type="text" path="firstName" placeholder="First_Name"
 							required="required" />
 					</p>
 					
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="last_name" placeholder="Last_Name"
+						<form:input type="text" path="lastName" placeholder="Last_Name"
 							required="required" />
 					</p>
 					
@@ -50,7 +50,7 @@
 					
 					<p>
 						<span class="fontawesome-user"></span> 
-						<form:input path="birth_date" placeholder="Birthday (mm/dd/yyyy)" />
+						<form:input path="birthDate" placeholder="Birthday (mm/dd/yyyy)" />
 					</p>
 						<form:radiobutton path="gender" value="Male" checked="checked"/>Male
 						<form:radiobutton path="gender" value="Female"/>Female

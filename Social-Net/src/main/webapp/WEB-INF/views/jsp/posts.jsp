@@ -33,13 +33,13 @@
 				</br>
 				<tr>
 					<td>
-						<h1>Post id: ${post.post_id}</h1>
+						<h1>Post id: ${post.postId}</h1>
 					</td>
 				</tr>
 				</br>
 				<tr>
 					<td>
-						<h1>Post user id: ${post.user_id}</h1>
+						<h1>Post user id: ${post.userId}</h1>
 					</td>
 				</tr>
 				<tr>

@@ -10,6 +10,7 @@ public class Comment {
 	private String text;
 	private int userId;
 	private Date dateComment;
+	private Post post;
 
 	public Comment(int postId, String text, int userId, Date dateComment) throws CommentException {
 		setPostId(postId);
@@ -22,6 +23,9 @@ public class Comment {
 		this(postId, text, userId, dateComment);
 		setCommentId(commentId);
 
+	}
+
+	public Comment() {
 	}
 
 	public Date getDateComment() {
