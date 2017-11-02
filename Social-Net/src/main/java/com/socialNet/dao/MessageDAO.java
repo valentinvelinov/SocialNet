@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.MessageException;
+import com.socialNet.interfaces.IMessage;
 import com.socialNet.model.Message;
 @Component
-public class MessageDAO {
+public class MessageDAO implements IMessage{
 
 	@Autowired
     DBConnection connection;

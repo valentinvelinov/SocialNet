@@ -21,7 +21,7 @@ body {
 				<!-- Navbar (sit on top) -->
 				<div class="w3-top">
 					<div class="w3-bar w3-white w3-padding w3-card"
-						style="letter-spacing: 3px;">
+						style="letter-spacing: 2px;">
 						<img src="img/VERSION_LOGO.png" width='232px' />
 						<!-- Right-sided navbar links. Hide them on small screens -->
 						<div class="w3-right w3-hide-small">

@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.UserException;
+import com.socialNet.interfaces.IUser;
 import com.socialNet.model.User;
 
 @Component
-public class UserDAO {
+public class UserDAO implements IUser {
 	@Autowired
 	DBConnection connection;
 

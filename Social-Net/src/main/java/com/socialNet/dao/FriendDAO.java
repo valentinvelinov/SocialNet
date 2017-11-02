@@ -11,17 +11,19 @@ import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.FriendException;
+import com.socialNet.interfaces.IFriend;
 import com.socialNet.model.Friend;
-@Component
-public class FriendDAO {
-	@Autowired
-    DBConnection connection;
 
-    private static Connection conn;
+@Component
+public class FriendDAO implements IFriend {
+	@Autowired
+	DBConnection connection;
+
+	private static Connection conn;
 	private static final String INSERT_FRIEND_SQL = "INSERT INTO friends VALUES (null, ?)";
 
 	public int addFriend(Friend friend) throws FriendException {
-		conn=connection.getConnection();
+		conn = connection.getConnection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(INSERT_FRIEND_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, friend.getFriend_id());

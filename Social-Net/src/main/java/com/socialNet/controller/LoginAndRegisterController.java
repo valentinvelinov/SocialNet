@@ -34,7 +34,7 @@ public class LoginAndRegisterController {
 				 if ( user != null || user.getUser_id() != 0 ) {
 			            session.setAttribute("user", user);
 			        }
-				 return "redirect:showAllPosts";
+				 return "redirect:showAllMyPosts";
 			} catch (UserException e) {
 				return "error";
 			}
@@ -56,7 +56,7 @@ public class LoginAndRegisterController {
 				 if ( user != null || user.getUser_id() != 0 ) {
 			            session.setAttribute("user", user);
 			        }
-				return "redirect:showAllPosts";
+				return "redirect:showAllMyPosts";
 			} catch (UserException e) {
 				return "error";
 			}

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.PostException;
 import com.socialNet.exception.UserException;
+import com.socialNet.interfaces.IPost;
 import com.socialNet.model.Post;
 import com.socialNet.model.User;
 
@@ -34,6 +35,30 @@ public class PostDAO implements IPost {
 	private static final String DELETE_POST_BY_ID = "DELETE FROM `table` WHERE id IN (SELECT * FROM table WHERE id = )\n"
 			+ "";
 
+	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {
+		conn = connection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
+		int uid = user.getUser_id();
+		ps.setInt(1, uid);
+		System.err.println(uid);
+		ResultSet rs = ps.executeQuery();
+		listOfPosts.clear();
+		while (rs.next()) {
+			int id = rs.getInt("post_id");
+			String cont = rs.getString("content");
+			String pic = rs.getString("picture_name");
+			Date d = rs.getDate("date_post");
+
+			Post post = new Post(id, cont, uid, pic, d);
+			listOfPosts.add(post);
+		}
+		for (Post p : listOfPosts) {
+			System.out.println("collection" + p);
+		}
+		return listOfPosts;
+	}
+
+	// Posts of all people
 	public ArrayList<Post> viewAllPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
@@ -114,5 +139,4 @@ public class PostDAO implements IPost {
 
 	}
 
-	
 }

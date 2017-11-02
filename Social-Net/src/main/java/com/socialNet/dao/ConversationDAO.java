@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.ConversationException;
+import com.socialNet.interfaces.IConversation;
 import com.socialNet.model.Conversation;
 @Component
-public class ConversationDAO {
+public class ConversationDAO implements IConversation{
 	@Autowired
     DBConnection connection;
 

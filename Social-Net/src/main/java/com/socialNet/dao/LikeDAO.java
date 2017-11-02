@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.LikeException;
+import com.socialNet.interfaces.ILike;
 import com.socialNet.model.Like;
 @Component
-public class LikeDAO {
+public class LikeDAO implements ILike {
 	@Autowired
     DBConnection connection;
 

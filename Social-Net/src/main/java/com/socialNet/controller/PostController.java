@@ -34,27 +34,18 @@ public class PostController {
 		return "posts";
 	}
 
-	@RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
+	@RequestMapping(value = "/showAllMyPosts", method = RequestMethod.GET)
 	public String viewAllPosts(HttpSession session, Model viewModel)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
-		if((User)session.getAttribute("user")==null) {
+		if ((User) session.getAttribute("user") == null) {
 			return "error";
 		}
-		ArrayList<Post> listOfPosts = postDAO.viewAllPosts((User) session.getAttribute("user"));
+		ArrayList<Post> listOfPosts = postDAO.viewAllMyPosts((User) session.getAttribute("user"));
 		viewModel.addAttribute(listOfPosts);
 		System.out.println(listOfPosts);
 
-		return "showAllPosts";
+		return "showAllMyPosts";
 	}
-	
-	
-
-	// @RequestMapping(value = "/showAllPosts", method = RequestMethod.GET)
-	// public @ResponseBody List<Post> showPosts() throws PostException,
-	// UserException, SQLException {
-	// List<Post> posts = postDAO.viewAllPosts();
-	// return posts;
-	// }
 
 	// @RequestMapping("post/{id}")
 	// public String showProduct(@PathVariable Integer id, Model model) {
@@ -66,13 +57,6 @@ public class PostController {
 	// public String edit(@PathVariable Integer id, Model model) {
 	// model.addAttribute("post", postService.getPostById(id));
 	// return "postform";
-	// }
-	//
-	// @RequestMapping("/newPost")
-	// public String newProduct(Model model) {
-	//
-	// model.addAttribute("post", new Post());
-	// return "newPost";
 	// }
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
@@ -90,9 +74,10 @@ public class PostController {
 		return "newPost";
 	}
 
-	@RequestMapping("post/delete/{id}")
-	public String delete(@PathVariable Integer id) throws UserException, PostException {
-		postDAO.deletePost(id);
-		return "redirect:/deletePost";
-	}
+	// @RequestMapping("post/delete/{id}")
+	// public String delete(@PathVariable Integer id) throws UserException,
+	// PostException {
+	// postDAO.deletePost(id);
+	// return "redirect:/deletePost";
+	// }
 }
