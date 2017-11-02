@@ -12,4 +12,6 @@ public interface IFriend {
 	public List<Friend> getFriends(Friend friend) throws UserException;
 
 	boolean removeFriend(Friend friend);
+
+	boolean verifiesIfTheresAlreadyThisFriend(Friend friendship);
 }

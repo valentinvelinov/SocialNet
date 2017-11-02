@@ -89,24 +89,5 @@ public class UserDAO implements IUser {
 
 	}
 
-	public List<User> friendsSortedByPlace(String first_name, boolean order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<User> friendsSortedByDateOfBirth(java.util.Date birth_date, boolean order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<User> friendsSortedByName(String first_name, boolean order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<User> nonFriendsFor(Integer personId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

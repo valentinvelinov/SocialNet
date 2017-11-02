@@ -27,6 +27,7 @@ public class FriendDAO implements IFriend {
 	private static final String INSERT_FRIEND_SQL = "INSERT INTO friends VALUES (null, ?)";
 	private static final String SELECT_ALL_FRIENDS = "SELECT * FROM friends WHERE user_id=?";
 	private static final String REMOVE_FRIEND = "DELETE FROM `friends` WHERE id IN (SELECT * FROM friends WHERE frien_id = )\\n";
+	private static final String CHECK_FRIEND = "";
 
 	public int addFriend(Friend friend) throws FriendException {
 		conn = connection.getConnection();
@@ -87,6 +88,34 @@ public class FriendDAO implements IFriend {
 			ps.close();
 			conn.close();
 			return true;
+		} catch (SQLException sql) {
+			System.out.println(sql);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean verifiesIfTheresAlreadyThisFriend(Friend friendship) {
+		conn = connection.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(CHECK_FRIEND, Statement.RETURN_GENERATED_KEYS);
+
+			ps.setInt(1, friendship.getUserOneId().getUserId());
+			ps.setInt(2, friendship.getUserTwoId().getUserId());
+
+			ResultSet rs = ps.executeQuery();
+			boolean check = false;
+
+			while (rs.next()) {
+				check = true;
+				System.out.println("YOU ARE ALREADY FRIENDS WITH THIS DUDE");
+				friendship = null;
+			}
+			rs.close();
+			ps.close();
+			conn.close();
+			return check;
+
 		} catch (SQLException sql) {
 			System.out.println(sql);
 		}
