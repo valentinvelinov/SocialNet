@@ -60,9 +60,12 @@ public class PostController {
 	// }
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
-	public String newPost(Model model) throws PostException {
+	public String newPost(HttpSession session, Model model) throws PostException {
+		if ((User) session.getAttribute("user") == null) {
+			return "error";
+		}
+		
 		Post post = new Post();
-
 		model.addAttribute("post", post);
 		return "newPost";
 	}
@@ -71,7 +74,7 @@ public class PostController {
 	public String newPost2(@ModelAttribute Post post) throws PostException {
 		System.out.println(post);
 		postDAO.makePost(post, new User());
-		return "newPost";
+		return "showAllMyPosts";
 	}
 
 	// @RequestMapping("post/delete/{id}")

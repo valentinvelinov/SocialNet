@@ -10,6 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New post</title>
 <link rel="stylesheet" href="css/style.css">
+<c:if test="${empty sessionScope.user.email}">
+	<c:redirect url="index" />
+</c:if>
 </head>
 
 <body>

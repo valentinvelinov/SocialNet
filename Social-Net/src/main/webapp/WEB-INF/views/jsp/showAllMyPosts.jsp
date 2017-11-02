@@ -31,7 +31,8 @@ body {
 								href="#contact" class="w3-bar-item w3-button">Posts</a> <a
 								href="#contact" class="w3-bar-item w3-button">Friends</a> <a
 								href="#contact" class="w3-bar-item w3-button">Messages</a> <a
-								href="#contact" class="w3-bar-item w3-button">Search</a><img
+								href="#contact" class="w3-bar-item w3-button">Search</a> <a
+								href="newPost" class="w3-bar-item w3-button">New post</a><img
 								src="img/people.png" width='70px' />
 						</div>
 
