@@ -1,10 +1,13 @@
 package com.socialNet.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.socialNet.exception.ConversationException;
 
 public class Conversation {
 
 	private int conversationId;
+	@NotBlank
 	private String contentConversation;
 
 	public Conversation(String contentConversation) {

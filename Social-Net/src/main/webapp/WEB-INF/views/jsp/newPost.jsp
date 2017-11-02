@@ -44,7 +44,7 @@
 						Select a file to upload: <br />
 					<form action="upload" method="post" enctype="multipart/form-data">
 
-						<input type="file" path="pictureName" />
+						<form: input type="file" path="pictureName" />
 
 						</p>
 						<p>

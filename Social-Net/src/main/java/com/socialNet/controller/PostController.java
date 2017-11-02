@@ -73,6 +73,7 @@ public class PostController {
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
 	public String newPost2(@ModelAttribute Post post) throws PostException {
 		System.out.println(post);
+		//validate
 		postDAO.makePost(post, new User());
 		return "showAllMyPosts";
 	}

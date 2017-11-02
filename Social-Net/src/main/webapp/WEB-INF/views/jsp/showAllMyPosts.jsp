@@ -57,6 +57,7 @@ body {
 								<div class="w3-container w3-card w3-white w3-round w3-margin">
 									<hr class="w3-clear">
 										<div class="w3-half">
+
 											<img src="img/${post.pictureName} " style="width: 50%"
 												alt="Nature" class="w3-margin-bottom">
 										</div>
@@ -71,6 +72,10 @@ body {
 											<button type="button"
 												class="w3-button w3-theme-d2 w3-margin-bottom">
 												<i class="fa fa-comment"></i>  Comment
+											</button>
+											<button type="button"
+												class="w3-button w3-theme-d1 w3-margin-bottom">
+												<i class="fa fa-thumbs-up"></i>  Delete post
 											</button>
 										</div>
 							</table>

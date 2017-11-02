@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Post {
 	private int postId;
+	@NotBlank
 	private String content;
 	private int userId;
 	private User user;
 	private String pictureName;
+	@NotBlank
 	private Date datePost;
 	List<Comment> commentsForPost = new ArrayList<Comment>();
 	private int likeCount;

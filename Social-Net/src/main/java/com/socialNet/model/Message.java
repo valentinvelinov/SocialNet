@@ -2,12 +2,16 @@ package com.socialNet.model;
 
 import java.sql.Date;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.socialNet.exception.MessageException;
 
 public class Message {
 	private int messageId;
 	private int conversationId;
+	@NotBlank
 	private String content;
+	@NotBlank
 	private Date date;
 
 	public Message(int conversationId, String content, Date date) {

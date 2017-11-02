@@ -2,13 +2,17 @@ package com.socialNet.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.socialNet.exception.CommentException;
 
 public class Comment {
 	private int commentId;
 	private int postId;
+	@NotBlank
 	private String text;
 	private int userId;
+	@NotBlank
 	private Date dateComment;
 	private Post post;
 
