@@ -35,6 +35,14 @@ public class Post {
 
 	}
 
+	public Post(int postId, String content, int userId, String pictureName) {
+		setContent(content);
+		setUserId(userId);
+		setPictureName(pictureName);
+		setPostId(postId);
+
+	}
+
 	public Post() {
 		super();
 	}
