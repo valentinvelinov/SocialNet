@@ -1,53 +1,41 @@
 package com.socialNet.model;
 
-import java.util.Date;
-
 import com.socialNet.exception.ConversationException;
 
 public class Conversation {
 
-	private int conversation_id;
-	private String text;
-	private Date date;
+	private int conversationId;
+	private String contentConversation;
 
-	public Conversation(String text, Date date) {
-		this.text = text;
-		this.date = date;
+	public Conversation(String contentConversation) {
+		this.contentConversation = contentConversation;
 	}
 
-	public Conversation(int conversation_id, String text, Date date) {
-		this(text, date);
-		this.conversation_id = conversation_id;
+	public Conversation(int conversationId, String contentConversation) {
+		this.conversationId = conversationId;
+		this.contentConversation = contentConversation;
 
 	}
 
-	public Date getDate() {
-		return date;
+	public int getConversationId() {
+		return conversationId;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getConversation_id() {
-		return conversation_id;
-	}
-
-	public void setConversation_id(int conversation_id) throws ConversationException {
-		if (conversation_id > 0) {
-			this.conversation_id = conversation_id;
+	public void setConversationId(int conversationId) throws ConversationException {
+		if (conversationId > 0) {
+			this.conversationId = conversationId;
 		} else {
 			throw new ConversationException("Conversation cannot be commented right now, please try again later!");
 		}
 	}
 
-	public String getText() {
-		return text;
+	public String getContentConversation() {
+		return contentConversation;
 	}
 
-	public void setText(String text) throws ConversationException {
-		if (isValidText(text)) {
-			this.text = text;
+	public void setContentConversation(String contentConversation) throws ConversationException {
+		if (isValidText(contentConversation)) {
+			this.contentConversation = contentConversation;
 		} else {
 			throw new ConversationException("Invalid comment text!");
 		}

@@ -3,54 +3,52 @@ package com.socialNet.model;
 import com.socialNet.exception.LikeException;
 
 public class Like {
-	private int like_id;
-	private int post_id;
-	private int user_id;
-	
-	public Like(int like_id, int post_id, int user_id) throws LikeException {
-		super();
-		setLike_id(like_id);
-		setPost_id(post_id);
-		setUser_id(user_id);
+	private int likeId;
+	private int postId;
+	private int userId;
+
+	public Like(int postId, int userId) throws LikeException {
+		setPostId(postId);
+		setUserId(userId);
 	}
 
-	public Like(int post_id, int user_id) throws LikeException {
-		super();
-		setPost_id(post_id);
-		setUser_id(user_id);
+	public Like(int likeId, int postId, int userId) throws LikeException {
+		this(postId, userId);
+		setLikeId(likeId);
+
 	}
 
-	public int getLike_id() {
-		return like_id;
+	public int getLikeId() {
+		return likeId;
 	}
 
-	public void setLike_id(int like_id) throws LikeException {
-		if (like_id > 0) {
-			this.like_id = like_id;
+	public void setLikeId(int likeId) throws LikeException {
+		if (likeId > 0) {
+			this.likeId = likeId;
 		} else {
 			throw new LikeException("You can't like this post right now, please try again later!");
 		}
 	}
 
-	public int getPost_id() {
-		return post_id;
+	public int getPostId() {
+		return postId;
 	}
 
-	public void setPost_id(int post_id) throws LikeException {
-		if (post_id > 0) {
-			this.post_id = post_id;
+	public void setPostId(int postId) throws LikeException {
+		if (postId > 0) {
+			this.postId = postId;
 		} else {
 			throw new LikeException("You can't like this post right now, please try again later!");
 		}
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) throws LikeException {
-		if (user_id > 0) {
-			this.user_id = user_id;
+	public void setUserId(int userId) throws LikeException {
+		if (userId > 0) {
+			this.userId = userId;
 		} else {
 			throw new LikeException("You can't like this post right now, please try again later!");
 		}

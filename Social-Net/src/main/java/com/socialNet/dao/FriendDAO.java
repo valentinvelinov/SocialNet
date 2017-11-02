@@ -26,13 +26,13 @@ public class FriendDAO implements IFriend {
 		conn = connection.getConnection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(INSERT_FRIEND_SQL, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, friend.getFriend_id());
+			ps.setInt(1, friend.getFriendId());
 
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
-			friend.setFriend_id(rs.getInt(1));
+			friend.setFriendId(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new FriendException("You cannot add this person as friend now, please try again later.", e);

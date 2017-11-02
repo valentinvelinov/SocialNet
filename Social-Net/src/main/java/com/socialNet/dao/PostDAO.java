@@ -38,7 +38,7 @@ public class PostDAO implements IPost {
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
-		int uid = user.getUser_id();
+		int uid = user.getUserId();
 		ps.setInt(1, uid);
 		System.err.println(uid);
 		ResultSet rs = ps.executeQuery();
@@ -62,7 +62,7 @@ public class PostDAO implements IPost {
 	public ArrayList<Post> viewAllPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
-		int uid = user.getUser_id();
+		int uid = user.getUserId();
 		ps.setInt(1, uid);
 		System.err.println(uid);
 		ResultSet rs = ps.executeQuery();
@@ -86,14 +86,14 @@ public class PostDAO implements IPost {
 		conn = connection.getConnection();
 
 		try {
-			java.sql.Date sqlStartDate = new java.sql.Date(post.getDate_post().getTime());
+			java.sql.Date sqlStartDate = new java.sql.Date(post.getDatePost().getTime());
 			PreparedStatement ps = conn.prepareStatement(INSERT_POST_SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, post.getContent());
-			ps.setInt(2, user.getUser_id());
-			ps.setString(3, post.getPicture_name());
+			ps.setInt(2, user.getUserId());
+			ps.setString(3, post.getPictureName());
 			ps.setDate(4, sqlStartDate);
-			ps.setInt(5, post.getLike_count());
-			ps.setInt(6, post.getComment_count());
+			ps.setInt(5, post.getLikeCount());
+			ps.setInt(6, post.getCommentCount());
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();

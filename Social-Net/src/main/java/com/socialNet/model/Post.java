@@ -5,27 +5,27 @@ import java.util.Date;
 import java.util.List;
 
 public class Post {
-	private int post_id;
+	private int postId;
 	private String content;
-	private int user_id;
+	private int userId;
 	private User user;
-	private String picture_name;
-	private Date date_post;
+	private String pictureName;
+	private Date datePost;
 	List<Comment> commentsForPost = new ArrayList<Comment>();
-	private int like_count;
-	private int comment_count;
+	private int likeCount;
+	private int commentCount;
 
-	public Post(String content, int user_id, String picture_name, Date date_post) {
+	public Post(String content, int userId, String pictureName, Date datePost) {
 		setContent(content);
-		setUser_id(user_id);
-		setPicture_name(picture_name);
-		setDate_post(date_post);
+		setUserId(userId);
+		setPictureName(pictureName);
+		setDatePost(datePost);
 
 	}
 
-	public Post(int post_id, String content, int user_id, String picture_name, Date date_post) {
-		this(content, user_id, picture_name, date_post);
-		setPost_id(post_id);
+	public Post(int postId, String content, int userId, String pictureName, Date datePost) {
+		this(content, userId, pictureName, datePost);
+		setPostId(postId);
 
 	}
 
@@ -37,40 +37,40 @@ public class Post {
 		return commentsForPost;
 	}
 
-	public int getLike_count() {
-		return like_count;
+	public int getLikeCount() {
+		return likeCount;
 	}
 
-	public void setLike_count(int like_count) {
-		this.like_count = like_count;
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 
-	public int getComment_count() {
-		return comment_count;
+	public int getCommentCount() {
+		return commentCount;
 	}
 
-	public void setComment_count(int comment_count) {
-		this.comment_count = comment_count;
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 
 	public void setCommentsForPost(List<Comment> commentsForPost) {
 		this.commentsForPost = commentsForPost;
 	}
 
-	public String getPicture_name() {
-		return picture_name;
+	public String getPictureName() {
+		return pictureName;
 	}
 
-	public void setPicture_name(String picture_name) {
-		this.picture_name = picture_name;
+	public void setPictureName(String pictureName) {
+		this.pictureName = pictureName;
 	}
 
-	public Date getDate_post() {
-		return date_post;
+	public Date getDatePost() {
+		return datePost;
 	}
 
-	public void setDate_post(Date date_post) {
-		this.date_post = date_post;
+	public void setDatePost(Date datePost) {
+		this.datePost = datePost;
 	}
 
 	public User getUser() {
@@ -81,21 +81,21 @@ public class Post {
 		this.user = user;
 	}
 
-	public int getPost_id() {
-		return post_id;
+	public int getPostId() {
+		return postId;
 	}
 
 	public String getContent() {
 		return content;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setPost_id(int post_id) {
-		if (post_id > 0) {
-			this.post_id = post_id;
+	public void setPostId(int postId) {
+		if (postId > 0) {
+			this.postId = postId;
 		}
 	}
 
@@ -105,16 +105,16 @@ public class Post {
 		}
 	}
 
-	public void setUser_id(int user_id) {
-		if (user_id > 0) {
-			this.user_id = user_id;
+	public void setUserId(int userId) {
+		if (userId > 0) {
+			this.userId = userId;
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Post [post_id=" + post_id + ", content=" + content + ", user_id=" + user_id + ", user=" + user
-				+ ", picture_name=" + picture_name + ", date_post=" + date_post + ", commentsForPost=" + commentsForPost
+		return "Post [postId=" + postId + ", content=" + content + ", userId=" + userId + ", user=" + user
+				+ ", pictureName=" + pictureName + ", datePost=" + datePost + ", commentsForPost=" + commentsForPost
 				+ "]";
 	}
 

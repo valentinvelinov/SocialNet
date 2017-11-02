@@ -14,28 +14,27 @@ import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.ConversationException;
 import com.socialNet.interfaces.IConversation;
 import com.socialNet.model.Conversation;
-@Component
-public class ConversationDAO implements IConversation{
-	@Autowired
-    DBConnection connection;
 
-    private static Connection conn;
-	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO Conversations VALUES (null, ?, ?)";
+@Component
+public class ConversationDAO implements IConversation {
+	@Autowired
+	DBConnection connection;
+
+	private static Connection conn;
+	private static final String INSERT_CONVERSATION_SQL = "INSERT INTO Conversations VALUES (null, ?)";
 
 	public int startConversation(Conversation conversation) throws ConversationException {
-		conn=connection.getConnection();
+		conn = connection.getConnection();
 
 		try {
-			PreparedStatement ps = conn.prepareStatement(INSERT_CONVERSATION_SQL,
-					Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, conversation.getText());
-			ps.setDate(2,  (Date) conversation.getDate());
+			PreparedStatement ps = conn.prepareStatement(INSERT_CONVERSATION_SQL, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, conversation.getContentConversation());
 
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
-			conversation.setConversation_id(rs.getInt(1));
+			conversation.setConversationId(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();

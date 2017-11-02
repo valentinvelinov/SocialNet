@@ -5,20 +5,20 @@ import java.sql.Date;
 import com.socialNet.exception.MessageException;
 
 public class Message {
-	private int message_id;
-	private int conversation_id;
+	private int messageId;
+	private int conversationId;
 	private String content;
 	private Date date;
 
-	public Message(int conversation_id, String content, Date date) {
-		this.conversation_id = conversation_id;
+	public Message(int conversationId, String content, Date date) {
+		this.conversationId = conversationId;
 		this.content = content;
 		this.date = date;
 	}
 
-	public Message(int message_id, int conversation_id, String content, Date date) {
-		this(conversation_id, content, date);
-		this.message_id = message_id;
+	public Message(int messageId, int conversationId, String content, Date date) {
+		this(conversationId, content, date);
+		this.messageId = messageId;
 	}
 
 	public Date getDate() {
@@ -29,25 +29,25 @@ public class Message {
 		this.date = date;
 	}
 
-	public int getMessage_id() {
-		return message_id;
+	public int getMessageId() {
+		return messageId;
 	}
 
-	public void setMessage_id(int message_id) throws MessageException {
-		if (message_id > 0) {
-			this.message_id = message_id;
+	public void setMessageId(int messageId) throws MessageException {
+		if (messageId > 0) {
+			this.messageId = messageId;
 		} else {
 			throw new MessageException("The message cannot be write right now, please try again later!");
 		}
 	}
 
-	public int getConversation_id() {
-		return conversation_id;
+	public int getConversationId() {
+		return conversationId;
 	}
 
-	public void setConversation_id(int conversation_id) throws MessageException {
-		if (conversation_id > 0) {
-			this.conversation_id = conversation_id;
+	public void setConversationId(int conversationId) throws MessageException {
+		if (conversationId > 0) {
+			this.conversationId = conversationId;
 		} else {
 			throw new MessageException("The message cannot be write right now, please try again later!");
 		}

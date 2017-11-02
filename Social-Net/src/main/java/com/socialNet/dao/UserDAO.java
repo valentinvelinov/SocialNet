@@ -31,10 +31,10 @@ public class UserDAO implements IUser {
 
 		try {
 
-			java.sql.Date sqlStartDate = new java.sql.Date(user.getBirth_date().getTime());
+			java.sql.Date sqlStartDate = new java.sql.Date(user.getBirthDate().getTime());
 			PreparedStatement ps = conn.prepareStatement(INSERT_USER_SQL, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, user.getFirst_name());
-			ps.setString(2, user.getLast_name());
+			ps.setString(1, user.getFirstName());
+			ps.setString(2, user.getLastName());
 			ps.setString(3, user.getEmail());
 			ps.setDate(4, sqlStartDate);
 			ps.setString(5, user.getGender());
@@ -44,7 +44,7 @@ public class UserDAO implements IUser {
 
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
-			user.setUser_id(rs.getInt(1));
+			user.setUserId(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new UserException("User cannot be registered now, please try again later.", e);
@@ -63,7 +63,7 @@ public class UserDAO implements IUser {
 			if (rs.next() == false) {
 				throw new UserException("Wrong password or email! Please, try again!.");
 			}
-			user.setUser_id(rs.getInt(1));
+			user.setUserId(rs.getInt(1));
 		} catch (SQLException e) {
 			throw new UserException("User cannot be logged right now.", e);
 		}

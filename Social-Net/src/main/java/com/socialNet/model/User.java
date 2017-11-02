@@ -5,15 +5,15 @@ import java.util.Date;
 import com.socialNet.exception.UserException;
 
 public class User {
-	private int user_id;
-	private String first_name;
-	private String last_name;
+	private int userId;
+	private String firstName;
+	private String lastName;
 	private String email;
-	private Date birth_date;
+	private Date birthDate;
 	private String gender;
 	private String password;
-	private String profile_pic_url;
-	private String cover_pic_url;
+	private String profilePicUrl;
+	private String coverPicUrl;
 	private String job;
 	private String place;
 	private String education;
@@ -23,23 +23,23 @@ public class User {
 		setPassword(password);
 	}
 
-	public User(String first_name, String last_name, String email, Date birth_date, String gender, String password)
+	public User(String firstName, String lastName, String email, Date birthDate, String gender, String password)
 			throws UserException {
-		setFirst_name(first_name);
-		setLast_name(last_name);
+		setFirstName(firstName);
+		setLastName(lastName);
 		setEmail(email);
-		setBirth_date(birth_date);
+		setBirthDate(birthDate);
 		setGender(gender);
 		setPassword(password);
 	}
 
-	public User(int user_id, String first_name, String last_name, String email, Date birth_date, String gender,
+	public User(int userId, String firstName, String lastName, String email, Date birthDate, String gender,
 			String password) throws UserException {
-		setUser_id(user_id);
-		setFirst_name(first_name);
-		setLast_name(last_name);
+		setUserId(userId);
+		setFirstName(firstName);
+		setLastName(lastName);
 		setEmail(email);
-		setBirth_date(birth_date);
+		setBirthDate(birthDate);
 		setGender(gender);
 		setPassword(password);
 	}
@@ -84,56 +84,56 @@ public class User {
 	}
 
 	// Getters and Setters
-	public String getProfile_pic_url() {
-		return profile_pic_url;
+	public String getProfilePicUrl() {
+		return profilePicUrl;
 	}
 
-	public void setProfile_pic_url(String profile_pic_url) throws UserException {
-		if (validateString(profile_pic_url)) {
-			this.profile_pic_url = profile_pic_url;
+	public void setProfilePicUrl(String profilePicUrl) throws UserException {
+		if (validateString(profilePicUrl)) {
+			this.profilePicUrl = profilePicUrl;
 		} else {
-			profile_pic_url = "person.gif";
+			profilePicUrl = "person.gif";
 
 		}
 	}
 
-	public String getCover_pic_url() {
-		return cover_pic_url;
+	public String getCoverPicUrl() {
+		return coverPicUrl;
 	}
 
-	public void setCover_pic_url(String cover_pic_url) throws UserException {
-		this.cover_pic_url = cover_pic_url;
+	public void setCoverPicUrl(String coverPicUrl) throws UserException {
+		this.coverPicUrl = coverPicUrl;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) {
-		if (user_id > 0) {
-			this.user_id = user_id;
+	public void setUserId(int userId) {
+		if (userId > 0) {
+			this.userId = userId;
 		}
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) throws UserException {
-		if (validateString(first_name)) {
-			this.first_name = first_name;
+	public void setFirstName(String firstName) throws UserException {
+		if (validateString(firstName)) {
+			this.firstName = firstName;
 		} else {
 			throw new UserException("Your first name is invalid, please try again!");
 		}
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) throws UserException {
-		if (validateString(last_name)) {
-			this.last_name = last_name;
+	public void setLastName(String lastName) throws UserException {
+		if (validateString(lastName)) {
+			this.lastName = lastName;
 		} else {
 			throw new UserException("Your last name is invalid, please try again!");
 		}
@@ -151,12 +151,12 @@ public class User {
 		}
 	}
 
-	public Date getBirth_date() {
-		return birth_date;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setBirth_date(Date birth_date) {
-		this.birth_date = birth_date;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getGender() {

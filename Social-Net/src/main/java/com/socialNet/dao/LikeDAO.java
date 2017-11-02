@@ -13,21 +13,22 @@ import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.LikeException;
 import com.socialNet.interfaces.ILike;
 import com.socialNet.model.Like;
+
 @Component
 public class LikeDAO implements ILike {
 	@Autowired
-    DBConnection connection;
+	DBConnection connection;
 
-    private static Connection conn;
+	private static Connection conn;
 	private static final String INSERT_LIKE_SQL = "INSERT INTO likes VALUES (null,?,?)";
 	private static final String SELECT_LIKE_BY_ID = "SELECT * FROM likes WHERE like_id=?";
-	
-	public int likePost (Like like) throws LikeException {
-		conn=connection.getConnection();
+
+	public int likePost(Like like) throws LikeException {
+		conn = connection.getConnection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(INSERT_LIKE_SQL, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, like.getPost_id());
-			ps.setInt(2,like.getUser_id());
+			ps.setInt(1, like.getPostId());
+			ps.setInt(2, like.getUserId());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -36,5 +37,4 @@ public class LikeDAO implements ILike {
 			throw new LikeException("Post cannot be liked right now, please try again later.", e);
 		}
 	}
-	}
-
+}

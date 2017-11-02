@@ -1,51 +1,58 @@
 package com.socialNet.model;
 
+import java.util.Date;
+
 import com.socialNet.exception.CommentException;
 
 public class Comment {
-	private int comment_id;
-	private int post_id;
+	private int commentId;
+	private int postId;
 	private String text;
-	private int user_id;
+	private int userId;
+	private Date dateComment;
 
-	public Comment(int post_id, String text, int user_id) throws CommentException {
-		super();
-		setPost_id(post_id);
+	public Comment(int postId, String text, int userId, Date dateComment) throws CommentException {
+		setPostId(postId);
 		setText(text);
-		setUser_id(user_id);
-	}
-	
-
-	public Comment(int comment_id, int post_id, String text, int user_id) throws CommentException {
-		super();
-		setComment_id(comment_id);
-		setPost_id(post_id);
-		setText(text);
-		setUser_id(user_id);
+		setUserId(userId);
+		setDateComment(dateComment);
 	}
 
+	public Comment(int commentId, int postId, String text, int userId, Date dateComment) throws CommentException {
+		this(postId, text, userId, dateComment);
+		setCommentId(commentId);
 
-	public int getComment_id() {
-		return comment_id;
 	}
 
-	public void setComment_id(int comment_id) throws CommentException {
-		if (comment_id > 0) {
-			this.comment_id = comment_id;
+	public Date getDateComment() {
+		return dateComment;
+	}
+
+	public void setDateComment(Date dateComment) {
+		this.dateComment = dateComment;
+	}
+
+	public int getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(int commentId) throws CommentException {
+		if (commentId > 0) {
+			this.commentId = commentId;
 		} else {
 			throw new CommentException("Post cannot be commented right now, please try again later!");
 		}
 	}
 
-	public int getPost_id() {
-		return post_id;
+	public int getPostId() {
+		return postId;
 	}
 
-	public void setPost_id(int post_id) throws CommentException {
-		if (post_id > 0) {
-			this.post_id = post_id;
+	public void setPostId(int postId) throws CommentException {
+		if (postId > 0) {
+			this.postId = postId;
 		} else {
-			throw new CommentException("Invalid post_id!");
+			throw new CommentException("Invalid post id!");
 		}
 	}
 
@@ -61,15 +68,15 @@ public class Comment {
 		}
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) throws CommentException {
-		if (user_id > 0) {
-			this.user_id = user_id;
+	public void setUserId(int userId) throws CommentException {
+		if (userId > 0) {
+			this.userId = userId;
 		} else {
-			throw new CommentException("Invalid user_id!");
+			throw new CommentException("Invalid user id!");
 		}
 	}
 

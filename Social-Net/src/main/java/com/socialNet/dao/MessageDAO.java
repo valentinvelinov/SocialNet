@@ -13,19 +13,20 @@ import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.MessageException;
 import com.socialNet.interfaces.IMessage;
 import com.socialNet.model.Message;
+
 @Component
-public class MessageDAO implements IMessage{
+public class MessageDAO implements IMessage {
 
 	@Autowired
-    DBConnection connection;
-    private static Connection conn;
+	DBConnection connection;
+	private static Connection conn;
 	private static final String INSERT_MESSAGE_SQL = "INSERT INTO messages VALUES (null, ?, ?, ?)";
 
 	public int sendMessage(Message message) throws MessageException {
-		conn=connection.getConnection();
+		conn = connection.getConnection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(INSERT_MESSAGE_SQL, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, message.getConversation_id());
+			ps.setInt(1, message.getConversationId());
 			ps.setString(2, message.getContent());
 			ps.setDate(3, message.getDate());
 
@@ -33,7 +34,7 @@ public class MessageDAO implements IMessage{
 
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
-			message.setMessage_id(rs.getInt(1));
+			message.setMessageId(rs.getInt(1));
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			throw new MessageException("You cannot send a message now, please try again later.", e);
