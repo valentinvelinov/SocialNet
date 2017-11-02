@@ -23,21 +23,20 @@ body {
 					<div class="w3-bar w3-white w3-padding w3-card"
 						style="letter-spacing: 2px;">
 						<img src="img/VERSION_LOGO.png" width='232px' />
-						<!-- Right-sided navbar links. Hide them on small screens -->
 						<div class="w3-right w3-hide-small">
-							<a href="homeUser.jsp" class="w3-bar-item w3-button">Home</a> <a
-								href="#" class="w3-bar-item w3-button">My profile</a> <a
-								href="#menu" class="w3-bar-item w3-button">My wall</a> <a
-								href="#contact" class="w3-bar-item w3-button">Posts</a> <a
-								href="#contact" class="w3-bar-item w3-button">Friends</a> <a
-								href="#contact" class="w3-bar-item w3-button">Messages</a> <a
-								href="#contact" class="w3-bar-item w3-button">Search</a> <a
-								href="newPost" class="w3-bar-item w3-button">New post</a><img
+							<a href="#" class="w3-bar-item w3-button">Home</a> <a href="#"
+								class="w3-bar-item w3-button">My profile</a> <a href="#menu"
+								class="w3-bar-item w3-button">My wall</a> <a href="#contact"
+								class="w3-bar-item w3-button">Posts</a> <a href="#contact"
+								class="w3-bar-item w3-button">Friends</a> <a href="#contact"
+								class="w3-bar-item w3-button">Messages</a> <a href="#contact"
+								class="w3-bar-item w3-button">Search</a> <a
+								href="newPost"
+								class="w3-bar-item w3-button">New post</a> <img
 								src="img/people.png" width='70px' />
+
 						</div>
-
 					</div>
-
 				</div>
 
 				<!-- Header -->
@@ -58,7 +57,7 @@ body {
 									<hr class="w3-clear">
 										<div class="w3-half">
 
-											<img src="img/${post.pictureName} " style="width: 50%"
+											<img src="img/${post.pictureName} " style="width: 80%"
 												alt="Nature" class="w3-margin-bottom">
 										</div>
 										<p>${post.content}</p>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +28,7 @@
 
 	<div class="container">
 
-		<div id="login">
+		<div id="newPost">
 			<form:form commandName="post">
 				<fieldset class="clearfix">
 					<p>
@@ -44,7 +45,7 @@
 						Select a file to upload: <br />
 					<form action="upload" method="post" enctype="multipart/form-data">
 
-						<form: input type="file" path="pictureName" />
+						<form:input type="file" name="pictureName" path="pictureName"    />
 
 						</p>
 						<p>

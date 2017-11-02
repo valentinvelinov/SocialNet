@@ -64,17 +64,17 @@ public class PostController {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";
 		}
-		
+
 		Post post = new Post();
 		model.addAttribute("post", post);
 		return "newPost";
 	}
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
-	public String newPost2(@ModelAttribute Post post) throws PostException {
+	public String newPost2(@ModelAttribute HttpSession session, Post post) throws PostException {
 		System.out.println(post);
-		//validate
-		postDAO.makePost(post, new User());
+		// validate
+		postDAO.makePost(post, (User) session.getAttribute("user"));
 		return "showAllMyPosts";
 	}
 

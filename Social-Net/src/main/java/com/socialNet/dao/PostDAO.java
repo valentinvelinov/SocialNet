@@ -32,7 +32,7 @@ public class PostDAO implements IPost {
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?,?,?,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";
 	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts WHERE user_id=?";
-	private static final String DELETE_POST_BY_ID = "DELETE FROM `table` WHERE id IN (SELECT * FROM table WHERE id = )\n"
+	private static final String DELETE_POST_BY_ID = "DELETE FROM `posts-db` WHERE id IN (SELECT * FROM posts WHERE post_id = )\n"
 			+ "";
 
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {

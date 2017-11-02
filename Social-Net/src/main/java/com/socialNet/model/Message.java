@@ -1,6 +1,7 @@
 package com.socialNet.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -13,6 +14,9 @@ public class Message {
 	private String content;
 	@NotBlank
 	private Date date;
+	private User userOne;
+	private User userTwo;
+	private User sent;
 
 	public Message(int conversationId, String content, Date date) {
 		this.conversationId = conversationId;
@@ -25,12 +29,16 @@ public class Message {
 		this.messageId = messageId;
 	}
 
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Date timestamp) {
+		this.date = timestamp;
 	}
 
 	public int getMessageId() {
@@ -67,6 +75,30 @@ public class Message {
 		} else {
 			throw new MessageException("Invalid message text!");
 		}
+	}
+
+	public User getUserOne() {
+		return userOne;
+	}
+
+	public void setUserOne(User userOne) {
+		this.userOne = userOne;
+	}
+
+	public User getUserTwo() {
+		return userTwo;
+	}
+
+	public void setUserTwo(User userTwo) {
+		this.userTwo = userTwo;
+	}
+
+	public User getSent() {
+		return sent;
+	}
+
+	public void setSent(User sent) {
+		this.sent = sent;
 	}
 
 	private boolean isValidText(String text) {

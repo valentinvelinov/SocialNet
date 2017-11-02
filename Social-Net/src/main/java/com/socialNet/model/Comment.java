@@ -15,6 +15,7 @@ public class Comment {
 	@NotBlank
 	private Date dateComment;
 	private Post post;
+	private User user;
 
 	public Comment(int postId, String text, int userId, Date dateComment) throws CommentException {
 		setPostId(postId);
@@ -86,6 +87,22 @@ public class Comment {
 		} else {
 			throw new CommentException("Invalid user id!");
 		}
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	private boolean isValidText(String text) {

@@ -16,6 +16,8 @@ public class Post {
 	@NotBlank
 	private Date datePost;
 	List<Comment> commentsForPost = new ArrayList<Comment>();
+	List<Like> likesForPost = new ArrayList<Like>();
+
 	private int likeCount;
 	private int commentCount;
 
