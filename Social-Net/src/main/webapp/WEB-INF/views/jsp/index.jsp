@@ -30,14 +30,14 @@
 		<div id="login">
 
 			<form:form commandName="user" action="login" method="post">
-				<img src="img/VERSION_LOGO.png" />
+				<img src="img/VERSION_LOGO.png" id="logo" />
 				<fieldset class="clearfix">
 					<p>
 						<c:out value="${error}" />
-						<span class="fontawesome-user"></span>
+						<span class="fontawesome-envelope"></span>
 						<form:input type="email" path="email" placeholder="Email"
 							required="required" />
-					</p>
+					</p>	
 					<p>
 						<span class="fontawesome-lock"></span>
 						<form:input type="password" pattern=".{6,30}"

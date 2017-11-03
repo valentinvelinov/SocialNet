@@ -1,19 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Error Page</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<h1>Error PAGE!</h1>
-	<c:out value="${errorMSG}" />
-	<p>Please log your self!</p>
-	<img src="img/ErrorPhoto.jpg">
-	
-	<form method="get" action="index">
-    <button type="Submit">Back to login page!</button>
-</form>
+<body id="bd">
+	<div id="clouds">
+		<center>
+			<h1 class="back">ERROR PAGE!</h1>
+		</center>
+		<div class="cloud x1"></div>
+		<center>
+			<img src="img/error.gif" name="cute-error" width="362" height="291"
+				id="cute-error" />
+		</center>
+		<center>
+			<h2 class="back">Return to login page!</h2>
+		</center>
+		<center>
+			<form method="get" action="index">
+				<button class="button" type="Submit">Login page</button>
+		</center>
+		<!-- Time for multiple clouds to dance around -->
+		<div class="cloud x2"></div>
+		<div class="cloud x3"></div>
+		<div class="cloud x4"></div>
+		<div class="cloud x5"></div>
+	</div>
 </body>
 </html>
