@@ -7,41 +7,59 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.socialNet.dao.UserDAO;
 import com.socialNet.exception.UserException;
+import com.socialNet.interfaces.IUser;
 import com.socialNet.model.User;
 
 @Controller
 public class LoginAndRegisterController {
 	@Autowired
-	UserDAO userDAO;
+	IUser userDAO;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String userLogin(@ModelAttribute User user, HttpSession session, Model model) {
-		if (user.getEmail()!=null) {
-			try {
-				userDAO.loginUser(user);
+	public String userLogin(@Valid @ModelAttribute User user, HttpSession session, Model model, BindingResult result) {
+		try {
+			if (!result.hasErrors()) {
+				try {
+					userDAO.loginUser(user);
+				} catch (UserException e) {
+
+				}
 				user = userDAO.getUserById(user.getUserId());
-				System.err.println(user.getUserId());
 				if (user != null || user.getUserId() != 0) {
 					session.setAttribute("user", user);
 				}
-				return "howAllMyPosts";
-			} catch (UserException e) {
-				return "error";
+				return "showAllPosts";
+			} else {
+				String errorName = result.getFieldError().getDefaultMessage().toString();
+				String problemField = result.getFieldError().getField().toString();
+				String problemName = problemField + " " + errorName;
+				model.addAttribute("error", problemName);
+				return "index";
 			}
+		} catch (Exception e) {
+			model.addAttribute("errorMSG",e.getMessage());
+			return "error";
 		}
+	}
+	
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	public String getError(Model model) {
 		return "error";
 	}
-
+	
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister(@ModelAttribute User user, Model model) {
 		return "register";

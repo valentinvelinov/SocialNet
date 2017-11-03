@@ -78,13 +78,12 @@ public class UserDAO implements IUser {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next() == false) {
-				throw new UserException("There no user with this id.");
+				throw new UserException("User not available!");
 			}
 			return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5),
 					rs.getString(6), rs.getString(7));
-			// return rs.getInt(1);
 		} catch (SQLException e) {
-			throw new UserException("There no user with this id.", e);
+			throw new UserException("Please try to login again", e);
 		}
 
 	}

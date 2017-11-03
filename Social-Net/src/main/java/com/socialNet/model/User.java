@@ -23,7 +23,6 @@ public class User {
 	private String lastName;
 	@Email
 	private String email;
-	@NotBlank
 	private Date birthDate;
 	@NotBlank
 	private String gender;

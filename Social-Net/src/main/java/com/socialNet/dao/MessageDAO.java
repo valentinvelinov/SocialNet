@@ -56,18 +56,18 @@ public class MessageDAO implements IMessage {
 					Statement.RETURN_GENERATED_KEYS);
 			List<Message> messages = new ArrayList<Message>();
 
-			ps.setInt(1, message.getUserOne().getUserId());
-			ps.setInt(2, message.getUserTwo().getUserId());
+//			ps.setInt(1, message.getUserOne().getUserId());
+//			ps.setInt(2, message.getUserTwo().getUserId());
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				message = new Message();
 
-				message.getUserOne().setUserId(rs.getInt("user_id"));
-				message.getUserTwo().setUserId(rs.getInt("user_id2"));
-				message.getUserOne().setFirstName(rs.getString("first_name"));
-				message.getUserOne().setLastName(rs.getString("last_name"));
-				message.getSent().setUserId(rs.getInt("user_idSenter"));
+//				message.getUserOne().setUserId(rs.getInt("user_id"));
+//				message.getUserTwo().setUserId(rs.getInt("user_id2"));
+//				message.getUserOne().setFirstName(rs.getString("first_name"));
+//				message.getUserOne().setLastName(rs.getString("last_name"));
+//				message.getSent().setUserId(rs.getInt("user_idSenter"));
 				message.setContent(rs.getString("message"));
 				message.setDate(rs.getDate("date"));
 
@@ -91,19 +91,19 @@ public class MessageDAO implements IMessage {
 			PreparedStatement ps = conn.prepareStatement(DISPLAY_CONVERSATION, Statement.RETURN_GENERATED_KEYS);
 			List<Message> messages = new ArrayList<Message>();
 
-			ps.setInt(1, message.getUserOne().getUserId());
+//			ps.setInt(1, message.getUserOne().getUserId());
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				message = new Message();
 
-				message.getUserOne().setUserId(rs.getInt("user_id1"));
-				message.getUserTwo().setUserId(rs.getInt("user_id2"));
-				message.getUserOne().setFirstName(rs.getString("first_name"));
-				message.getUserOne().setLastName(rs.getString("last_name"));
-				message.setContent(rs.getString("message"));
-				message.setDate(rs.getDate("date"));
-				message.getUserTwo().setProfilePicUrl(rs.getString("profile_pic_url"));
+//				message.getUserOne().setUserId(rs.getInt("user_id1"));
+//				message.getUserTwo().setUserId(rs.getInt("user_id2"));
+//				message.getUserOne().setFirstName(rs.getString("first_name"));
+//				message.getUserOne().setLastName(rs.getString("last_name"));
+//				message.setContent(rs.getString("message"));
+//				message.setDate(rs.getDate("date"));
+//				message.getUserTwo().setProfilePicUrl(rs.getString("profile_pic_url"));
 
 				messages.add(message);
 			}

@@ -62,9 +62,9 @@ public class CommentDAO implements IComment {
 				comment.setCommentId(rs.getInt("comment_id"));
 				comment.setText(rs.getString("text"));
 				comment.setDateComment(rs.getTimestamp("datecomment"));
-				comment.getUser().setFirstName(rs.getString("first_name"));
-				comment.getUser().setLastName(rs.getString("last_name"));
-				comment.getPost().setPostId(rs.getInt("post_id"));
+//				comment.getUser().setFirstName(rs.getString("first_name"));
+//				comment.getUser().setLastName(rs.getString("last_name"));
+//				comment.getPost().setPostId(rs.getInt("post_id"));
 				comments.add(comment);
 			}
 			rs.close();

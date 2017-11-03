@@ -57,8 +57,8 @@ public class ConversationController {
 			return "error";
 		}
 
-		Conversation conversation = new Conversation();
-		model.addAttribute("conversation", conversation);
+//		Conversation conversation = new Conversation();
+//		model.addAttribute("conversation", conversation);
 		return "newConversation";
 	}
 

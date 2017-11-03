@@ -35,7 +35,7 @@ public class ConversationDAO implements IConversation {
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(INSERT_CONVERSATION_SQL, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, conversation.getContentConversation());
+//			ps.setString(1, conversation.getContentConversation());
 
 			ps.executeUpdate();
 
@@ -81,8 +81,8 @@ public class ConversationDAO implements IConversation {
 			int id = rs.getInt("conversation_id");
 			String cont = rs.getString("content");
 
-			Conversation conversation = new Conversation(id, cont);
-			listOfConversations.add(conversation);
+//			Conversation conversation = new Conversation(id, cont);
+//			listOfConversations.add(conversation);
 		}
 		for (Conversation c : listOfConversations) {
 			System.out.println("collection" + c);
