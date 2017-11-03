@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.apache.tomcat.jni.User;
+
 import com.socialNet.dao.ConversationDAO;
 import com.socialNet.exception.ConversationException;
 import com.socialNet.exception.FriendException;
@@ -23,13 +25,13 @@ public class TestConversation {
 		testConversation = new Conversation("Some text");
 
 		int id = 0;
-		try {
-			id = conversationDao.startConversation(testConversation);
-		} catch (ConversationException e) {
-			e.printStackTrace();
-		}
+		// try {
+		// id = conversationDao.startConversation(testConversation, new User());
+		// } catch (ConversationException e) {
+		// e.printStackTrace();
+		// }
 
-		System.out.println("ID after start a conversation " + id);
+		// System.out.println("ID after start a conversation " + id);
 
 	}
 }

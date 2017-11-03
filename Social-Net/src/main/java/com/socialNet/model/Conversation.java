@@ -20,6 +20,10 @@ public class Conversation {
 
 	}
 
+	public Conversation() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getConversationId() {
 		return conversationId;
 	}

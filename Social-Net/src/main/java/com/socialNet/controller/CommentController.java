@@ -15,7 +15,7 @@ import com.socialNet.exception.UserException;
 import com.socialNet.model.Comment;
 
 @Controller
-public class CommentControler {
+public class CommentController {
 
 	@Autowired
 	CommentDAO commentDAO;
