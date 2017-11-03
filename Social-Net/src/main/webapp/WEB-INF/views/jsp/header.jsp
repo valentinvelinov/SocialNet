@@ -16,16 +16,13 @@ body {
 						style="letter-spacing: 2px;">
 						<img src="img/VERSION_LOGO.png" width='232px' />
 						<div class="w3-right w3-hide-small">
-							<a href="#" class="w3-bar-item w3-button">Home</a> <a href="#"
-								class="w3-bar-item w3-button">My profile</a> <a href="#menu"
-								class="w3-bar-item w3-button">My wall</a> <a href="#contact"
-								class="w3-bar-item w3-button">Posts</a> <a href="#contact"
-								class="w3-bar-item w3-button">Friends</a> <a href="#contact"
-								class="w3-bar-item w3-button">Messages</a> <a href="#contact"
-								class="w3-bar-item w3-button">Search</a> <a
-								href="newPost"
-								class="w3-bar-item w3-button">New post</a> <img
-								src="img/people.png" width='70px' />
+							<a href="showAllMyPosts" class="w3-bar-item w3-button">Home</a> <a
+								href="#" class="w3-bar-item w3-button">My profile</a> <a
+								href="#menu" class="w3-bar-item w3-button">Posts</a> <a
+								href="friends" class="w3-bar-item w3-button">Friends</a> <a
+								href="messages" class="w3-bar-item w3-button">Messages</a> <a
+								href="showAllMyPhotos" class="w3-bar-item w3-button">Gallery</a>
+							<img src="img/people.png" width='70px' />
 
 						</div>
 					</div>

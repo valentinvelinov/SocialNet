@@ -47,6 +47,19 @@ public class PostController {
 		return "showAllMyPosts";
 	}
 
+	@RequestMapping(value = "/showAllMyPhotos", method = RequestMethod.GET)
+	public String viewAllMyPhotos(HttpSession session, Model viewModel)
+			throws UserException, PostException, SQLException, ClassNotFoundException {
+		if ((User) session.getAttribute("user") == null) {
+			return "error";
+		}
+		ArrayList<Post> listOfPosts = postDAO.viewAllMyPosts((User) session.getAttribute("user"));
+		viewModel.addAttribute(listOfPosts);
+		System.out.println(listOfPosts);
+
+		return "showAllMyPhotos";
+	}
+
 	// @RequestMapping("post/{id}")
 	// public String showProduct(@PathVariable Integer id, Model model) {
 	// model.addAttribute("post", postService.getPostById(id));
@@ -77,6 +90,18 @@ public class PostController {
 		postDAO.makePost(post, (User) session.getAttribute("user"));
 		return "showAllMyPosts";
 	}
+
+	// @RequestMapping(value = "/gallery", method = RequestMethod.GET)
+	// public String viewGallery(HttpSession session, Model model) throws
+	// PostException {
+	// if ((User) session.getAttribute("user") == null) {
+	// return "error";
+	// }
+	//
+	// Post post = new Post();
+	// model.addAttribute("post", post);
+	// return "gallery";
+	// }
 
 	// @RequestMapping("post/delete/{id}")
 	// public String delete(@PathVariable Integer id) throws UserException,
