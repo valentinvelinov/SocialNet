@@ -7,106 +7,72 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.socialNet.exception.CommentException;
 
 public class Comment {
+	@NotBlank
 	private int commentId;
+	@NotBlank
 	private int postId;
 	@NotBlank
 	private String text;
+	@NotBlank
 	private int userId;
 	@NotBlank
 	private Date dateComment;
-	private Post post;
-	private User user;
 
-	public Comment(int postId, String text, int userId, Date dateComment) throws CommentException {
+	public Comment(int commentId, int postId, String text, int userId, Date dateComment) {
+		this(postId, text, userId, dateComment);
+		setCommentId(commentId);
+	}
+
+	public Comment(int postId, String text, int userId, Date dateComment) {
 		setPostId(postId);
 		setText(text);
 		setUserId(userId);
 		setDateComment(dateComment);
 	}
 
-	public Comment(int commentId, int postId, String text, int userId, Date dateComment) throws CommentException {
-		this(postId, text, userId, dateComment);
-		setCommentId(commentId);
-
-	}
-
 	public Comment() {
+
 	}
 
-	public Date getDateComment() {
-		return dateComment;
-	}
-
-	public void setDateComment(Date dateComment) {
-		this.dateComment = dateComment;
-	}
-
+	// Getters and Setters
 	public int getCommentId() {
 		return commentId;
-	}
-
-	public void setCommentId(int commentId) throws CommentException {
-		if (commentId > 0) {
-			this.commentId = commentId;
-		} else {
-			throw new CommentException("Post cannot be commented right now, please try again later!");
-		}
 	}
 
 	public int getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) throws CommentException {
-		if (postId > 0) {
-			this.postId = postId;
-		} else {
-			throw new CommentException("Invalid post id!");
-		}
-	}
-
 	public String getText() {
 		return text;
-	}
-
-	public void setText(String text) throws CommentException {
-		if (isValidText(text)) {
-			this.text = text;
-		} else {
-			throw new CommentException("Invalid comment text!");
-		}
 	}
 
 	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) throws CommentException {
-		if (userId > 0) {
-			this.userId = userId;
-		} else {
-			throw new CommentException("Invalid user id!");
-		}
+	public Date getDateComment() {
+		return dateComment;
 	}
 
-	public Post getPost() {
-		return post;
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
 	}
 
-	public void setPost(Post post) {
-		this.post = post;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 
-	public User getUser() {
-		return user;
+	public void setText(String text) {
+		this.text = text;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	private boolean isValidText(String text) {
-		return text != null && !text.isEmpty();
+	public void setDateComment(Date dateComment) {
+		this.dateComment = dateComment;
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.socialNet.exception;
 
-
-
 public class ConversationException extends Exception {
 
 	private static final long serialVersionUID = 8033064693293740057L;

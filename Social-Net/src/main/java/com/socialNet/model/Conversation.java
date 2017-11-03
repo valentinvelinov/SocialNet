@@ -1,55 +1,64 @@
 package com.socialNet.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.socialNet.exception.ConversationException;
-
 public class Conversation {
-
+	@NotBlank
 	private int conversationId;
 	@NotBlank
-	private String contentConversation;
+	private String title;
+	@NotBlank
+	private List<User> usersInConversation = Collections.synchronizedList(new ArrayList<User>());
+	private List<Message> massages = Collections.synchronizedList(new ArrayList<Message>());
 
-	public Conversation(String contentConversation) {
-		this.contentConversation = contentConversation;
+	public Conversation(int conversationId, String title, List<User> usersInConversation, List<Message> massages) {
+		this(title, usersInConversation, massages);
+		setConversationId(conversationId);
 	}
 
-	public Conversation(int conversationId, String contentConversation) {
-		this.conversationId = conversationId;
-		this.contentConversation = contentConversation;
-
+	public Conversation(String title, List<User> usersInConversation, List<Message> massages) {
+		super();
+		setTitle(title);
+		setUsersInConversation(usersInConversation);
+		setMassages(massages);
 	}
 
-	public Conversation() {
-		// TODO Auto-generated constructor stub
-	}
+	// Getters and Setters
 
 	public int getConversationId() {
 		return conversationId;
 	}
 
-	public void setConversationId(int conversationId) throws ConversationException {
-		if (conversationId > 0) {
-			this.conversationId = conversationId;
-		} else {
-			throw new ConversationException("Conversation cannot be commented right now, please try again later!");
-		}
+	public String getTitle() {
+		return title;
 	}
 
-	public String getContentConversation() {
-		return contentConversation;
+	public List<User> getUsersInConversation() {
+		return usersInConversation;
 	}
 
-	public void setContentConversation(String contentConversation) throws ConversationException {
-		if (isValidText(contentConversation)) {
-			this.contentConversation = contentConversation;
-		} else {
-			throw new ConversationException("Invalid comment text!");
-		}
+	public List<Message> getMassages() {
+		return massages;
 	}
 
-	private boolean isValidText(String text) {
-		return text != null && !text.isEmpty();
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setUsersInConversation(List<User> usersInConversation) {
+		this.usersInConversation = usersInConversation;
+	}
+
+	public void setMassages(List<Message> massages) {
+		this.massages = massages;
+	}
+
+	public void setConversationId(int conversationId) {
+		this.conversationId = conversationId;
 	}
 
 }

@@ -26,7 +26,7 @@ public class LoginAndRegisterController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String userLogin(@ModelAttribute User user, HttpSession session, Model model) {
-		if (user.isValidEmailAddress(user.getEmail())) {
+		if (user.getEmail()!=null) {
 			try {
 				userDAO.loginUser(user);
 				user = userDAO.getUserById(user.getUserId());
@@ -34,7 +34,7 @@ public class LoginAndRegisterController {
 				if (user != null || user.getUserId() != 0) {
 					session.setAttribute("user", user);
 				}
-				return "redirect:showAllMyPosts";
+				return "howAllMyPosts";
 			} catch (UserException e) {
 				return "error";
 			}
@@ -55,7 +55,7 @@ public class LoginAndRegisterController {
 				if (user != null || user.getUserId() != 0) {
 					session.setAttribute("user", user);
 				}
-				return "redirect:showAllMyPosts";
+				return "showAllMyPosts";
 			} catch (UserException e) {
 				return "error";
 			}

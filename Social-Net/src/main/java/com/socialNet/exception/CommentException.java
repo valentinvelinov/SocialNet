@@ -1,7 +1,6 @@
 package com.socialNet.exception;
 
-
-public class CommentException extends Exception{
+public class CommentException extends Exception {
 
 	/**
 	 * 
@@ -18,7 +17,7 @@ public class CommentException extends Exception{
 
 	public CommentException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
-	
+
 	}
 
 	public CommentException(String arg0) {
@@ -29,5 +28,4 @@ public class CommentException extends Exception{
 		super(arg0);
 	}
 
-	
 }
