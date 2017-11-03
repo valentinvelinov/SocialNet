@@ -38,13 +38,13 @@
 						<form:input type="email" path="email" placeholder="Email"
 							required="required" />
 					</p>
-					<!-- JS because of IE support; better: placeholder="Username" -->
 					<p>
 						<span class="fontawesome-lock"></span>
-						<form:input type="password" path="password" placeholder="Password"
+						<form:input type="password" pattern=".{6,30}"
+							title="6 to 25 characters" path="password" placeholder="Password"
 							required="required" />
 					</p>
-					<!-- JS because of IE support; better: placeholder="Password" -->
+
 					<p>
 						<input type="submit" value="Log In">
 					</p>

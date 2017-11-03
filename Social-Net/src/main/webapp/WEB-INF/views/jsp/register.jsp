@@ -6,15 +6,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		var date = $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+	});
+</script>
+<script>
+	var check = function() {
+		if ((document.getElementById('password').value == document
+				.getElementById('confirm_password').value)
+				&& (document.getElementById('password').value != ''
+						&& document.getElementById('confirm_password').value.length > 6 && document
+						.getElementById('confirm_password').value.length < 30)) {
+			document.getElementById('message').style.color = 'green';
+		} else {
+			document.getElementById('message').style.color = 'red';
+		}
+	}
+</script>
 <script src=" https://use.fontawesome.com/64905ac2c6.js"></script>
 <link rel="stylesheet" href="css/style.css">
 
@@ -44,12 +57,14 @@
 
 					<p>
 						<span class="fa fa-user-o"></span>
-						<form:input type="text" path="firstName" placeholder="First Name"
+						<form:input type="text" path="firstName" pattern="[A-Za-z]{3,25}"
+							title="First Name with 3 to 25 letters" placeholder="First Name"
 							required="required" />
 					</p>
 					<p>
 						<span class="fontawesome-user"></span>
-						<form:input type="text" path="lastName" placeholder="Last_Name"
+						<form:input type="text" path="lastName" pattern="[A-Za-z]{3,25}"
+							title="Last Name with 3 to 25 letters" placeholder="Last_Name"
 							required="required" />
 					</p>
 					<p>
@@ -59,12 +74,24 @@
 					</p>
 					<p>
 						<span class="fontawesome-calendar"></span>
-						<form:input id="datepicker" path="birthDate" placeholder="Click here to set date!" />
+						<form:input id="datepicker" path="birthDate"
+							pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="Click here to set date!" />
 					</p>
 					<p>
-						<span class="fontawesome-lock"></span>
-						<form:input type="password" path="password" placeholder="Password"
-							required="required" />
+						<label> <span class="fontawesome-lock"></span> <form:input
+								type="password" path="password" pattern=".{6,30}"
+								title="6 to 30 characters" placeholder="Enter Password"
+								id="password" required="required" onkeyup='check();' />
+						</label>
+					</p>
+					<p>
+						<label> <span class="fontawesome-lock" id='message'></span>
+							<form:input type="password" path="password" pattern=".{6,30}"
+								title="6 to 30 characters" placeholder="Confirm Password"
+								id="confirm_password" required="required" onkeyup='check();' />
+
+						</label>
+
 					</p>
 
 					<label class="form-label">Gender</label>
