@@ -23,22 +23,22 @@ public class FriendController {
 	public String createFriendship(@RequestBody Friend friend) throws FriendException {
 		if (!friendDAO.verifiesIfTheresAlreadyThisFriend(friend)) {
 			friendDAO.addFriend(friend);
-			return "friendship";
+			return "friends";
 		} else {
 			return null;
 		}
 	}
 
-	@RequestMapping(value = "/getFriends", method = RequestMethod.POST)
+	@RequestMapping(value = "/friends", method = RequestMethod.POST)
 	public String getFriends(@RequestBody Friend friend) throws UserException {
-		List<Friend> friends = friendDAO.getFriends(friend);
+		List<Friend> friendList = friendDAO.getFriends(friend);
 		return "friends";
 	}
 
 	@RequestMapping(value = "/removeFriend", method = RequestMethod.POST)
 	public String removeFriend(@RequestBody Friend friend) {
 		friendDAO.removeFriend(friend);
-		return "friend";
+		return "friends";
 	}
 
 }
