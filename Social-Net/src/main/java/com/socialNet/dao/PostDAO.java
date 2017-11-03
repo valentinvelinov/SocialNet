@@ -27,6 +27,7 @@ public class PostDAO implements IPost {
 	DBConnection connection;
 
 	ArrayList<Post> listOfPosts = new ArrayList<Post>();
+	ArrayList<Post> listOfUserPosts = new ArrayList<Post>();
 
 	private static Connection conn;
 	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?,?,?,?,?)";
@@ -34,6 +35,7 @@ public class PostDAO implements IPost {
 	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts WHERE user_id=?";
 	private static final String DELETE_POST_BY_ID = "DELETE FROM `posts-db` WHERE id IN (SELECT * FROM posts WHERE post_id = )\n"
 			+ "";
+	private static final String SELECT_USER_POSTS = "SELECT * FROM posts ";
 
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
@@ -61,25 +63,23 @@ public class PostDAO implements IPost {
 	// Posts of all people
 	public ArrayList<Post> viewAllPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
-		PreparedStatement ps = conn.prepareStatement(SELECT_ALL_POSTS, Statement.RETURN_GENERATED_KEYS);
-		int uid = user.getUserId();
-		ps.setInt(1, uid);
-		System.err.println(uid);
+		PreparedStatement ps = conn.prepareStatement(SELECT_USER_POSTS, Statement.RETURN_GENERATED_KEYS);
+
 		ResultSet rs = ps.executeQuery();
-		listOfPosts.clear();
+		listOfUserPosts.clear();
 		while (rs.next()) {
 			int id = rs.getInt("post_id");
 			String cont = rs.getString("content");
 			String pic = rs.getString("picture_name");
 			Date d = rs.getDate("date_post");
 
-			Post post = new Post(id, cont, uid, pic, d);
-			listOfPosts.add(post);
+			Post post = new Post(cont, id, pic, d);
+			listOfUserPosts.add(post);
 		}
-		for (Post p : listOfPosts) {
+		for (Post p : listOfUserPosts) {
 			System.out.println("collection" + p);
 		}
-		return listOfPosts;
+		return listOfUserPosts;
 	}
 
 	public int makePost(Post post, User user) throws PostException {
@@ -139,5 +139,4 @@ public class PostDAO implements IPost {
 
 	}
 
-	
 }

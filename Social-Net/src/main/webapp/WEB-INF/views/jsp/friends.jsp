@@ -10,6 +10,7 @@
 			<table style="border: 1px solid; text-align: center">
 				<div class="w3-container w3-card w3-white w3-round w3-margin">
 					<hr class="w3-clear">
+					<p>${friend.userId}</p>
 					<p>${friend.friendId}</p>
 					<button type="button"
 						class="w3-button w3-theme-d1 w3-margin-bottom">

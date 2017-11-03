@@ -40,7 +40,7 @@ public class LoginAndRegisterController {
 				if (user != null || user.getUserId() != 0) {
 					session.setAttribute("user", user);
 				}
-				return "showAllPosts";
+				return "showAllMyPosts";
 			} else {
 				String errorName = result.getFieldError().getDefaultMessage().toString();
 				String problemField = result.getFieldError().getField().toString();

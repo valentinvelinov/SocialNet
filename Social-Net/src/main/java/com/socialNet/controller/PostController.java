@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,8 +35,21 @@ public class PostController {
 		return "posts";
 	}
 
+	@RequestMapping(value = "/userPosts", method = RequestMethod.GET)
+	public String viewUserPosts(HttpSession session, Model viewModel)
+			throws UserException, PostException, SQLException, ClassNotFoundException {
+		if ((User) session.getAttribute("user") == null) {
+			return "error";
+		}
+		ArrayList<Post> listOfUserPosts = postDAO.viewAllPosts((User) session.getAttribute("user"));
+		viewModel.addAttribute(listOfUserPosts);
+		System.out.println(listOfUserPosts);
+
+		return "userPosts";
+	}
+
 	@RequestMapping(value = "/showAllMyPosts", method = RequestMethod.GET)
-	public String viewAllPosts(HttpSession session, Model viewModel)
+	public String viewMyPosts(HttpSession session, Model viewModel)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";
@@ -73,21 +87,23 @@ public class PostController {
 	// }
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.GET)
-	public String newPost(HttpSession session, Model model) throws PostException {
+	public String newPost(@ModelAttribute HttpSession session, Model model) throws PostException {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";
 		}
-
 		Post post = new Post();
 		model.addAttribute("post", post);
+		System.out.println("SessionUser" + session.getAttribute("user"));
 		return "newPost";
 	}
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
-	public String newPost2(@ModelAttribute HttpSession session, Post post) throws PostException {
-		System.out.println(post);
+	public String newPost2(@ModelAttribute HttpSession session, Model modelView, HttpServletRequest request)
+			throws PostException {
+		// System.out.println(post);
 		// validate
-		postDAO.makePost(post, (User) session.getAttribute("user"));
+
+		postDAO.makePost((Post) request.getAttribute("post"), (User) session.getAttribute("user"));
 		return "showAllMyPosts";
 	}
 
