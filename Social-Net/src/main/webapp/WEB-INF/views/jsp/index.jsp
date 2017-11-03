@@ -6,7 +6,7 @@
 <%@ page session="false"%>
 <meta charset="UTF-8">
 <title>Social-Net</title>
-
+<script src=" https://use.fontawesome.com/64905ac2c6.js"></script>
 
 
 <link rel="stylesheet" href="css/style.css">

@@ -49,6 +49,11 @@ input {
   -webkit-appearance: normal;
 }
 
+#logo{
+ position:absolute;
+ top:-144px;
+ left:-84px;
+ }
 p {
   line-height: 1.5em;
 }
@@ -243,6 +248,20 @@ p {
 	-moz-animation: moveclouds 20s linear infinite;
 	-o-animation: moveclouds 20s linear infinite;
 }
+
+.gender-selector > input[type="radio"] {
+  display:none;
+}
+.gender-selector > input[type="radio"] + label .fa-circle {
+  color: silver;
+  transition: color .2s ease;
+}
+.gender-selector > input[type="radio"]:checked + label .male {
+  color: deepskyblue;
+}
+.gender-selector > input[type="radio"]:checked + label .female {
+  color: pink;
+  }
 
 @-webkit-keyframes moveclouds {
 	0% {margin-left: 1000px;}
