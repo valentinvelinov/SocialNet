@@ -2,12 +2,14 @@ package com.socialNet.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.socialNet.dao.CommentDAO;
 import com.socialNet.exception.CommentException;
@@ -26,10 +28,17 @@ public class CommentController {
 		return "newComment";
 	}
 
-	@RequestMapping(value = "/showCommetsByPost", method = RequestMethod.GET)
-	public String showComments(int idpost) throws CommentException, UserException {
-		List<Comment> comments = commentDAO.showCommetsByPost(idpost);
-		return "comments";
+	@RequestMapping(value = "/showPostComments", method = RequestMethod.GET)
+	public String showComments(HttpServletRequest request,Model viewModel) throws CommentException, UserException {
+		String postId=request.getParameter("postId");
+		int myPost=Integer.parseInt(postId);
+		List<Comment> comments = commentDAO.showCommetsByPost(myPost);
+		for(Comment c:comments) {
+			System.err.println(c.getText());
+		}
+		Comment comment= comments.get(0);
+		viewModel.addAttribute(comments);
+		return "showAllMyComments";
 	}
 
 }

@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.socialNet.dao.UserDAO;
 import com.socialNet.exception.UserException;
@@ -23,6 +24,7 @@ import com.socialNet.interfaces.IUser;
 import com.socialNet.model.User;
 
 @Controller
+//@SessionAttributes("user")
 public class LoginAndRegisterController {
 	@Autowired
 	IUser userDAO;
