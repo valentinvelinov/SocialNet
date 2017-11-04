@@ -81,6 +81,8 @@ p {
 /* ---------- LOGIN ---------- */
 #login {
   width: 280px;
+  position:relative;
+  top:70px;
 }
 
 #login form span {

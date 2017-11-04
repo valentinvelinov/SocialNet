@@ -34,7 +34,7 @@ public class LoginAndRegisterController {
 				try {
 					userDAO.loginUser(user);
 				} catch (UserException e) {
-
+					return "error";
 				}
 				user = userDAO.getUserById(user.getUserId());
 				if (user != null || user.getUserId() != 0) {
@@ -49,17 +49,16 @@ public class LoginAndRegisterController {
 				return "index";
 			}
 		} catch (Exception e) {
-			model.addAttribute("errorMSG",e.getMessage());
+			e.printStackTrace();
 			return "error";
 		}
 	}
-	
+
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public String getError(Model model) {
 		return "error";
 	}
-	
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister(@ModelAttribute User user, Model model) {
 		return "register";

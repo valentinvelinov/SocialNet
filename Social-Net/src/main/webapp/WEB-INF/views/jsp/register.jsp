@@ -12,7 +12,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(function() {
-		var date = $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+		var date = $('#datepicker').datepicker({
+			dateFormat : 'dd/mm/yy'
+		}).val();
 	});
 </script>
 <script>
@@ -20,7 +22,7 @@
 		if ((document.getElementById('password').value == document
 				.getElementById('confirm_password').value)
 				&& (document.getElementById('password').value != ''
-						&& document.getElementById('confirm_password').value.length > 6 && document
+						&& document.getElementById('confirm_password').value.length > 5 && document
 						.getElementById('confirm_password').value.length < 30)) {
 			document.getElementById('message').style.color = 'green';
 		} else {
@@ -75,7 +77,8 @@
 					<p>
 						<span class="fontawesome-calendar"></span>
 						<form:input id="datepicker" path="birthDate"
-							pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="Click here to set date!" />
+							pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"
+							placeholder="Click here to set date!" required="required" />
 					</p>
 					<p>
 						<label> <span class="fontawesome-lock"></span> <form:input
@@ -86,10 +89,11 @@
 					</p>
 					<p>
 						<label> <span class="fontawesome-lock" id='message'></span>
-							<form:input type="password" path="password" pattern=".{6,30}"
-								title="6 to 30 characters" placeholder="Confirm Password"
-								id="confirm_password" required="required" onkeyup='check();' />
-
+							<form>
+								<input type="password" pattern=".{6,30}"
+									title="6 to 30 characters" placeholder="Confirm Password"
+									id="confirm_password" required="required" onkeyup='check();' />
+							</form>
 						</label>
 
 					</p>
@@ -113,7 +117,7 @@
 					</div>
 
 					<p>
-						<input type="submit" value="Register">
+						<input type="submit" value="Register" />
 					</p>
 
 				</fieldset>

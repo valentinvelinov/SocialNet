@@ -8,7 +8,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Post {
-	@NotBlank
+	
 	private int postId;
 	@NotBlank
 	private String content;
@@ -47,7 +47,6 @@ public class Post {
 	}
 
 	public Post() {
-		super();
 	}
 
 	// Getters and Setters

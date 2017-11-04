@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8" />
+<title>Social-Net</title>
+<link rel="stylesheet" href="css/style.css">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
-<meta charset="UTF-8">
-<title>Social-Net</title>
-<script src=" https://use.fontawesome.com/64905ac2c6.js"></script>
-
-
-<link rel="stylesheet" href="css/style.css">
-
-
 </head>
-
 <body>
 	<div id="clouds">
 		<div class="cloud x1"></div>
@@ -26,22 +20,20 @@
 
 	<div class="container">
 
-
 		<div id="login">
 
 			<form:form commandName="user" action="login" method="post">
 				<img src="img/VERSION_LOGO.png" id="logo" />
 				<fieldset class="clearfix">
 					<p>
-						<c:out value="${error}" />
 						<span class="fontawesome-envelope"></span>
 						<form:input type="email" path="email" placeholder="Email"
 							required="required" />
-					</p>	
+					</p>
 					<p>
 						<span class="fontawesome-lock"></span>
 						<form:input type="password" pattern=".{6,30}"
-							title="6 to 25 characters" path="password" placeholder="Password"
+							title="6 to 30 characters" path="password" placeholder="Password"
 							required="required" />
 					</p>
 
