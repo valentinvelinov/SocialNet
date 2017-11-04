@@ -1,12 +1,11 @@
 package com.socialNet.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -88,5 +87,29 @@ public class UserDAO implements IUser {
 
 	}
 
-	
+	// public ArrayList getUsers(String s)
+	// throws InstantiationException, IllegalAccessException,
+	// ClassNotFoundException, SQLException {
+	//
+	// ArrayList userList = new ArrayList();
+	// conn = connection.getConnection();
+	//
+	// try {
+	// PreparedStatement ps = conn.prepareStatement("SELECT * FROM user WHERE name
+	// like ?");
+	// ps.setString(1, "%" + s + "%");
+	// ResultSet rs = ps.executeQuery();
+	//
+	// while (rs.next()) {
+	// User user = new User();
+	// user.setUserId(rs.getInt("id"));
+	// user.setFirstName(rs.getString("name"));
+	// userList.add(user);
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return userList;
+	// }
+
 }

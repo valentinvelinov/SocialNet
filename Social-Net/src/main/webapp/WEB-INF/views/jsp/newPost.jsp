@@ -11,9 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New post</title>
 <link rel="stylesheet" href="css/style.css">
-<c:if test="${empty sessionScope.user.email}">
-	<c:redirect url="index" />
-</c:if>
+
+
+
 </head>
 
 <body>
@@ -41,16 +41,16 @@
 						<form:input path="datePost" name="datePost"
 							placeholder="Date (mm/dd/yyyy)" />
 					</p>
-					<p>
-						Select a file to upload: <br />
+
+
 					<form action="upload" method="post" enctype="multipart/form-data">
+						<input type="text" name="description" /> <input type="file"
+							name="pictureName" /> <input type="submit" />
+					</form>
 
-						<form:input type="file" name="pictureName" path="pictureName"    />
-
-						</p>
-						<p>
-							<input type="submit" value="Add post">
-						</p>
+					<p>
+						<input type="submit" value="Add post">
+					</p>
 				</fieldset>
 
 			</form:form>
