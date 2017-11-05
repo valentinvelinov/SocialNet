@@ -1,9 +1,5 @@
 package com.socialNet.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,14 +9,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.socialNet.dao.UserDAO;
 import com.socialNet.exception.PostException;
 import com.socialNet.exception.UserException;
 import com.socialNet.interfaces.IPost;
@@ -34,12 +30,17 @@ public class PostController {
 	@Autowired
 	IPost postDAO;
 
+	@Autowired
+	UserDAO userDAO;
+
 	@RequestMapping(value = "/userPosts", method = RequestMethod.GET)
 	public String viewUserPosts(HttpSession session, Model viewModel, HttpServletRequest request)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";
 		}
+		User user=(User) session.getAttribute("user");
+		userDAO.getFriends(user);
 		ArrayList<Post> listOfUserPosts = postDAO.viewAllPosts((User) session.getAttribute("user"));
 		viewModel.addAttribute(listOfUserPosts);
 		System.out.println(listOfUserPosts);
@@ -56,6 +57,7 @@ public class PostController {
 		}
 		ArrayList<Post> listOfPosts = postDAO.viewAllMyPosts((User) session.getAttribute("user"));
 		viewModel.addAttribute(listOfPosts);
+
 		System.out.println(listOfPosts);
 		session.setAttribute("user", session.getAttribute("user"));
 		return "showAllMyPosts";

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.socialNet.dbmanager.DBConnection;
 import com.socialNet.exception.UserException;
 import com.socialNet.interfaces.IUser;
+import com.socialNet.model.Post;
 import com.socialNet.model.User;
 
 @Component
@@ -24,6 +26,7 @@ public class UserDAO implements IUser {
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
 	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id = ?";
+	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id=?";
 
 	public int registerUser(User user) throws UserException {
 		conn = connection.getConnection();
@@ -87,29 +90,22 @@ public class UserDAO implements IUser {
 
 	}
 
-	// public ArrayList getUsers(String s)
-	// throws InstantiationException, IllegalAccessException,
-	// ClassNotFoundException, SQLException {
-	//
-	// ArrayList userList = new ArrayList();
-	// conn = connection.getConnection();
-	//
-	// try {
-	// PreparedStatement ps = conn.prepareStatement("SELECT * FROM user WHERE name
-	// like ?");
-	// ps.setString(1, "%" + s + "%");
-	// ResultSet rs = ps.executeQuery();
-	//
-	// while (rs.next()) {
-	// User user = new User();
-	// user.setUserId(rs.getInt("id"));
-	// user.setFirstName(rs.getString("name"));
-	// userList.add(user);
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// return userList;
-	// }
+	public Collection<User> getFriends(User user) throws UserException {
+		conn = connection.getConnection();
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(SELECT_USER_FRIENDS);
+			ps.setInt(1, user.getUserId());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			int friendId=rs.getInt(2);
+			User friend =this.getUserById(friendId);
+			user.addFriend(friend);
+			}
+			return user.getUserFriends();
+		} catch (SQLException e) {
+			throw new UserException("User cannot be logged right now.", e);
+		}
+	}
 
 }

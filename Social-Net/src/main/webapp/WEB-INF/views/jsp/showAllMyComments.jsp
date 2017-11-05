@@ -12,10 +12,10 @@ table, th, td {
 <body>
 	<h1>TESTING</h1>
 	<form:form commandName="comment" action="newComment" method="get">
-			<form:input type="text" path="text" placeholder="Enter a comment.." />
-			<input type="hidden" name="postId" value="${comment.postId}" /> 
-			<input type="submit" value="Create Comment" />
-			</form:form>
+		<form:input type="text" path="text" placeholder="Enter a comment.." />
+		<input type="hidden" name="postId" value="${comment.postId}" />
+		<input type="submit" value="Create Comment" />
+	</form:form>
 	<c:forEach items="${commentList}" var="comment">
 		<table>
 			<tr>
@@ -32,22 +32,26 @@ table, th, td {
 				<td>${comment.text}</td>
 				<td>${comment.userId}</td>
 				<td>${comment.dateComment}</td>
-				<td>
-					<form method="get" action="editcomment">
-						<input type="hidden" name="commentId" value="${comment.commentId}" />
-						<input type="hidden" name="postId" value="${comment.postId}" /> <input
-							type="submit" value="Edit Comment"
-							class="w3-button w3-theme-d2 w3-margin-bottom"> <input
-							type="text" name="content" value=".." />
-					</form>
-				</td>
-				<td>
-					<form method="get" action="deletecomment">
-						<input type="hidden" name="commentId" value="${comment.commentId}" />
-						<input type="hidden" name="postId" value="${comment.postId}" /> <input
-							type="submit" value="Delete" />
-					</form>
-				</td>
+				<c:if test="${sessionScope.user.userId == comment.userId}">
+					<td>
+						<form method="get" action="editcomment">
+							<input type="hidden" name="commentId"
+								value="${comment.commentId}" /> <input type="hidden"
+								name="postId" value="${comment.postId}" /> <input type="submit"
+								value="Edit Comment"
+								class="w3-button w3-theme-d2 w3-margin-bottom"> <input
+								type="text" name="content" value=".." />
+						</form>
+					</td>
+					<td>
+						<form method="get" action="deletecomment">
+							<input type="hidden" name="commentId"
+								value="${comment.commentId}" /> <input type="hidden"
+								name="postId" value="${comment.postId}" /> <input type="submit"
+								value="Delete" />
+						</form>
+				</c:if>
+				<td></td>
 			</tr>
 		</table>
 

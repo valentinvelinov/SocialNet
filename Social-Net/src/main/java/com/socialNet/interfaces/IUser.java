@@ -1,6 +1,6 @@
 package com.socialNet.interfaces;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.socialNet.exception.UserException;
 import com.socialNet.model.User;
@@ -12,5 +12,7 @@ public interface IUser {
 	public void loginUser(User user) throws UserException;
 
 	public User getUserById(int id) throws UserException;
+
+	public Collection<User> getFriends(User user) throws UserException;
 
 }

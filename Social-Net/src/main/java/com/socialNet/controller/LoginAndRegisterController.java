@@ -41,6 +41,7 @@ public class LoginAndRegisterController {
 				user = userDAO.getUserById(user.getUserId());
 				if (user != null || user.getUserId() != 0) {
 					session.setAttribute("user", user);
+					userDAO.getFriends(user);
 				}
 				return "showAllMyPosts";
 			} else {

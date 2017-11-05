@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Email;
@@ -166,7 +167,7 @@ public class User {
 			throw new UserException("Invalid text for place!");
 		}
 	}
-
+	
 	public void setEducation(String education) throws UserException {
 		if (textValidation(education)) {
 			this.education = education;
@@ -179,4 +180,24 @@ public class User {
 		return (!text.matches("[a-zA-Z_]+"));
 
 	}
+	
+	//Methods for customizing
+	
+	public void addFriend(User user) {
+		this.userFriends.add(user);
+		System.out.println("Friend added");
+	}
+	public void removeFriend(User user) {
+		Iterator<User> itr = this.userFriends.iterator();
+		while(itr.hasNext()) {
+			User friend=(User) itr.next();
+			if(friend.getEmail().equals(user.getEmail())) {
+				System.out.println("Friend removed!");
+				this.userFriends.remove(friend);
+				break;
+			}
+		}
+		
+	}
+	
 }

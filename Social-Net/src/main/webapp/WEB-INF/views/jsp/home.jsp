@@ -10,7 +10,6 @@
 <title>HomePage</title>
 </head>
 <body>
-
 	<c:if test="${empty sessionScope.user.email}">
 		<c:redirect url="index" />
 
