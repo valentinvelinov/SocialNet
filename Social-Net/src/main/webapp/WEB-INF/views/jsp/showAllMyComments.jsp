@@ -11,6 +11,11 @@ table, th, td {
 </head>
 <body>
 	<h1>TESTING</h1>
+	<form:form commandName="comment" action="newComment" method="get">
+			<form:input type="text" path="text" placeholder="Enter a comment.." />
+			<input type="hidden" name="postId" value="${comment.postId}" /> 
+			<input type="submit" value="Create Comment" />
+			</form:form>
 	<c:forEach items="${commentList}" var="comment">
 		<table>
 			<tr>

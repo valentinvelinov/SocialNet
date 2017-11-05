@@ -3,6 +3,7 @@ package com.socialNet.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,14 +25,16 @@ public class CommentController {
 	@Autowired
 	CommentDAO commentDAO;
 
-	@RequestMapping(value = "/newComment", method = RequestMethod.POST)
-	public String createComment(@RequestBody Comment comment) throws CommentException {
-		commentDAO.postComment(comment);
-		return "newComment";
-	}
+	@RequestMapping(value = "/newComment", method = RequestMethod.GET)
+	public String createComment(@ModelAttribute Comment comment,HttpServletRequest request,HttpSession session) throws CommentException {
+		int postId=Integer.parseInt(request.getParameter("postId"));
+		User user=(User) session.getAttribute("user");
+		commentDAO.postComment(postId,user.getUserId(),comment.getText());
+		return "forward:showPostComments";
+	} 
 
 	@RequestMapping(value = "/showPostComments", method = RequestMethod.GET)
-	public String showComments(HttpServletRequest request, Model viewModel) throws CommentException, UserException {
+	public String showComments(@ModelAttribute Comment comment,HttpServletRequest request, Model viewModel) throws CommentException, UserException {
 		String postId = request.getParameter("postId");
 		int myPost = Integer.parseInt(postId);
 		List<Comment> comments = commentDAO.showCommetsByPost(myPost);

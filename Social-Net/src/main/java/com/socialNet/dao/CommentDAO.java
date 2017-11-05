@@ -1,12 +1,12 @@
 package com.socialNet.dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -31,22 +31,19 @@ public class CommentDAO implements IComment {
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO comments VALUES (null,?,?,?,?)";
 	private static final String SHOW_COMMENTS_BY_POST = "SELECT * FROM comments WHERE post_id=?";
 
-	public int postComment(Comment comment) throws CommentException {
+	public void postComment(int postId, int userId, String content) throws CommentException {
 		conn = connection.getConnection();
 		try {
-			java.sql.Date sqlStartDate = new java.sql.Date(comment.getDateComment().getTime());
 			PreparedStatement ps = conn.prepareStatement(INSERT_COMMENT_SQL, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, comment.getPostId());
-			ps.setString(2, comment.getText());
-			ps.setInt(3, comment.getUserId());
-			ps.setDate(4, sqlStartDate);
-
+			ps.setInt(1, postId);
+			ps.setString(2, content);
+			ps.setInt(3, userId);
+			ps.setDate(4, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
-			return rs.getInt(1);
 		} catch (SQLException e) {
-			throw new CommentException("Post cannot be commented right now, please try again later.", e);
+			throw new CommentException("Comment cannot be created right now, please try again later.", e);
 		}
 	}
 
@@ -94,12 +91,13 @@ public class CommentDAO implements IComment {
 		}
 
 	}
-	public void updateComment(int id,String content) throws CommentException{
+
+	public void updateComment(int id, String content) throws CommentException {
 		conn = connection.getConnection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(UPDATE_COMMENT_BY_ID_SQL);
 			ps.setString(1, content);
-			ps.setInt(2,id);
+			ps.setInt(2, id);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new CommentException("Comment can't be edited right now, please try again later.", e);
@@ -115,6 +113,6 @@ public class CommentDAO implements IComment {
 		} catch (SQLException e) {
 			throw new CommentException("Comment can't be deleted right now, please try again later.", e);
 		}
-		
+
 	}
 }
