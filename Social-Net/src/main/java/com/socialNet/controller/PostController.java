@@ -39,8 +39,6 @@ public class PostController {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";
 		}
-		User user=(User) session.getAttribute("user");
-		userDAO.getFriends(user);
 		ArrayList<Post> listOfUserPosts = postDAO.viewAllPosts((User) session.getAttribute("user"));
 		viewModel.addAttribute(listOfUserPosts);
 		System.out.println(listOfUserPosts);

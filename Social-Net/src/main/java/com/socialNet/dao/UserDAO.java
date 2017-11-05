@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ public class UserDAO implements IUser {
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
 	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id = ?";
 	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id=?";
+	private static final String SELECT_ALL_USERS = "SELECT * FROM users";
 
 	public int registerUser(User user) throws UserException {
 		conn = connection.getConnection();
@@ -104,7 +106,24 @@ public class UserDAO implements IUser {
 			}
 			return user.getUserFriends();
 		} catch (SQLException e) {
-			throw new UserException("User cannot be logged right now.", e);
+			throw new UserException("User cannot get friends right now.", e);
+		}
+	}
+	
+	public ArrayList<User> getAllUsers() throws UserException {
+		conn = connection.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(SELECT_ALL_USERS);
+			ResultSet rs = ps.executeQuery();
+			ArrayList<User> allUsers=new ArrayList<User>();
+			while(rs.next()) {
+			int userId=rs.getInt(1);
+			User user =this.getUserById(userId);
+			allUsers.add(user);
+			}
+			return allUsers;
+		} catch (SQLException e) {
+			throw new UserException("Users cannot be loaded right now.", e);
 		}
 	}
 

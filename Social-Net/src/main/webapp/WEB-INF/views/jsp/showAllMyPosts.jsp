@@ -2,7 +2,6 @@
 <%@ include file="header.jsp"%>
 <link rel="stylesheet" type="text/css" href="stylePhotos.css"
 	media="screen" />
-
 <div class="video-container">
 	<video style="width: 100%" autoplay>
 		<source src="img/clouds.mp4">

@@ -12,7 +12,6 @@
 <body>
 	<c:if test="${empty sessionScope.user.email}">
 		<c:redirect url="index" />
-
 	</c:if>
 	<c:out value="${sessionScope.user.email}" />
 	<c:out value="${sessionScope.user.userId}" />
