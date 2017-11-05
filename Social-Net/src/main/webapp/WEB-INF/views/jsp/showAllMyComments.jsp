@@ -44,11 +44,11 @@ table, th, td {
 						</form>
 					</td>
 					<td>
-						<form method="get" action="deletecomment">
+						<form method="get" action="deleteComment">
 							<input type="hidden" name="commentId"
 								value="${comment.commentId}" /> <input type="hidden"
 								name="postId" value="${comment.postId}" /> <input type="submit"
-								value="Delete" />
+								value="Delete" class="w3-button w3-theme-d2 w3-margin-bottom" />
 						</form>
 				</c:if>
 				<td></td>

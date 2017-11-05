@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.CommentException;
 import com.socialNet.exception.PostException;
 import com.socialNet.exception.UserException;
 import com.socialNet.interfaces.IPost;
@@ -39,6 +40,8 @@ public class PostDAO implements IPost {
 	private static final String ADD_LIKE = "INSERT INTO likes VALUES (null,?,?)";
 	private static final String SELECT_NUM_LIKES = "SELECT like_count COUNT(*) FROM posts";
 	private static final String SELECT_NUM_COMMENTS = "SELECT like_comment COUNT(*) FROM posts";
+	private static final String UPDATE_POST_BY_ID_SQL = "UPDATE posts SET content=? WHERE post_id=?";
+	private static final String DELETE_POST_BY_ID_SQL = "DELETE FROM posts WHERE post_id=?";
 
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
@@ -53,8 +56,6 @@ public class PostDAO implements IPost {
 			String cont = rs.getString("content");
 			String pic = rs.getString("picture_name");
 			Date d = rs.getDate("date_post");
-			// int numLikes = rs.getInt("like_count");
-			// int numComments = rs.getInt("comment_count");
 
 			Post post = new Post(id, cont, uid, pic, d);
 			listOfPosts.add(post);
@@ -133,22 +134,28 @@ public class PostDAO implements IPost {
 		}
 	}
 
-	@Override
-	public void deletePost(int postId) throws UserException, PostException {
+	public void updatePost(int id, String content) throws PostException {
 		conn = connection.getConnection();
-
 		try {
-			PreparedStatement ps = conn.prepareStatement(DELETE_POST_BY_ID);
-			ps.setInt(1, postId);
-			ResultSet rs = ps.executeQuery();
-
-			if (rs.next() == false) {
-				throw new UserException("There no post with this id.");
-			}
+			PreparedStatement ps = conn.prepareStatement(UPDATE_POST_BY_ID_SQL);
+			ps.setString(1, content);
+			ps.setInt(2, id);
+			ps.executeUpdate();
 		} catch (SQLException e) {
-			throw new PostException("There is no post with this id.", e);
+			throw new PostException("Post can't be edited right now, please try again later.", e);
+		}
+	}
+	public void deletePost(int postId) throws PostException {
+		conn = connection.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(DELETE_POST_BY_ID_SQL);
+			ps.setInt(1, postId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new PostException("Post can't be deleted right now, please try again later.", e);
 		}
 
 	}
+
 
 }

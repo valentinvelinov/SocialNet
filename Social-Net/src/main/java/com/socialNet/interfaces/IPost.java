@@ -10,6 +10,7 @@ import com.socialNet.exception.PostException;
 import com.socialNet.exception.UserException;
 import com.socialNet.model.Post;
 import com.socialNet.model.User;
+
 @Component
 public interface IPost {
 	@Autowired
@@ -22,5 +23,8 @@ public interface IPost {
 	public Post getPostById(int id) throws UserException, PostException;
 
 	public void deletePost(int postId) throws UserException, PostException;
+
+	public void updatePost(int postId, String content) throws PostException;
+
 
 }

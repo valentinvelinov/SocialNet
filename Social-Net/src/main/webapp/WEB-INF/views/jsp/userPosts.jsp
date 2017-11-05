@@ -54,6 +54,13 @@
 						class="w3-button w3-theme-d2 w3-margin-bottom">
 						<i class="fa fa-comment"> </i>  Comment
 					</button>
+
+					<form method="get" action="deletePost">
+						<input type="hidden" name="postId" value="${post.postId}" /> <input
+							type="hidden" name="postId" value="${post.postId}" /> <input
+							type="submit" value="Delete" />
+					</form>
+					<a href="editPost" class="w3-bar-item w3-button">Edit Post</a>
 				</div>
 		</table>
 	</c:forEach>
