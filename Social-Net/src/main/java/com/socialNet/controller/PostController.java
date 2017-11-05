@@ -50,7 +50,7 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/showAllMyPosts", method = RequestMethod.GET)
-	public String viewMyPosts(HttpSession session, Model viewModel,HttpServletRequest request)
+	public String viewMyPosts(HttpSession session, Model viewModel, HttpServletRequest request)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";

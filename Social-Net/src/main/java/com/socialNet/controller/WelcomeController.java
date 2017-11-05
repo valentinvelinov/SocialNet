@@ -15,6 +15,4 @@ public class WelcomeController {
 	public String welcome(@ModelAttribute User user, Model model) {
 		return "index";
 	}
-
-	
 }

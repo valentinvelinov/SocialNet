@@ -45,8 +45,6 @@
 						class="w3-button w3-theme-d1 w3-margin-bottom">
 						<i class="fa fa-thumbs-up"></i>  Delete post
 					</button>
-					
-					<c:out value="${comments.get(0).text}"/>
 				</div>
 		</table>
 	</c:forEach>
