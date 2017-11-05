@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.socialNet.exception.LikeException;
 import com.socialNet.interfaces.ILike;
@@ -29,18 +30,12 @@ public class LikeController {
 	public String likePost(HttpServletRequest request, HttpSession session, Model model) throws LikeException {
 		String id = request.getParameter("postId");
 		int postid = Integer.parseInt(id);
-		User user = (User) session.getAttribute("user");
-		System.err.println(user.getUserId());
-		System.err.println("USERAAA" + user.getUserId());
-		if (!likeDao.verifiesIfItIsLiked(postid, user.getUserId())) {
-			Like like = new Like(postid, user.getUserId());
-			likeDao.likePost(like);
-			return "userPosts";
-		} else {
-			Like like = new Like(postid, user.getUserId());
-			likeDao.dislikePost(like);
-		}
-		return "newLike";
+		User u = (User) session.getAttribute("user");
+		System.err.println("USER E TUAK VE" + session.getAttribute("user"));
+		System.err.println(u);
+		Like like = new Like(postid, u.getUserId());
+		likeDao.like(like);
+		return "forward:userPosts";
 	}
 
 	@RequestMapping(value = "/showAllLikes", method = RequestMethod.GET)

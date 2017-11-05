@@ -8,11 +8,11 @@ import com.socialNet.model.Like;
 import com.socialNet.model.User;
 
 public interface ILike {
-	public int likePost(Like like) throws LikeException;
+	public void like(Like like) throws LikeException;
 
-	public boolean verifiesIfItIsLiked(int postId, int userId);
+	//public boolean verifiesIfItIsLiked(int postId, int userId) throws SQLException;
 
-	boolean dislikePost(Like like);
+	//boolean dislikePost(Like like);
 
 	public List<Like> showLikesByPost(int myPost) throws SQLException;
 

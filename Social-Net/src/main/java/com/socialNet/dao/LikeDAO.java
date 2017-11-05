@@ -29,67 +29,45 @@ public class LikeDAO implements ILike {
 	private static final String INSERT_LIKE_SQL = "INSERT INTO likes VALUES (null,?,?)";
 	// private static final String SELECT_LIKE_BY_ID = "SELECT * FROM likes WHERE
 	// like_id=?";
-	private static final String VERIFY_LIKE = "SELECT * FROM likes WHERE post_id=? and user_id = ?";
-	private static final String DELETE_LIKE_SQL = "DELETE * FROM likes WHERE user_id=?";
+	private static final String VERIFY_LIKE = "SELECT * FROM likes WHERE post_id=? and user_id =?";
+	private static final String DELETE_LIKE_SQL = "DELETE FROM likes WHERE post_id=? and user_id=?";
 	private static final String SELECT_LIKE_BY_POST = "SELECT * FROM likes WHERE post_id=?";
 
-	public int likePost(Like like) throws LikeException {
+	@Override
+	public void like(Like like) throws LikeException {
 		conn = connection.getConnection();
+
 		try {
-			PreparedStatement ps = conn.prepareStatement(INSERT_LIKE_SQL, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM likes WHERE post_id=? and user_id= ? ");
 			ps.setInt(1, like.getPostId());
 			ps.setInt(2, like.getUserId());
-			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			rs.next();
-			return rs.getInt(1);
-		} catch (SQLException e) {
-			throw new LikeException("Post cannot be liked right now, please try again later.", e);
-		}
-	}
+			ResultSet result = ps.executeQuery();
+			// result.next();
+			int id;
+			if (!result.next())
+				id = 0;
+			else
+				id = result.getInt(1);
+			if (id == 0) {
+				PreparedStatement psInsert = conn.prepareStatement(INSERT_LIKE_SQL, Statement.RETURN_GENERATED_KEYS);
+				psInsert.setInt(1, like.getPostId());
+				psInsert.setInt(2, like.getUserId());
+				psInsert.executeUpdate();
+				ResultSet rs = psInsert.getGeneratedKeys();
+				rs.next();
+			} else {
+				PreparedStatement psDelete = conn.prepareStatement(DELETE_LIKE_SQL, Statement.RETURN_GENERATED_KEYS);
 
-	@Override
-	public boolean dislikePost(Like like) {
-		conn = connection.getConnection();
-		try {
-			PreparedStatement ps = conn.prepareStatement(DELETE_LIKE_SQL, Statement.RETURN_GENERATED_KEYS);
-
-			ps.setInt(1, like.getPostId());
-			ps.setInt(2, like.getUserId());
-
-			ps.execute();
-			conn.close();
-			return true;
-		} catch (SQLException sql) {
-			sql.getErrorCode();
-		}
-		return false;
-	}
-
-	@Override
-	public boolean verifiesIfItIsLiked(int postId, int userId) {
-		conn = connection.getConnection();
-
-		try {
-			PreparedStatement ps = conn.prepareStatement(VERIFY_LIKE, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, postId);
-			ps.setInt(2, userId);
-
-			ResultSet rs = ps.executeQuery();
-			boolean check = false;
-
-			if (rs.next()) {
-				check = true;
-				System.out.println("YOU CAN'T LIKE TWICE THE SAME POST");
+				psDelete.setInt(1, like.getPostId());
+				psDelete.setInt(2, like.getUserId());
+				psDelete.executeUpdate();
+				ResultSet rs1 = psDelete.getGeneratedKeys();
+				rs1.next();
 			}
-			rs.close();
-			ps.close();
-			conn.close();
-			return check;
 
-		} catch (SQLException sql) {
-			sql.getErrorCode();
-			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new LikeException("Like cannot be selected");
 		}
 	}
 
