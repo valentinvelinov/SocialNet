@@ -25,6 +25,7 @@ public class CommentDAO implements IComment {
 	DBConnection connection;
 
 	private static Connection conn;
+	private static final String DELETE_COMMENT_BY_ID_SQL = "DELETE FROM comments WHERE comment_id=?";
 	private static final String UPDATE_COMMENT_BY_ID_SQL = "UPDATE comments SET text=? WHERE comment_id=?";
 	private static final String SELECT_COMMENT_BY_ID_SQL = "SELECT * FROM comments WHERE comment_id=?";
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO comments VALUES (null,?,?,?,?)";
@@ -103,5 +104,17 @@ public class CommentDAO implements IComment {
 		} catch (SQLException e) {
 			throw new CommentException("Comment can't be edited right now, please try again later.", e);
 		}
+	}
+
+	public void deleteComment(int commentId) throws CommentException {
+		conn = connection.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(DELETE_COMMENT_BY_ID_SQL);
+			ps.setInt(1, commentId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new CommentException("Comment can't be deleted right now, please try again later.", e);
+		}
+		
 	}
 }

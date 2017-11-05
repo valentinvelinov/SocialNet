@@ -47,5 +47,13 @@ public class CommentController {
 		commentDAO.updateComment(commentId, content);
 		return "forward:showPostComments";
 	}
+	
+	@RequestMapping(value = "/deletecomment", method = RequestMethod.GET)
+	public String deleteComment(HttpServletRequest request, Model viewModel) throws CommentException, UserException {
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		int commentId = Integer.parseInt(request.getParameter("commentId"));
+		commentDAO.deleteComment(commentId);
+		return "forward:showPostComments";
+	}
 
 }
