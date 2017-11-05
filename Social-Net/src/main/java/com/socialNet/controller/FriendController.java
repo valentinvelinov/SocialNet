@@ -40,15 +40,18 @@ public class FriendController {
 	public void searchUsers(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, UserException {
 		String query = request.getParameter("query");
+		System.err.println(query);
 		if (query == null) {
 			response.setContentType("text/json");
 			ArrayList<User> users = userDAO.getAllUsers();
+			System.err.println(users.size());
 			Gson gson = new GsonBuilder().create();
 			response.getWriter().println(gson.toJson(users));
 		} else {
 			response.setContentType("text/json");
 			ArrayList<User> users = userDAO.getAllUsers();
 			users.removeIf((a) -> !a.getFirstName().startsWith(query));
+			System.err.println(users.size());
 			Gson gson = new GsonBuilder().create();
 			response.getWriter().println(gson.toJson(users));
 		}

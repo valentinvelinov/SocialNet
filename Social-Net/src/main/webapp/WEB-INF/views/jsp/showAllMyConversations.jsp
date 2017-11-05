@@ -11,7 +11,9 @@ table, th, td {
 <title>My Conversations</title>
 </head>
 <body>
-	<h1>TESTING</h1>
+<form method="get" action="showAllMyPosts">
+		<input type="submit" value="Back to Homepage" />
+	</form>	
 	<c:forEach items="${list}" var="conversation">
 		<table>
 			<tr>

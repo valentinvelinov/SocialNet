@@ -26,8 +26,8 @@ public class UserDAO implements IUser {
 	private static Connection conn;
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
-	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id = ?";
-	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id=?";
+	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id =?";
+	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id =?";
 	private static final String SELECT_ALL_USERS = "SELECT * FROM users";
 
 	public int registerUser(User user) throws UserException {

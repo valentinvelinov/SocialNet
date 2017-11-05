@@ -12,7 +12,11 @@ table, th, td {
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>TESTING</h1>
+	<form method="get" action="showAllMyConversations">
+	<input type="hidden" name=conversationId
+			value="${message.conversationId}" />
+		<input type="submit" value="Back to Conversations" />
+	</form>
 	<c:forEach items="${listMSG}" var="message">
 		<table>
 			<tr>
@@ -33,7 +37,8 @@ table, th, td {
 	</c:forEach>
 	<form:form commandName="message" action="newMessage" method="get">
 		<form:input type="text" path="content" placeholder="Enter a message.." />
-		<input type="hidden" name=conversationId value="${message.conversationId}" />
+		<input type="hidden" name=conversationId
+			value="${message.conversationId}" />
 		<input type="submit" value="Send" />
 	</form:form>
 </body>

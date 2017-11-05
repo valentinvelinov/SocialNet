@@ -1,6 +1,7 @@
 package com.socialNet.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.socialNet.dao.ConversationDAO;
 import com.socialNet.dao.MessageDAO;
+import com.socialNet.dao.UserDAO;
 import com.socialNet.exception.CommentException;
 import com.socialNet.exception.ConversationException;
 import com.socialNet.exception.MessageException;
@@ -31,6 +33,9 @@ public class ConversationController {
 
 	@Autowired
 	MessageDAO messeageDAO;
+
+	@Autowired
+	UserDAO userDAO;
 
 	@RequestMapping(value = "/showAllMyConversations", method = RequestMethod.GET)
 	public String showConversations(HttpServletRequest request, HttpSession session, Model viewModel)
@@ -51,8 +56,8 @@ public class ConversationController {
 	}
 
 	@RequestMapping(value = "/newMessage", method = RequestMethod.GET)
-	public String sendMessage(@ModelAttribute Message message, HttpServletRequest request, HttpSession session)
-			throws CommentException, MessageException {
+	public synchronized String sendMessage(@ModelAttribute Message message, HttpServletRequest request,
+			HttpSession session, Model viewModel) throws CommentException, MessageException {
 		User user = (User) session.getAttribute("user");
 		message.setUserId(user.getUserId());
 		messeageDAO.postMessage(message);
