@@ -24,7 +24,7 @@
 
 				<p>Like id: ${like.likeId}</p>
 				<p>User: ${like.userId}"</p>
-				<p>Date: ${like.postId}</p>
+				<p>Post: ${like.postId}</p>
 
 			</div>
 		</table>

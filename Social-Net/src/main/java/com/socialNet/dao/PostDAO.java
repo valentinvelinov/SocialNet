@@ -37,6 +37,8 @@ public class PostDAO implements IPost {
 			+ "";
 	private static final String SELECT_USER_POSTS = "SELECT * FROM posts ";
 	private static final String ADD_LIKE = "INSERT INTO likes VALUES (null,?,?)";
+	private static final String SELECT_NUM_LIKES = "SELECT like_count COUNT(*) FROM posts";
+	private static final String SELECT_NUM_COMMENTS = "SELECT like_comment COUNT(*) FROM posts";
 
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
@@ -51,10 +53,10 @@ public class PostDAO implements IPost {
 			String cont = rs.getString("content");
 			String pic = rs.getString("picture_name");
 			Date d = rs.getDate("date_post");
-			int numLikes = rs.getInt("like_count");
-			int numComments = rs.getInt("comment_count");
+			// int numLikes = rs.getInt("like_count");
+			// int numComments = rs.getInt("comment_count");
 
-			Post post = new Post(id, cont, uid, pic, d, numLikes, numComments);
+			Post post = new Post(id, cont, uid, pic, d);
 			listOfPosts.add(post);
 		}
 		for (Post p : listOfPosts) {
@@ -95,8 +97,15 @@ public class PostDAO implements IPost {
 			ps.setInt(2, user.getUserId());
 			ps.setString(3, post.getPictureName());
 			ps.setDate(4, sqlStartDate);
-			ps.setInt(5, post.getLikeCount());
-			ps.setInt(6, post.getCommentCount());
+
+			PreparedStatement ps2 = conn.prepareStatement(SELECT_NUM_LIKES, Statement.RETURN_GENERATED_KEYS);
+			int cLikes = ps2.executeUpdate();
+			ps2.setInt(5, cLikes);
+			System.err.println(cLikes);
+			PreparedStatement ps3 = conn.prepareStatement(SELECT_NUM_COMMENTS, Statement.RETURN_GENERATED_KEYS);
+			int cComments = ps3.executeUpdate();
+			System.err.println(cComments);
+			ps2.setInt(6, cComments);
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();

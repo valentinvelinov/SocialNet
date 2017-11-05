@@ -31,15 +31,18 @@
 				<p>User: ${post.userId}</p>
 				<p>Date: ${post.datePost}</p>
 				<p>Date: ${post.postId}</p>
+				<p>Likes: ${post.likeCount}</p>
+				<p>Comments: ${post.commentCount}</p>
+
 				<div class="w3-row-padding" style="margin: 0 -16px">
 					<button type="button"
 						class="w3-button w3-theme-d1 w3-margin-bottom">
 						<i class="fa fa-thumbs-up"></i>  Like
 					</button>
 					<form name="test" method="get" action="showPostComments">
-						<input type="hidden" name="postId" value="${post.postId}"/>
-						<input type="submit" value="Show Comments"
-						class="w3-button w3-theme-d2 w3-margin-bottom">
+						<input type="hidden" name="postId" value="${post.postId}" /> <input
+							type="submit" value="Show Comments"
+							class="w3-button w3-theme-d2 w3-margin-bottom">
 					</form>
 					<button type="button"
 						class="w3-button w3-theme-d1 w3-margin-bottom">

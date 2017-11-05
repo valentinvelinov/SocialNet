@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +35,7 @@ public class PostController {
 	IPost postDAO;
 
 	@RequestMapping(value = "/userPosts", method = RequestMethod.GET)
-	public String viewUserPosts(HttpSession session, Model viewModel)
+	public String viewUserPosts(HttpSession session, Model viewModel, HttpServletRequest request)
 			throws UserException, PostException, SQLException, ClassNotFoundException {
 		if ((User) session.getAttribute("user") == null) {
 			return "error";
@@ -107,27 +106,9 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/newPost", method = RequestMethod.POST)
-	public String setPost(@ModelAttribute User user, @RequestParam("images") MultipartFile files, Post post,
-			Model model, HttpSession session) throws PostException {
-
+	public String setPost(@ModelAttribute User user, Post post, Model model, HttpSession session) throws PostException {
 		if (user.getEmail() != null) {
-			String fileName = null;
-
 			try {
-				String path = session.getServletContext().getRealPath("/WEB-INF/resources/img");
-				String newName = String.valueOf(new java.util.Date().getTime());
-				fileName = files.getOriginalFilename();
-				String ext = FilenameUtils.getExtension(fileName);
-				File imageFile = new File(path, newName + "." + ext);
-				try {
-					files.transferTo(imageFile);
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				user.setProfilePicUrl(newName + "." + ext);
-
 				postDAO.makePost(post, user);
 				if (user != null || user.getUserId() != 0) {
 					session.setAttribute("user", user);

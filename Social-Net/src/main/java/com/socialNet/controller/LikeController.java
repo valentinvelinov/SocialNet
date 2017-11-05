@@ -32,14 +32,15 @@ public class LikeController {
 		User user = (User) session.getAttribute("user");
 		System.err.println(user.getUserId());
 		System.err.println("USERAAA" + user.getUserId());
-		// if (!likeDao.verifiesIfItIsLiked(user.getUserId())) {
-		Like like = new Like(postid, user.getUserId());
-		likeDao.likePost(like);
-		return "userPosts";
-		// } else {
-		// likeDao.dislikePost(like);
-		// }
-		// return "newLike";
+		if (!likeDao.verifiesIfItIsLiked(postid, user.getUserId())) {
+			Like like = new Like(postid, user.getUserId());
+			likeDao.likePost(like);
+			return "userPosts";
+		} else {
+			Like like = new Like(postid, user.getUserId());
+			likeDao.dislikePost(like);
+		}
+		return "newLike";
 	}
 
 	@RequestMapping(value = "/showAllLikes", method = RequestMethod.GET)

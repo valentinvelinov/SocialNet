@@ -67,18 +67,18 @@ public class LikeDAO implements ILike {
 	}
 
 	@Override
-	public boolean verifiesIfItIsLiked(Like like) {
+	public boolean verifiesIfItIsLiked(int postId, int userId) {
 		conn = connection.getConnection();
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(VERIFY_LIKE, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, like.getUserId());
-			ps.setInt(2, like.getUserId());
+			ps.setInt(1, postId);
+			ps.setInt(2, userId);
 
 			ResultSet rs = ps.executeQuery();
 			boolean check = false;
 
-			while (rs.next()) {
+			if (rs.next()) {
 				check = true;
 				System.out.println("YOU CAN'T LIKE TWICE THE SAME POST");
 			}

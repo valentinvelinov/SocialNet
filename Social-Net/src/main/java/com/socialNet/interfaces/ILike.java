@@ -10,9 +10,10 @@ import com.socialNet.model.User;
 public interface ILike {
 	public int likePost(Like like) throws LikeException;
 
-	public boolean verifiesIfItIsLiked(Like like);
+	public boolean verifiesIfItIsLiked(int postId, int userId);
 
 	boolean dislikePost(Like like);
 
 	public List<Like> showLikesByPost(int myPost) throws SQLException;
+
 }
