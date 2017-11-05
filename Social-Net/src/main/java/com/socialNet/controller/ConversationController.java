@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.socialNet.dao.ConversationDAO;
 import com.socialNet.dao.MessageDAO;
+import com.socialNet.exception.CommentException;
 import com.socialNet.exception.ConversationException;
+import com.socialNet.exception.MessageException;
+import com.socialNet.exception.UserException;
 import com.socialNet.model.Comment;
 import com.socialNet.model.Conversation;
+import com.socialNet.model.Message;
 import com.socialNet.model.User;
 
 @Controller
@@ -29,10 +33,17 @@ public class ConversationController {
 	MessageDAO messeageDAO;
 
 	@RequestMapping(value = "/showAllMyConversations", method = RequestMethod.GET)
-	public String showConversations(HttpSession session, Model viewModel) throws ConversationException {
+	public String showConversations(HttpServletRequest request,HttpSession session, Model viewModel) throws ConversationException {
 		User user = (User) session.getAttribute("user");
 		ArrayList<Conversation> myconverastions = conversationDAO.getUserConversations(user.getUserId());
 		viewModel.addAttribute("list", myconverastions);
 		return "showAllMyConversations";
 	}
+	@RequestMapping(value = "/openConversation", method = RequestMethod.GET)
+	public String editComment(HttpServletRequest request, Model viewModel) throws CommentException, UserException, MessageException {
+		int conversationId = Integer.parseInt(request.getParameter("conversationId"));
+		ArrayList<Message> messages=messeageDAO.getMessages(conversationId);
+		viewModel.addAttribute("listMSG", messages);
+		return "openConversation";
+}
 }
