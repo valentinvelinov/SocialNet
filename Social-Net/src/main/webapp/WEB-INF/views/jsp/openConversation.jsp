@@ -31,5 +31,10 @@ table, th, td {
 			</tr>
 		</table>
 	</c:forEach>
+	<form:form commandName="message" action="newMessage" method="get">
+		<form:input type="text" path="content" placeholder="Enter a message.." />
+		<input type="hidden" name=conversationId value="${message.conversationId}" />
+		<input type="submit" value="Send" />
+	</form:form>
 </body>
 </html>

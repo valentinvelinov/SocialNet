@@ -33,17 +33,30 @@ public class ConversationController {
 	MessageDAO messeageDAO;
 
 	@RequestMapping(value = "/showAllMyConversations", method = RequestMethod.GET)
-	public String showConversations(HttpServletRequest request,HttpSession session, Model viewModel) throws ConversationException {
+	public String showConversations(HttpServletRequest request, HttpSession session, Model viewModel)
+			throws ConversationException {
 		User user = (User) session.getAttribute("user");
 		ArrayList<Conversation> myconverastions = conversationDAO.getUserConversations(user.getUserId());
 		viewModel.addAttribute("list", myconverastions);
 		return "showAllMyConversations";
 	}
+
 	@RequestMapping(value = "/openConversation", method = RequestMethod.GET)
-	public String editComment(HttpServletRequest request, Model viewModel) throws CommentException, UserException, MessageException {
+	public String openConversation(@ModelAttribute Message message, HttpServletRequest request, Model viewModel,
+			HttpSession session) throws CommentException, UserException, MessageException {
 		int conversationId = Integer.parseInt(request.getParameter("conversationId"));
-		ArrayList<Message> messages=messeageDAO.getMessages(conversationId);
+		ArrayList<Message> messages = messeageDAO.getMessages(conversationId);
 		viewModel.addAttribute("listMSG", messages);
 		return "openConversation";
-}
+	}
+
+	@RequestMapping(value = "/newMessage", method = RequestMethod.GET)
+	public String sendMessage(@ModelAttribute Message message, HttpServletRequest request, HttpSession session)
+			throws CommentException, MessageException {
+		User user = (User) session.getAttribute("user");
+		message.setUserId(user.getUserId());
+		messeageDAO.postMessage(message);
+		return "forward:openConversation";
+	}
+
 }
