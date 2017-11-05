@@ -8,7 +8,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Post {
-	
+
 	private int postId;
 	@NotBlank
 	private String content;
@@ -37,6 +37,14 @@ public class Post {
 		this(content, userId, pictureName, datePost);
 		setPostId(postId);
 
+	}
+
+	public Post(int postId, String content, int userId, String pictureName, Date datePost, int likeCount,
+			int commentCount) {
+		this(content, userId, pictureName, datePost);
+		setPostId(postId);
+		setLikeCount(likeCount);
+		setCommentCount(commentCount);
 	}
 
 	public Post(int postId, String content, int userId) {

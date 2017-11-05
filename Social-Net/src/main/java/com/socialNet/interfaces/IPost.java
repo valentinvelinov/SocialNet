@@ -22,4 +22,5 @@ public interface IPost {
 	public Post getPostById(int id) throws UserException, PostException;
 
 	public void deletePost(int postId) throws UserException, PostException;
+
 }

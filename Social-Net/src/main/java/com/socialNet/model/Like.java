@@ -1,7 +1,8 @@
 package com.socialNet.model;
 
 import org.hibernate.validator.constraints.NotBlank;
-
+import org.springframework.stereotype.Component;
+@Component
 public class Like {
 	@NotBlank
 	private int likeId;
@@ -50,6 +51,11 @@ public class Like {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "Like [likeId=" + likeId + ", postId=" + postId + ", userId=" + userId + "]";
 	}
 
 }

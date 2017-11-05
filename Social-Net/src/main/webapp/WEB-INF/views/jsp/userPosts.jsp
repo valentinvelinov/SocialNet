@@ -30,18 +30,30 @@
 						class="w3-margin-bottom">
 				</div>
 				<p>${post.content}</p>
+				<p>ID: ${post.postId}</p>
 				<p>User: ${post.userId}"</p>
 				<p>Date: ${post.datePost}</p>
+				<p>Number of likes: ${post.likeCount}</p>
+				<p>Number of comments: ${post.commentCount}</p>
+
 				<div class="w3-row-padding" style="margin: 0 -16px">
-					<button type="button"
-						class="w3-button w3-theme-d1 w3-margin-bottom">
-						<i class="fa fa-thumbs-up"></i>  Like
-					</button>
+
+					<form name="test" method="get" action="newLike">
+						<input type="hidden" name="postId" value="${post.postId}" /> <input
+							type="submit" value="Like"
+							class="w3-button w3-theme-d2 w3-margin-bottom">
+					</form>
+
+					<form name="test" method="get" action="showAllLikes">
+						<input type="hidden" name="postId" value="${post.postId}" /> <input
+							type="submit" value="Show likes"
+							class="w3-button w3-theme-d2 w3-margin-bottom">
+					</form>
+
 					<button type="button"
 						class="w3-button w3-theme-d2 w3-margin-bottom">
-						<i class="fa fa-comment"></i>  Comment
+						<i class="fa fa-comment"> </i>  Comment
 					</button>
-
 				</div>
 		</table>
 	</c:forEach>

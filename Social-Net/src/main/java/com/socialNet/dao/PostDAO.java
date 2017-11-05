@@ -36,6 +36,7 @@ public class PostDAO implements IPost {
 	private static final String DELETE_POST_BY_ID = "DELETE FROM `posts-db` WHERE id IN (SELECT * FROM posts WHERE post_id = )\n"
 			+ "";
 	private static final String SELECT_USER_POSTS = "SELECT * FROM posts ";
+	private static final String ADD_LIKE = "INSERT INTO likes VALUES (null,?,?)";
 
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException {
 		conn = connection.getConnection();
@@ -50,8 +51,10 @@ public class PostDAO implements IPost {
 			String cont = rs.getString("content");
 			String pic = rs.getString("picture_name");
 			Date d = rs.getDate("date_post");
+			int numLikes = rs.getInt("like_count");
+			int numComments = rs.getInt("comment_count");
 
-			Post post = new Post(id, cont, uid, pic, d);
+			Post post = new Post(id, cont, uid, pic, d, numLikes, numComments);
 			listOfPosts.add(post);
 		}
 		for (Post p : listOfPosts) {
@@ -70,10 +73,10 @@ public class PostDAO implements IPost {
 		while (rs.next()) {
 			int id = rs.getInt("post_id");
 			String cont = rs.getString("content");
+			int uid = rs.getInt("user_id");
 			String pic = rs.getString("picture_name");
 			Date d = rs.getDate("date_post");
-
-			Post post = new Post(cont, id, pic, d);
+			Post post = new Post(id, cont, uid, pic, d);
 			listOfUserPosts.add(post);
 		}
 		for (Post p : listOfUserPosts) {

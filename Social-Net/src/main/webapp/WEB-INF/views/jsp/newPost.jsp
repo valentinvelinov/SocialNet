@@ -11,8 +11,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>New post</title>
 <link rel="stylesheet" href="css/style.css">
-
-
+<script>
+	$("#fileupload").on("click", function() {
+		$("#my_file").click();
+		userImage = document.getElementById('fileupload');
+		imgData = getBase64Image(userImage);
+		localStorage.setItem("imgData", imgData);
+	});
+</script>
 
 </head>
 
@@ -43,9 +49,11 @@
 					</p>
 
 
-					<form action="upload" method="post" enctype="multipart/form-data">
-						<input type="text" name="description" /> <input type="file"
-							name="pictureName" /> <input type="submit" />
+					<form method="POST" action="uploadFile"
+						enctype="multipart/form-data">
+						File to upload: <input type="file" name="file"> Name: <input
+							type="text" name="pictureName"> <input type="submit"
+							value="Upload"> Press here to upload the file!
 					</form>
 
 					<p>
