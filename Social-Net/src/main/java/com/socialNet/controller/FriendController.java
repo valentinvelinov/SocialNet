@@ -28,9 +28,13 @@ public class FriendController {
 	UserDAO userDAO;
 
 	@RequestMapping(value = "/friends", method = RequestMethod.GET)
-	public void showFriends(HttpSession session, Model model, HttpServletResponse response) {
-		User user = (User) session.getAttribute("user");
-	}
+	 	public String showFriends(HttpSession session, Model model) {
+	 		User user = (User) session.getAttribute("user");
+	 		Collection<User> friends = user.getUserFriends();
+	 		model.addAttribute(friends);
+	 		return "showMyFriends";
+	 	}
+	
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public void searchUsers(HttpServletRequest request, HttpServletResponse response)

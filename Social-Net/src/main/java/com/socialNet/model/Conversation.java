@@ -7,7 +7,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Conversation {
-	@NotBlank
+	
 	private int conversationId;
 	@NotBlank
 	private String title;
@@ -27,6 +27,10 @@ public class Conversation {
 		setMassages(massages);
 	}
 
+	public Conversation() {
+		
+	}
+	
 	// Getters and Setters
 
 	public int getConversationId() {

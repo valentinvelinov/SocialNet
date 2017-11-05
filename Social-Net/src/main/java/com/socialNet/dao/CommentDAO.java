@@ -54,7 +54,7 @@ public class CommentDAO implements IComment {
 			List<Comment> comments = new ArrayList<Comment>();
 
 			ps.setInt(1, postId);
-
+			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Comment comment = new Comment();

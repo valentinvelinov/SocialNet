@@ -10,11 +10,4 @@ import com.socialNet.model.User;
 
 public interface IConversation {
 
-	public int startConversation(Conversation conversation, User user) throws ConversationException;
-
-	public void deleteConversation(Integer conversationId) throws UserException, ConversationException;
-
-	public ArrayList<Conversation> viewAllConversations(User user)
-			throws ConversationException, UserException, SQLException;
-
 }
