@@ -31,7 +31,7 @@ public class PostDAO implements IPost {
 	ArrayList<Post> listOfUserPosts = new ArrayList<Post>();
 
 	private static Connection conn;
-	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?,?,?,?,?)";
+	private static final String INSERT_POST_SQL = "INSERT INTO posts VALUES (null,?,?,?,?)";
 	private static final String SELECT_POST_BY_ID = "SELECT * FROM posts WHERE post_id=?";
 	private static final String SELECT_ALL_POSTS = "SELECT * FROM posts WHERE user_id=?";
 	private static final String DELETE_POST_BY_ID = "DELETE FROM `posts-db` WHERE id IN (SELECT * FROM posts WHERE post_id = )\n"
@@ -99,14 +99,16 @@ public class PostDAO implements IPost {
 			ps.setString(3, post.getPictureName());
 			ps.setDate(4, sqlStartDate);
 
-			PreparedStatement ps2 = conn.prepareStatement(SELECT_NUM_LIKES, Statement.RETURN_GENERATED_KEYS);
-			int cLikes = ps2.executeUpdate();
-			ps2.setInt(5, cLikes);
-			System.err.println(cLikes);
-			PreparedStatement ps3 = conn.prepareStatement(SELECT_NUM_COMMENTS, Statement.RETURN_GENERATED_KEYS);
-			int cComments = ps3.executeUpdate();
-			System.err.println(cComments);
-			ps2.setInt(6, cComments);
+			// PreparedStatement ps2 = conn.prepareStatement(SELECT_NUM_LIKES,
+			// Statement.RETURN_GENERATED_KEYS);
+			// int cLikes = ps2.executeUpdate();
+			// ps2.setInt(5, cLikes);
+			// System.err.println(cLikes);
+			// PreparedStatement ps3 = conn.prepareStatement(SELECT_NUM_COMMENTS,
+			// Statement.RETURN_GENERATED_KEYS);
+			// int cComments = ps3.executeUpdate();
+			// System.err.println(cComments);
+			// ps2.setInt(6, cComments);
 
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -140,11 +142,13 @@ public class PostDAO implements IPost {
 			PreparedStatement ps = conn.prepareStatement(UPDATE_POST_BY_ID_SQL);
 			ps.setString(1, content);
 			ps.setInt(2, id);
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new PostException("Post can't be edited right now, please try again later.", e);
 		}
 	}
+
 	public void deletePost(int postId) throws PostException {
 		conn = connection.getConnection();
 		try {
@@ -156,6 +160,5 @@ public class PostDAO implements IPost {
 		}
 
 	}
-
 
 }

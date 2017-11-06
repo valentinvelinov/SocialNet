@@ -54,14 +54,34 @@
 						class="w3-button w3-theme-d2 w3-margin-bottom">
 						<i class="fa fa-comment"> </i>  Comment
 					</button>
+					<button type="button"
+						class="w3-button w3-theme-d2 w3-margin-bottom">
+						<form method="get" action="deletePost">
+							<input type="hidden" name="postId" value="${post.postId}" /> <input
+								type="hidden" name="postId" value="${post.postId}" /> <input
+								type="submit" value="Delete Post" />
+						</form>
+					</button>
 
-					<form method="get" action="deletePost">
-						<input type="hidden" name="postId" value="${post.postId}" /> <input
-							type="hidden" name="postId" value="${post.postId}" /> <input
-							type="submit" value="Delete" />
-					</form>
-					<a href="editPost" class="w3-bar-item w3-button">Edit Post</a>
+
+				<form name="test" method="get" action="editPost">
+					<input type="hidden" name="postId" value="${post.postId}" /> 
+					
+					<input type = text value = "postContent" >
+					<input
+						type="submit" value="Edit post"
+						class="w3-button w3-theme-d2 w3-margin-bottom">
+				</form>
 				</div>
+
+
+				<form name="test" method="get" action="showPostComments">
+					<input type="hidden" name="postId" value="${post.postId}" /> <input
+						type="submit" value="Show Comments"
+						class="w3-button w3-theme-d2 w3-margin-bottom">
+				</form>
+
+			</div>
 		</table>
 	</c:forEach>
 	</div>

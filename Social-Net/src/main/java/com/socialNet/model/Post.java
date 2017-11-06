@@ -6,21 +6,26 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+@Component
 public class Post {
 
 	private int postId;
-	@NotBlank
+	//@NotBlank
 	private String content;
-	@NotBlank
+	//@NotBlank
 	private int userId;
 	private String pictureName;
-	@NotBlank
+	//@NotBlank
 	private Date datePost;
-	@NotBlank
+	//@NotBlank
 	private int likeCount;
-	@NotBlank
+	//@NotBlank
 	private int commentCount;
+	private MultipartFile file;
+
 
 	List<Comment> commentsForPost = Collections.synchronizedList(new ArrayList<Comment>());
 	List<Like> likesForPost = Collections.synchronizedList(new ArrayList<Like>());
@@ -61,6 +66,14 @@ public class Post {
 
 	public int getPostId() {
 		return postId;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	public String getContent() {
@@ -130,5 +143,14 @@ public class Post {
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
 	}
+
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", content=" + content + ", userId=" + userId + ", pictureName=" + pictureName
+				+ ", datePost=" + datePost + ", likeCount=" + likeCount + ", commentCount=" + commentCount + ", file="
+				+ file + ", commentsForPost=" + commentsForPost + ", likesForPost=" + likesForPost + "]";
+	}
+	
+	
 
 }
