@@ -1,9 +1,7 @@
 <%@ include file="meta.jsp"%>
 <%@ include file="header.jsp"%>
-<link rel="stylesheet" type="text/css" href="stylePhotos.css"
-	media="screen" />
 <div class="video-container">
-	<video style="width: 100%" autoplay>
+	<video style="width: 100%" autoplay loop>
 		<source src="img/clouds.mp4">
 	</video>
 </div>

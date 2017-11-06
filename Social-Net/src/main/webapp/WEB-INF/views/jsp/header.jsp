@@ -13,18 +13,25 @@ body {
 }
 
 .hello {
-	positon: absolute;
+	positon: relative;
 	right: 100px;
 	top: 10px;
 }
+
+.searching {
+	border: 2px solid grey;
+    border-radius: 5px;
+}
+
+
 </style>
 			<body>
 				<!-- Navbar (sit on top) -->
 				<div class="w3-top">
 					<div class="w3-bar w3-white w3-padding w3-card"
 						style="letter-spacing: 2px;">
-						<p class="hello">Hello ,"${sessionScope.user.firstName}"</p>
-						<img src="img/VERSION_LOGO.png" width='232px' /> <input id='user'
+						<p class="hello">Hello ,${sessionScope.user.firstName}</p>
+						<img src="img/VERSION_LOGO.png" width='232px' /> <input class="searching" id='user'
 							type="text" placeholder="Search User" list="users_list" />
 						<datalist id='users_list'></datalist>
 						<div class="w3-right w3-hide-small">

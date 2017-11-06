@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 table, th, td {
 	border: 1px solid black;
@@ -11,9 +12,9 @@ table, th, td {
 <title>My Conversations</title>
 </head>
 <body>
-<form method="get" action="showAllMyPosts">
+	<form method="get" action="showAllMyPosts">
 		<input type="submit" value="Back to Homepage" />
-	</form>	
+	</form>
 	<c:forEach items="${list}" var="conversation">
 		<table>
 			<tr>
@@ -34,5 +35,17 @@ table, th, td {
 
 		</table>
 	</c:forEach>
+	<div class="w3-dropdown-hover">
+		<button class="w3-button">Choose friend for chat!</button>
+		<div class="w3-dropdown-content w3-bar-block w3-border">
+			<c:forEach items="${friends}" var="user">
+				<form id="form1" action="createConversation" method="get">
+					<a input type="hidden" name="friendId" value="${user.userId}"
+						href="javascript:;" class="w3-bar-item w3-button"
+						onclick="document.getElementById('form1').submit();">${user.firstName}</a>
+				</form>
+			</c:forEach>
+		</div>
+	</div>
 </body>
 </html>

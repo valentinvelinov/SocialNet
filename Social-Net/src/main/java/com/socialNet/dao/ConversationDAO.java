@@ -25,10 +25,15 @@ import com.socialNet.model.User;
 public class ConversationDAO implements IConversation {
 	@Autowired
 	DBConnection connection;
+	
+	@Autowired
+	UserDAO userDAO;
 
 	private static Connection conn;
 	private static final String SELECT_ALL_CONVERSATIONS = "SELECT * FROM chat_user WHERE user_id=?";
 	private static final String SELECT_CONVERSATION_BY_ID = "SELECT * FROM conversations WHERE conversation_id=?";
+	private static final String INSERT_CONVERSATION = "INSERT INTO conversations VALUES (null,?)";
+	private static final String INSERT_CONVERSATION_TO_USER= "INSERT INTO chat_user VALUES (?,?)";
 
 	public ArrayList<Conversation> getUserConversations(int userId) throws ConversationException {
 		conn = connection.getConnection();
@@ -70,7 +75,33 @@ public class ConversationDAO implements IConversation {
 			e.printStackTrace();
 			throw new ConversationException("Conversation cannot be received right now, please try again later.");
 		}
-
+	}
+	public int createConversation(int friendId) throws UserException, ConversationException {
+		conn = connection.getConnection();
+		try {
+			User user=userDAO.getUserById(friendId);
+			PreparedStatement ps = conn.prepareStatement(INSERT_CONVERSATION, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, user.getFirstName()+" "+user.getLastName());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			throw new ConversationException("Conversation cannot be received right now, please try again later.");
+		}
+	}
+	public void setConversationToUsers(int userId,int conversationId) throws ConversationException {
+		conn = connection.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(INSERT_CONVERSATION_TO_USER, Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, conversationId);
+			ps.setInt(2, userId);
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+		} catch (SQLException e) {
+			throw new ConversationException("Conversation cannot be received right now, please try again later.");
+		}
 	}
 
 }

@@ -27,7 +27,7 @@ public class UserDAO implements IUser {
 	private static final String INSERT_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, md5(?))";
 	private static final String SELECT_USER_SQL = "SELECT user_id FROM users WHERE email = ? AND password = md5(?)";
 	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id =?";
-	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id =?";
+	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id=?";
 	private static final String SELECT_ALL_USERS = "SELECT * FROM users";
 
 	public int registerUser(User user) throws UserException {
@@ -99,27 +99,32 @@ public class UserDAO implements IUser {
 			PreparedStatement ps = conn.prepareStatement(SELECT_USER_FRIENDS);
 			ps.setInt(1, user.getUserId());
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-			int friendId=rs.getInt(2);
-			User friend =this.getUserById(friendId);
-			user.addFriend(friend);
+			while (rs.next()) {
+				int friendId = rs.getInt(2);
+				User friend = this.getUserById(friendId);
+				if (user.getUserFriends().contains(friend)) {
+					continue;
+				} else {
+					System.err.println("FRIEND ADDED");
+					user.addFriend(friend);
+				}
 			}
 			return user.getUserFriends();
 		} catch (SQLException e) {
 			throw new UserException("User cannot get friends right now.", e);
 		}
 	}
-	
+
 	public ArrayList<User> getAllUsers() throws UserException {
 		conn = connection.getConnection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(SELECT_ALL_USERS);
 			ResultSet rs = ps.executeQuery();
-			ArrayList<User> allUsers=new ArrayList<User>();
-			while(rs.next()) {
-			int userId=rs.getInt(1);
-			User user =this.getUserById(userId);
-			allUsers.add(user);
+			ArrayList<User> allUsers = new ArrayList<User>();
+			while (rs.next()) {
+				int userId = rs.getInt(1);
+				User user = this.getUserById(userId);
+				allUsers.add(user);
 			}
 			return allUsers;
 		} catch (SQLException e) {

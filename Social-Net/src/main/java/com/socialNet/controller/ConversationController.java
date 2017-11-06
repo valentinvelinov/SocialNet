@@ -39,10 +39,12 @@ public class ConversationController {
 
 	@RequestMapping(value = "/showAllMyConversations", method = RequestMethod.GET)
 	public String showConversations(HttpServletRequest request, HttpSession session, Model viewModel)
-			throws ConversationException {
+			throws ConversationException, UserException {
 		User user = (User) session.getAttribute("user");
 		ArrayList<Conversation> myconverastions = conversationDAO.getUserConversations(user.getUserId());
+		Collection<User> friends = userDAO.getFriends(user);
 		viewModel.addAttribute("list", myconverastions);
+		viewModel.addAttribute("friends", friends);
 		return "showAllMyConversations";
 	}
 
@@ -62,6 +64,19 @@ public class ConversationController {
 		message.setUserId(user.getUserId());
 		messeageDAO.postMessage(message);
 		return "forward:openConversation";
+	}
+
+	@RequestMapping(value = "/createConversation", method = RequestMethod.GET)
+	public synchronized String createConversation(@ModelAttribute Message message, HttpServletRequest request,
+			HttpSession session, Model viewModel)
+			throws CommentException, MessageException, UserException, ConversationException {
+		User user = (User) session.getAttribute("user");
+		int friendId = Integer.parseInt(request.getParameter("friendId"));
+		System.err.println("FRIEND_ID" + friendId);
+		int conversationId = conversationDAO.createConversation(friendId);
+		conversationDAO.setConversationToUsers(user.getUserId(), conversationId);
+		conversationDAO.setConversationToUsers(friendId, conversationId);
+		return "forward:showAllMyConversations";
 	}
 
 }
