@@ -40,7 +40,7 @@ body {
 								href="friends" class="w3-bar-item w3-button">Friends</a> <a
 								href="showAllMyConversations" class="w3-bar-item w3-button">Messages</a>
 							<a href="showAllMyPhotos" class="w3-bar-item w3-button">Gallery</a>
-							<a href="#" class="w3-bar-item w3-button">My profile</a> <img
+							<a href="editProfile" class="w3-bar-item w3-button">My profile</a> <img
 								src="img/people.png" width='70px' />
 
 						</div>

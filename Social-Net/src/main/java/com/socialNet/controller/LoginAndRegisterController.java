@@ -62,6 +62,43 @@ public class LoginAndRegisterController {
 		return "error";
 	}
 
+	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+	public String editProfile(HttpServletRequest request, Model model, HttpSession session) {
+		return "myProfile";
+	}
+
+	@RequestMapping(value = "/changeFirstName", method = RequestMethod.GET)
+	public String editFirstName(HttpServletRequest request, Model model, HttpSession session) {
+		String firstname = request.getParameter("firstName");
+		User user = (User) session.getAttribute("user");
+		
+		try {
+			userDAO.changeFirstName(user.getUserId(), firstname);
+			user.setFirstName(firstname);
+			session.setAttribute("user", user);
+		} catch (UserException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "forward:editProfile";
+	}
+	
+	@RequestMapping(value = "/changeLastName", method = RequestMethod.GET)
+	public String editLastName(HttpServletRequest request, Model model, HttpSession session) {
+		String lastname = request.getParameter("lastName");
+		User user = (User) session.getAttribute("user");
+		
+		try {
+			userDAO.changeLastName(user.getUserId(), lastname);
+			user.setLastName(lastname);
+			session.setAttribute("user", user);
+		} catch (UserException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "forward:editProfile";
+	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister(@ModelAttribute User user, Model model) {
 		return "register";

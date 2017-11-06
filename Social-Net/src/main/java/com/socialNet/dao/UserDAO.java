@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.socialNet.dbmanager.DBConnection;
+import com.socialNet.exception.CommentException;
 import com.socialNet.exception.UserException;
 import com.socialNet.interfaces.IUser;
 import com.socialNet.model.Post;
@@ -29,6 +30,8 @@ public class UserDAO implements IUser {
 	private static final String SELECT_USER_BY_ID_SQL = "SELECT * FROM users WHERE user_id =?";
 	private static final String SELECT_USER_FRIENDS = "SELECT * FROM friends WHERE user_id=?";
 	private static final String SELECT_ALL_USERS = "SELECT * FROM users";
+	private static final String UPDATE_FIRSTNAME_BY_USER_ID = "UPDATE users SET first_name=? WHERE user_id=?";
+	private static final String UPDATE_LASTNAME_BY_USER_ID = "UPDATE users SET last_name=? WHERE user_id=?";
 
 	public int registerUser(User user) throws UserException {
 		conn = connection.getConnection();
@@ -132,4 +135,26 @@ public class UserDAO implements IUser {
 		}
 	}
 
+	public void changeFirstName(int userId,String firstName) throws UserException{
+		try {
+			PreparedStatement ps = conn.prepareStatement(UPDATE_FIRSTNAME_BY_USER_ID);
+			ps.setString(1, firstName);
+			ps.setInt(2, userId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new UserException("User can't be edited right now, please try again later.", e);
+		}
+
+	}
+	public void changeLastName(int userId,String lastName) throws UserException{
+		try {
+			PreparedStatement ps = conn.prepareStatement(UPDATE_LASTNAME_BY_USER_ID);
+			ps.setString(1, lastName);
+			ps.setInt(2, userId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new UserException("User can't be edited right now, please try again later.", e);
+		}
+
+	}
 }
