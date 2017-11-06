@@ -29,14 +29,13 @@
 					<img src="img/${post.pictureName} " style="width: 80%" alt="Nature"
 						class="w3-margin-bottom">
 				</div>
-				<p>${post.content}</p>
-				<p>ID: ${post.postId}</p>
-				<p>User: ${post.userId}"</p>
+				<p>User first name: ${user.firstName}</p>
+				<p>User last name: ${user.lastName}"</p>
 				<p>Date: ${post.datePost}</p>
-				<p>Number of likes: ${post.likeCount}</p>
-				<p>Number of comments: ${post.commentCount}</p>
+				<p>Content: ${post.content}</p>
 
-				<div class="w3-row-padding" style="margin: 0 -16px">
+
+				<div class="w3-row-padding" style="margin: 0 -8px">
 
 					<form name="test" method="get" action="newLike">
 						<input type="hidden" name="postId" value="${post.postId}" /> <input
@@ -54,24 +53,7 @@
 						class="w3-button w3-theme-d2 w3-margin-bottom">
 						<i class="fa fa-comment"> </i>  Comment
 					</button>
-					<button type="button"
-						class="w3-button w3-theme-d2 w3-margin-bottom">
-						<form method="get" action="deletePost">
-							<input type="hidden" name="postId" value="${post.postId}" /> <input
-								type="hidden" name="postId" value="${post.postId}" /> <input
-								type="submit" value="Delete Post" />
-						</form>
-					</button>
 
-
-				<form name="test" method="get" action="editPost">
-					<input type="hidden" name="postId" value="${post.postId}" /> 
-					
-					<input type = text value = "postContent" >
-					<input
-						type="submit" value="Edit post"
-						class="w3-button w3-theme-d2 w3-margin-bottom">
-				</form>
 				</div>
 
 

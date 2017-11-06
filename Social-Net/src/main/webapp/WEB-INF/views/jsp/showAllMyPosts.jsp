@@ -24,14 +24,13 @@
 					<img src="img/${post.pictureName} " style="width: 80%" alt="Nature"
 						class="w3-margin-bottom">
 				</div>
-				<p>${post.content}</p>
-				<p>User: ${post.userId}</p>
+				<p>User first name: ${user.firstName}</p>
+				<p>User last name: ${user.lastName}"</p>
 				<p>Date: ${post.datePost}</p>
-				<p>Date: ${post.postId}</p>
-				<p>Likes: ${post.likeCount}</p>
-				<p>Comments: ${post.commentCount}</p>
+				<p>Content: ${post.content}</p>
 
-				<div class="w3-row-padding" style="margin: 0 -16px">
+
+				<div class="w3-row-padding" style="margin: 0 -8px">
 					<button type="button"
 						class="w3-button w3-theme-d1 w3-margin-bottom">
 						<i class="fa fa-thumbs-up"></i>  Like
@@ -41,10 +40,23 @@
 							type="submit" value="Show Comments"
 							class="w3-button w3-theme-d2 w3-margin-bottom">
 					</form>
+
 					<button type="button"
-						class="w3-button w3-theme-d1 w3-margin-bottom">
-						<i class="fa fa-thumbs-up"></i>  Delete post
+						class="w3-button w3-theme-d2 w3-margin-bottom">
+						<form method="get" action="deletePost">
+							<input type="hidden" name="postId" value="${post.postId}" /> <input
+								type="submit" value="Delete post"
+								class="w3-button w3-theme-d2 w3-margin-bottom" />
+						</form>
 					</button>
+
+
+					<form name="test" method="get" action="editPost">
+						<input type="hidden" name="postId" value="${post.postId}" /> <input
+							type="submit" value="Edit post"
+							class="w3-button w3-theme-d2 w3-margin-bottom">
+					</form>
+
 				</div>
 		</table>
 	</c:forEach>
