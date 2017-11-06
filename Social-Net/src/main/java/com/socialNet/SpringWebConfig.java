@@ -42,7 +42,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	
-	// localization configuration
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();

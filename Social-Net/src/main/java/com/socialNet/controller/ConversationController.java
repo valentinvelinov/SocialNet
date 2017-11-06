@@ -38,44 +38,88 @@ public class ConversationController {
 	UserDAO userDAO;
 
 	@RequestMapping(value = "/showAllMyConversations", method = RequestMethod.GET)
-	public String showConversations(HttpServletRequest request, HttpSession session, Model viewModel)
-			throws ConversationException, UserException {
+	public String showConversations(HttpServletRequest request, HttpSession session, Model viewModel) {
 		User user = (User) session.getAttribute("user");
-		ArrayList<Conversation> myconverastions = conversationDAO.getUserConversations(user.getUserId());
-		Collection<User> friends = userDAO.getFriends(user);
-		viewModel.addAttribute("list", myconverastions);
-		viewModel.addAttribute("friends", friends);
-		return "showAllMyConversations";
+		ArrayList<Conversation> myconverastions = null;
+		try {
+			myconverastions = conversationDAO.getUserConversations(user.getUserId());
+		} catch (ConversationException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		Collection<User> friends = null;
+		try {
+			friends = userDAO.getFriends(user);
+		} catch (UserException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		if (myconverastions == null || friends == null) {
+			return "error";
+		} else {
+			viewModel.addAttribute("list", myconverastions);
+			viewModel.addAttribute("friends", friends);
+			return "showAllMyConversations";
+		}
 	}
 
 	@RequestMapping(value = "/openConversation", method = RequestMethod.GET)
 	public String openConversation(@ModelAttribute Message message, HttpServletRequest request, Model viewModel,
-			HttpSession session) throws CommentException, UserException, MessageException {
+			HttpSession session) {
 		int conversationId = Integer.parseInt(request.getParameter("conversationId"));
-		ArrayList<Message> messages = messeageDAO.getMessages(conversationId);
-		viewModel.addAttribute("listMSG", messages);
-		return "openConversation";
+		ArrayList<Message> messages = null;
+		try {
+			messages = messeageDAO.getMessages(conversationId);
+		} catch (MessageException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		if (messages == null) {
+			return "error";
+		} else {
+			viewModel.addAttribute("listMSG", messages);
+			return "openConversation";
+		}
 	}
 
 	@RequestMapping(value = "/newMessage", method = RequestMethod.GET)
 	public synchronized String sendMessage(@ModelAttribute Message message, HttpServletRequest request,
-			HttpSession session, Model viewModel) throws CommentException, MessageException {
+			HttpSession session, Model viewModel) {
 		User user = (User) session.getAttribute("user");
 		message.setUserId(user.getUserId());
-		messeageDAO.postMessage(message);
+		try {
+			messeageDAO.postMessage(message);
+		} catch (MessageException e) {
+			e.printStackTrace();
+			return "error";
+		}
 		return "forward:openConversation";
 	}
 
 	@RequestMapping(value = "/createConversation", method = RequestMethod.GET)
 	public synchronized String createConversation(@ModelAttribute Message message, HttpServletRequest request,
-			HttpSession session, Model viewModel)
-			throws CommentException, MessageException, UserException, ConversationException {
+			HttpSession session, Model viewModel) {
 		User user = (User) session.getAttribute("user");
 		int friendId = Integer.parseInt(request.getParameter("friendId"));
-		System.err.println("FRIEND_ID" + friendId);
-		int conversationId = conversationDAO.createConversation(friendId);
-		conversationDAO.setConversationToUsers(user.getUserId(), conversationId);
-		conversationDAO.setConversationToUsers(friendId, conversationId);
+		int conversationId;
+		try {
+			conversationId = conversationDAO.createConversation(friendId);
+		} catch (UserException | ConversationException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		try {
+			conversationDAO.setConversationToUsers(user.getUserId(), conversationId);
+		} catch (ConversationException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		try {
+			conversationDAO.setConversationToUsers(friendId, conversationId);
+		} catch (ConversationException e) {
+			e.printStackTrace();
+			return "error";
+		}
 		return "forward:showAllMyConversations";
 	}
 

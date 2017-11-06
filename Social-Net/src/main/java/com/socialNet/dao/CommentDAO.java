@@ -54,7 +54,7 @@ public class CommentDAO implements IComment {
 			List<Comment> comments = new ArrayList<Comment>();
 
 			ps.setInt(1, postId);
-			
+
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Comment comment = new Comment();
@@ -69,12 +69,11 @@ public class CommentDAO implements IComment {
 			ps.close();
 			return comments;
 		} catch (SQLException sql) {
-			System.out.println(sql);
+			throw new CommentException("Comments cannot be shown right now, please try again later.");
 		}
-		return null;
 	}
 
-	public Comment getCommentById(int id) throws UserException {
+	public Comment getCommentById(int id) throws CommentException {
 		conn = connection.getConnection();
 
 		try {
@@ -83,11 +82,11 @@ public class CommentDAO implements IComment {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next() == false) {
-				throw new UserException("Comment not available!");
+				throw new CommentException("Comment not found");
 			}
 			return new Comment(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getDate(5));
 		} catch (SQLException e) {
-			throw new UserException("Please try to login again", e);
+			throw new CommentException("Sorry you cant get this comment,now!.", e);
 		}
 
 	}

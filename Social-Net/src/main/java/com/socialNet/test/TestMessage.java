@@ -18,16 +18,16 @@ public class TestMessage {
 		java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-		testMessage = new Message(1, "Some content", sqlDate);
+//		testMessage = new Message(1, "Some content", sqlDate);
+//
+//		int id = 0;
+//		try {
+//			id = messageDao.sendMessage(testMessage);
+//		} catch (MessageException e) {
+//			e.printStackTrace();
+//		}
 
-		int id = 0;
-		try {
-			id = messageDao.sendMessage(testMessage);
-		} catch (MessageException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("ID after start a conversation " + id);
+//		System.out.println("ID after start a conversation " + id);
 
 	}
 }

@@ -2,9 +2,11 @@ package com.socialNet.interfaces;
 
 import java.util.Collection;
 
+import org.springframework.stereotype.Component;
+
 import com.socialNet.exception.UserException;
 import com.socialNet.model.User;
-
+@Component
 public interface IUser {
 
 	public int registerUser(User user) throws UserException;

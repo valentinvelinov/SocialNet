@@ -25,7 +25,6 @@ public class Like {
 	}
 
 	public Like() {
-
 	}
 
 	// Getters and Setters
@@ -53,9 +52,5 @@ public class Like {
 		this.userId = userId;
 	}
 
-	@Override
-	public String toString() {
-		return "Like [likeId=" + likeId + ", postId=" + postId + ", userId=" + userId + "]";
-	}
 
 }

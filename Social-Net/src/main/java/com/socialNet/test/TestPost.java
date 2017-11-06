@@ -16,7 +16,7 @@ public class TestPost {
 
 		System.out.println(user.getUserId());
 
-		Post post = new Post(0, "SomeText", user.getUserId(), "something.jpg");
+//		Post post = new Post(0, "SomeText", user.getUserId(), "something.jpg");
 
 		int post_id = postDao.makePost(post, user);
 

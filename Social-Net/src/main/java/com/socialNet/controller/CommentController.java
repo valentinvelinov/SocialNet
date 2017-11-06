@@ -26,36 +26,60 @@ public class CommentController {
 	CommentDAO commentDAO;
 
 	@RequestMapping(value = "/newComment", method = RequestMethod.GET)
-	public String createComment(@ModelAttribute Comment comment,HttpServletRequest request,HttpSession session) throws CommentException {
-		int postId=Integer.parseInt(request.getParameter("postId"));
-		User user=(User) session.getAttribute("user");
-		commentDAO.postComment(postId,user.getUserId(),comment.getText());
+	public String createComment(@ModelAttribute Comment comment, HttpServletRequest request, HttpSession session) {
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		User user = (User) session.getAttribute("user");
+		try {
+			commentDAO.postComment(postId, user.getUserId(), comment.getText());
+		} catch (CommentException e) {
+			e.printStackTrace();
+			return "error";
+		}
 		return "forward:showPostComments";
-	} 
+	}
 
 	@RequestMapping(value = "/showPostComments", method = RequestMethod.GET)
-	public String showComments(@ModelAttribute Comment comment,HttpServletRequest request, Model viewModel) throws CommentException, UserException {
+	public String showComments(@ModelAttribute Comment comment, HttpServletRequest request, Model viewModel) {
 		String postId = request.getParameter("postId");
 		int myPost = Integer.parseInt(postId);
-		List<Comment> comments = commentDAO.showCommetsByPost(myPost);
+		List<Comment> comments;
+		try {
+			comments = commentDAO.showCommetsByPost(myPost);
+		} catch (CommentException e) {
+			e.printStackTrace();
+			return "error";
+		} catch (UserException e) {
+			e.printStackTrace();
+			return "error";
+		}
 		viewModel.addAttribute(comments);
 		return "showAllMyComments";
 	}
 
 	@RequestMapping(value = "/editcomment", method = RequestMethod.GET)
-	public String editComment(HttpServletRequest request, Model viewModel) throws CommentException, UserException {
+	public String editComment(HttpServletRequest request, Model viewModel) {
 		int postId = Integer.parseInt(request.getParameter("postId"));
 		int commentId = Integer.parseInt(request.getParameter("commentId"));
 		String content = request.getParameter("content");
-		commentDAO.updateComment(commentId, content);
+		try {
+			commentDAO.updateComment(commentId, content);
+		} catch (CommentException e) {
+			e.printStackTrace();
+			return "error";
+		}
 		return "forward:showPostComments";
 	}
-	
+
 	@RequestMapping(value = "/deletecomment", method = RequestMethod.GET)
-	public String deleteComment(HttpServletRequest request, Model viewModel) throws CommentException, UserException {
+	public String deleteComment(HttpServletRequest request, Model viewModel) {
 		int postId = Integer.parseInt(request.getParameter("postId"));
 		int commentId = Integer.parseInt(request.getParameter("commentId"));
-		commentDAO.deleteComment(commentId);
+		try {
+			commentDAO.deleteComment(commentId);
+		} catch (CommentException e) {
+			e.printStackTrace();
+			return "error";
+		}
 		return "forward:showPostComments";
 	}
 

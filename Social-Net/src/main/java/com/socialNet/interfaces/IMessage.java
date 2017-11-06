@@ -1,11 +1,8 @@
 package com.socialNet.interfaces;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
 
-import com.socialNet.exception.MessageException;
-import com.socialNet.exception.UserException;
-import com.socialNet.model.Message;
-
+@Component
 public interface IMessage {
 	
 }

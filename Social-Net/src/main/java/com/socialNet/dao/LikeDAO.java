@@ -27,8 +27,6 @@ public class LikeDAO implements ILike {
 
 	private static Connection conn;
 	private static final String INSERT_LIKE_SQL = "INSERT INTO likes VALUES (null,?,?)";
-	// private static final String SELECT_LIKE_BY_ID = "SELECT * FROM likes WHERE
-	// like_id=?";
 	private static final String VERIFY_LIKE = "SELECT * FROM likes WHERE post_id=? and user_id =?";
 	private static final String DELETE_LIKE_SQL = "DELETE FROM likes WHERE post_id=? and user_id=?";
 	private static final String SELECT_LIKE_BY_POST = "SELECT * FROM likes WHERE post_id=?";
@@ -72,25 +70,32 @@ public class LikeDAO implements ILike {
 	}
 
 	@Override
-	public List<Like> showLikesByPost(int myPost) throws SQLException {
+	public List<Like> showLikesByPost(int myPost) throws LikeException {
 		conn = connection.getConnection();
-		PreparedStatement ps = conn.prepareStatement(SELECT_LIKE_BY_POST, Statement.RETURN_GENERATED_KEYS);
-		ps.setInt(1, myPost);
-		ResultSet rs = ps.executeQuery();
-		listOfLikes.clear();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(SELECT_LIKE_BY_POST, Statement.RETURN_GENERATED_KEYS);
 
-		while (rs.next()) {
-			int idLike = rs.getInt("like_id");
-			// int idPost = rs.getInt("post_id");
-			int idUser = rs.getInt("user_id");
+			ps.setInt(1, myPost);
+			ResultSet rs = ps.executeQuery();
+			listOfLikes.clear();
 
-			Like like = new Like(idLike, myPost, idUser);
-			listOfLikes.add(like);
+			while (rs.next()) {
+				int idLike = rs.getInt("like_id");
+				int idUser = rs.getInt("user_id");
+
+				Like like = new Like(idLike, myPost, idUser);
+				listOfLikes.add(like);
+			}
+			for (Like l : listOfLikes) {
+				System.out.println("collection" + l);
+			}
+			return listOfLikes;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new LikeException("Like cannot be selected");
 		}
-		for (Like l : listOfLikes) {
-			System.out.println("collection" + l);
-		}
-		return listOfLikes;
+
 	}
-
 }

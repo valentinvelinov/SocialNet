@@ -13,7 +13,6 @@ import com.socialNet.model.User;
 
 @Component
 public interface IPost {
-	@Autowired
 	public ArrayList<Post> viewAllMyPosts(User user) throws PostException, UserException, SQLException;
 
 	public ArrayList<Post> viewAllPosts(User user) throws PostException, UserException, SQLException;

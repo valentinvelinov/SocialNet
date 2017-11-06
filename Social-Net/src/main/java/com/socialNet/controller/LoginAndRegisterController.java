@@ -24,7 +24,7 @@ import com.socialNet.interfaces.IUser;
 import com.socialNet.model.User;
 
 @Controller
-//@SessionAttributes("user")
+// @SessionAttributes("user")
 public class LoginAndRegisterController {
 	@Autowired
 	IUser userDAO;
@@ -85,7 +85,7 @@ public class LoginAndRegisterController {
 
 	@RequestMapping(value = "/logout")
 	public String logout(User user, HttpSession session, HttpServletResponse response, HttpServletRequest request,
-			Model model) throws ServletException, IOException {
+			Model model) {
 		session.invalidate();
 		response.setHeader("Pragma", "No-cache");
 		response.setDateHeader("Expires", -1);

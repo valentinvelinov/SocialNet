@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 
 import com.socialNet.dao.UserDAO;
 import com.socialNet.exception.UserException;
-import com.socialNet.model.Gender;
 import com.socialNet.model.User;
 import com.sun.el.parser.ParseException;
 
@@ -22,18 +21,5 @@ public class TestUser {
 
 		int id = userDao.registerUser(testUser);
 
-		// int id2 = userDao.loginUser(testUser);
-		// System.out.println("ID after login " + id2);
-		//
-		// assertEquals(id, id2);
-		//
-		// testUser.setUser_id(id2);
 	}
-
-	// public void testLoginUser() throws UserException {
-	// testUser = new User("valkata@email.bg", "12345");
-	// int id = userDao.loginUser(testUser);
-	//
-	// assertEquals(7, id);
-	// }
 }

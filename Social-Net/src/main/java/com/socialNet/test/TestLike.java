@@ -26,15 +26,11 @@ public class TestLike {
 
 		like = new Like(post.getPostId(), user.getUserId());
 
-		int id = likedao.likePost(like);
+//		int id = likedao.likePost(like);
 
-		System.out.println(id);
-
-		assertEquals(2, id);
+//		System.out.println(id);
+//
+//		assertEquals(2, id);
 	}
 
-	private void assertEquals(int i, int id) {
-		// TODO Auto-generated method stub
-
-	}
 }
